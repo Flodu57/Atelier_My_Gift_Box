@@ -1,0 +1,35 @@
+<-----------Global---------->
+get mygiftbox
+get mygiftbox/prestations   -> affiche la liste des prestations
+get mygiftbox/prestations/2 -> affiche le détail d'une prestation ayant pour id 2
+
+<-----------User---------->
+get  mygiftbox/login
+post mygiftbox/login
+
+get  mygiftbox/register
+post mygiftbox/register
+
+get    mygiftbox/profile/56     -> affiche le profil global du user ayant pour id 56 (possibilité de changer de mdp/supprimer son compte)
+put    mygiftbox/profile/56     -> quand le user change son mdp
+delete mygiftbox/profile/56     -> quand le user supprime son compte
+
+get mygiftbox/profile/myboxes   -> affiche les box d'un user
+get mygiftbox/profile/myboxes/3 -> affiche le contenu de la box ayant pour id 3 (avec possibilité d'édition : valider la box/changer le {message|nom})
+put mygiftbox/profile/myboxes/3 -> quand on sauvegarde les changements
+
+<-----------Visiteur---------->
+get mygiftbox/box/CxIWumr3xV -> lien vers la box ayant pour id CxIWumr3xV
+
+get mygiftbox/box/cagnotte/CxIWumr3xV  -> lien vers la cagnotte de la box ayant pour id CxIWumr3xV
+post mygiftbox/box/cagnotte/CxIWumr3xV -> quand on saisit un montant
+
+<-----------Administrateur---------->
+get  mygiftbox/admin/prestations -> affiche la liste des prestations 
+
+get    mygiftbox/admin/prestations/2   -> affiche le détail d'une prestation ayant pour id 2 (bouton pour suspendre/supprimer)
+put    mygiftbox/admin/prestations/2   -> quand on suspend la prestation
+delete mygiftbox/admin/prestations/2   -> quand on supprime la prestation
+
+get mygiftbox/admin/prestations/add    -> affiche un formulaire pour ajouter une prestation
+post mygiftbox/admin/prestations/add   -> quand on ajoute une nouvelle prestation
