@@ -42,7 +42,7 @@ body, head {
 .menu {
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
 }
 .menu a {
   padding-bottom: 5px;
@@ -54,6 +54,9 @@ body, head {
 .menu a:hover {
   border-bottom: none;
   border-top: 2px solid black;
+}
+.menu img {
+  width: 10%;
 }
 
 /*# sourceMappingURL=style.css.map */
