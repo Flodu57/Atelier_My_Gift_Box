@@ -49,7 +49,7 @@ body, head {
 .menu{
     display: flex;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: center;
 
     a{
         padding-bottom: 5px;
@@ -62,5 +62,9 @@ body, head {
     a:hover{
         border-bottom: none;
         border-top: 2px solid black;
+    }
+
+    img{
+        width:10%
     }
 }
