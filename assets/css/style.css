@@ -39,10 +39,7 @@ body, head {
   font-size: 0.9em;
 }
 
-@keyframes example {
-  from {
-    background-color: inherit;
-  }
+@keyframes color-change {
   to {
     background-color: #3399ff;
   }
@@ -61,9 +58,9 @@ body, head {
   color: black;
 }
 .menu a:hover {
-  animation-name: example;
-  animation-duration: 2s;
-  border-bottom: none;
+  animation-name: color-change;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

@@ -46,8 +46,7 @@ body, head {
     }
 }
 
-@keyframes example {
-    from {background-color: inherit;}
+@keyframes color-change {
     to {background-color: $primary-color;}
 }
 //MENU
@@ -55,8 +54,9 @@ body, head {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
+    
 
-    a{
+    a{  
         padding-bottom: 5px;
         padding: 10px 5px;
         border-bottom: 2px solid $primary-color;
@@ -66,9 +66,9 @@ body, head {
     }
 
     a:hover{
-        animation-name: example;
-        animation-duration: 2s;
-        border-bottom: none;
+        animation-name: color-change;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
         color: white;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
