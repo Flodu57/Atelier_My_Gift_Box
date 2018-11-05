@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+$primary-color: #3399ff;
 
 body, head {
     font-family: "Montserrat";
@@ -45,6 +46,10 @@ body, head {
     }
 }
 
+@keyframes example {
+    from {background-color: inherit;}
+    to {background-color: $primary-color;}
+}
 //MENU
 .menu{
     display: flex;
@@ -53,14 +58,19 @@ body, head {
 
     a{
         padding-bottom: 5px;
-        border-bottom: 2px solid black;
+        padding: 10px 5px;
+        border-bottom: 2px solid $primary-color;
         font-size: 1.2em;
         text-decoration: none;
         color:black;
     }
 
     a:hover{
+        animation-name: example;
+        animation-duration: 2s;
         border-bottom: none;
-        border-top: 2px solid black;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 }

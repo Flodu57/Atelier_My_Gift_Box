@@ -39,6 +39,14 @@ body, head {
   font-size: 0.9em;
 }
 
+@keyframes example {
+  from {
+    background-color: inherit;
+  }
+  to {
+    background-color: #3399ff;
+  }
+}
 .menu {
   display: flex;
   justify-content: space-around;
@@ -46,14 +54,19 @@ body, head {
 }
 .menu a {
   padding-bottom: 5px;
-  border-bottom: 2px solid black;
+  padding: 10px 5px;
+  border-bottom: 2px solid #3399ff;
   font-size: 1.2em;
   text-decoration: none;
   color: black;
 }
 .menu a:hover {
+  animation-name: example;
+  animation-duration: 2s;
   border-bottom: none;
-  border-top: 2px solid black;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
