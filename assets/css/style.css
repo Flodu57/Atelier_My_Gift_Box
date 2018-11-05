@@ -39,6 +39,11 @@ body, head {
   font-size: 0.9em;
 }
 
+@keyframes color-change {
+  to {
+    background-color: #3399ff;
+  }
+}
 .menu {
   display: flex;
   justify-content: space-around;
@@ -46,7 +51,7 @@ body, head {
 }
 .menu a {
   padding-bottom: 5px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #3399ff;
   border-top: 2px solid transparent;
   font-size: 1.2em;
   text-decoration: none;
@@ -54,7 +59,7 @@ body, head {
 }
 .menu a:hover {
   border-bottom: 2px solid transparent;
-  border-top: 2px solid black;
+  border-top: 2px solid #3399ff;
 }
 .menu img {
   width: 10%;

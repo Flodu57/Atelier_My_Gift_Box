@@ -1,3 +1,5 @@
 /src/conf/config.ini
 *.lock
 /vendor
+
+/assets/css/
