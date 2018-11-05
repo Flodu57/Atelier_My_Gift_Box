@@ -53,8 +53,12 @@ body, head {
 .menu{
     display: flex;
     justify-content: space-around;
+<<<<<<< HEAD
     align-items: flex-end;
     
+=======
+    align-items: center;
+>>>>>>> 78bcb2b93514e45b505ce3d2608b605548a50b09
 
     a{  
         padding-bottom: 5px;
@@ -72,5 +76,9 @@ body, head {
         color: white;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+    }
+
+    img{
+        width:10%
     }
 }

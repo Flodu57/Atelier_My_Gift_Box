@@ -47,7 +47,7 @@ body, head {
 .menu {
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
 }
 .menu a {
   padding-bottom: 5px;
@@ -64,6 +64,9 @@ body, head {
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+.menu img {
+  width: 10%;
 }
 
 /*# sourceMappingURL=style.css.map */
