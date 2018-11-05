@@ -57,20 +57,16 @@ body, head {
 
     a{  
         padding-bottom: 5px;
-        padding: 10px 5px;
         border-bottom: 2px solid $primary-color;
+        border-top: 2px solid transparent;
         font-size: 1.2em;
         text-decoration: none;
         color:black;
     }
 
     a:hover{
-        animation-name: color-change;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        color: white;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        border-bottom: 2px solid transparent;
+        border-top: 2px solid $primary-color;
     }
 
     img{
