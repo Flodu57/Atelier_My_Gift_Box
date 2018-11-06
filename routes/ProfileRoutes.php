@@ -2,6 +2,11 @@
 
 use mygiftbox\controllers\ProfileController;
 
+$app->get("/profile/:id", function($id) use ($app){
+    $c = new ProfileController();
+    $c->getSettings($id);
+})->name('profil');
+
 $app->get("/profile/:id/settings", function($id) use ($app){
     $c = new ProfileController();
     $c->getSettings($id);
