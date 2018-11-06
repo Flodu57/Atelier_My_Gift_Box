@@ -4,9 +4,18 @@ namespace mygiftbox\views;
 
 class ProfileView extends View{
 
+    private $id;
+
+    function __construct($id){
+        $this->id = $id;
+    }
+
     public function render(){
         $header = $this->header();
         $menu = $this->menu();
+        $link = $this->getLink();
+        $app = \Slim\Slim::getInstance();
+        $urlSettings = $app->urlFor('profil.settings', ['id' => $this->id]);
         $footer = $this->footer();
 
         $html = "
@@ -26,14 +35,15 @@ class ProfileView extends View{
                                     <p class='label label_mail'>Mail</p>
                                 </div>
                                 <div class='accountSettings'>
-                                    <img src='../../assets/img/settings.svg' class='imageSettings'><a href='#' class='label label_settings'>Paramètres</a>
+                                    <img src='$link/assets/img/settings.svg' class='imageSettings'>
+                                    <a href='$urlSettings' class='label label_settings'>Paramètres</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class='mybox'>
                             <h1 class='title title_informations'>Mes box</h1>
-                            <img src='../../assets/img/plus.svg' class='imageMybox'>
+                            <img src='$link/assets/img/plus.svg' class='imageMybox'>
                         </div>
                         <div class='gridBox'>
                             <div class='boxItem'>

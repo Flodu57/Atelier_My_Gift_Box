@@ -45,7 +45,7 @@ class ProfileController {
     }
 
     public function getProfile($id){
-        $v = new ProfileView();
+        $v = new ProfileView($id);
         $v->render();
     }
 

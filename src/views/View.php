@@ -12,8 +12,7 @@ class View{
     }
 
     public function header(){
-        $app = \Slim\Slim::getInstance();
-        $link = $app->request()->getUrl() . $app->request()->getRootUri();
+        $link = $this->getLink();
         return <<<END
             <head>
                 <meta charset='UTF-8'>
@@ -23,9 +22,14 @@ class View{
 END;
     }
 
+    public function getLink(){
+        $app = \Slim\Slim::getInstance();
+        return $app->request()->getUrl() . $app->request()->getRootUri();
+    }
+
     public function menu(){
         $app = \Slim\Slim::getInstance();
-        $link = $app->request()->getUrl() . $app->request()->getRootUri();
+        $link = $this->getLink();
         $urlHome = $app->urlFor('home');
         $urlOffers = '#';
         $html = <<<END
