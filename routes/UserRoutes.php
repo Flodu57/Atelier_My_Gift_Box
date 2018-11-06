@@ -8,7 +8,8 @@ $app->get("/login", function() use ($app){
 })->name('login');
 
 $app->post("/login", function() use ($app){
-    include 'src/actions/login.php';
+    $c = new UserController();
+    $c->postLogin();
 })->name('post_login');
 
 $app->get("/register", function() use ($app){
@@ -17,7 +18,8 @@ $app->get("/register", function() use ($app){
 })->name('register');
 
 $app->post("/register", function() use ($app){
-    include 'src/actions/register.php';
+    $c = new UserController();
+    $c->postRegister();
 })->name('post_register');
 
 $app->get('/logout', function() use ($app){

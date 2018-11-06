@@ -15,16 +15,10 @@ use mygiftbox\models\User;
 class Authentification
 {
 
-
     //creation d'un utilisateur
     public static function createUser($nom, $prenom, $email, $mdp){
-
-        
         $verif = User::where('email','=',$email)->first();
-
-
         $app = Slim::getInstance();
-
         if(!$verif){
             //insertion de l'utilisateur
             $user = new User();
@@ -37,14 +31,12 @@ class Authentification
             $app->flash('error', "L'utilisateur existe déjà");
             $app->redirect('login');
         }
-
     }
 
 
     //authentification d'un utilisateur
     public static function authentificate($email, $password){
         $app = Slim::getInstance();
-
         //on recupere l'utilisateur dans la base de donnee
         $user = User::where('email','=',$email)->first();
         //s'il existe
@@ -53,7 +45,6 @@ class Authentification
             if(password_verify($password,$user->password)){
                 //on le connecte
                 self::loadProfil($user->email);
-
             }else{
                 $app->flash('error', 'Mot de passe ou utilisateur incorrect');
                 $app->redirect('login');
@@ -62,17 +53,12 @@ class Authentification
             $app->flash('error', 'Mot de passe ou utilisateur incorrect');
             $app->redirect('login');
         }
-
-
     }
-
 
     //connexion d'un utilisateur
     public static function loadProfil($email){
-
         //on recupere l'utilisateur grace a son id dans la base de donnee
         $user = User::where('email','=',$email)->first();
-
         $_SESSION['id_user'] = $user->id;
     }
 
@@ -80,9 +66,7 @@ class Authentification
     //verification des droits d'acces d'un utilisateur
     public static function checkAcessRight($required){
         $app = Slim::getInstance();
-
         if(isset($_SESSION['account'])){
-
             //on verifie si l'utilisateur connecte a le niveau requis
             if($_SESSION['account']['auth_level'] < $required){
                 $app->flash('error', "Pas le droit d'aceeder a cette page");

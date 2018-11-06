@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom` text NOT NULL,
   `prenom` text NOT NULL,
   `password` text NOT NULL,
+  `account_level` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
