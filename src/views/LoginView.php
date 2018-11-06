@@ -5,7 +5,7 @@ namespace mygiftbox\views;
 class LoginView extends View{
 
     public function render(){
-        $header = $this->header("Login");
+        $header = $this->header();
         $menu = $this->menu();
 
         $html = "

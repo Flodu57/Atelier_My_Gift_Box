@@ -2,6 +2,8 @@
 
 require 'vendor/autoload.php';
 use Illuminate\Database\Capsule\Manager as DB;
+use mygiftbox\controllers\UserController;
+use mygiftbox\controllers\HomeController;
 
 session_start();
 
@@ -18,11 +20,12 @@ $app->get("/", function() use ($app){
 })->name('root');
 
 $app->get("/home", function() use ($app){
-    echo 'hello world';
+    $c = new HomeController();
+    $c->getHomePage();
 })->name('home');
 
 $app->get("/login", function() use ($app){
-    $c = new mygiftbox\controllers\UserController;
+    $c = new UserController();
     $c->getLogin();
 })->name('login');
 
@@ -36,8 +39,13 @@ $app->post("/register", function() use ($app){
 })->name('post_register');
 
 $app->get("/register", function() use ($app){
-    $c = new mygiftbox\controllers\UserController;
+    $c = new UserController();
     $c->getRegister();
 })->name('register');
+
+$app->get('/logout', function() use ($app){
+    $c = new UserController();
+    $c->postLogout();
+})->name('logout');
 
 $app->run();

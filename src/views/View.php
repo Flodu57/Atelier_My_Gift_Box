@@ -4,32 +4,33 @@ namespace mygiftbox\views;
 
 class View{
 
-    public function header($title){
-
+    public function header(){
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
         return "
                 <head>
                     <meta charset='UTF-8'>
                     <link rel='stylesheet' href='$link/assets/css/style.css'>
-                    <title>$title - MyGiftBox</title>
+                    <title>MyGiftBox</title>
                 </head>
-
-                  ";
+            ";
     }
 
     public function menu(){
-
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
+        $urlHome = $app->urlFor('home');
+        $urlOffers = '#';
+        $urlProfile = '#';
+        $urlLogout = $app->urlFor('logout');
         return "
             <div class='menu'>
                 <img src='$link/assets/img/logo.png'>
-                <a href='index.html'>Accueil</a>
-                <a href='prestations.html'>Prestations</a>
-                <a href='account.html'>Mon compte</a>
+                <a href='$urlHome'>Accueil</a>
+                <a href='$urlOffers'>Prestations</a>
+                <a href='$urlProfile'>Mon compte</a>
+                <a href='$urlLogout'>Déconnexion</a>
             </div>
-
         ";
     }
 
@@ -43,6 +44,7 @@ class View{
         }
 
         return "";
+
     }
 
 }
