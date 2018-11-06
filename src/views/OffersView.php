@@ -10,10 +10,19 @@ class OffersView extends View{
         $menu = $this->menu();
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
-
+        $pres = "";
         $offers = Prestation::all();
         foreach($offers as $k => $v) {
-
+            $pres .= <<<END
+            <a href='#' class='offer'>
+                <img src='$link/assets/img/prestations/$v->image'>
+                <h2>$v->titre</h2>
+                <div class='offer_info'>
+                    <p>$v->categorie_id</p>
+                    <p>$v->prix €</p>
+                </div>
+            </a>
+END;
         }
 
         $html = "
@@ -26,15 +35,7 @@ class OffersView extends View{
                         
                         $menu
                         <div class='offers'> 
-                        $offers
-                            <a href='#' class='offer'>
-                                <img src='$link/assets/img/diner.jpg'>
-                                <h2>Prestations</h2>
-                                <div class='offer_info'>
-                                    <p>Catégorie</p>
-                                    <p>XX €</p>
-                                </div>
-                            </a>
+                           $pres 
                         </div>
                     </div>
                 </body>
