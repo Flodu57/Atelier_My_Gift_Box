@@ -6,8 +6,11 @@
 @import 'menu';
 @import 'menu';
 @import 'offers/offers';
+@import 'home/home';
 @import 'footer';
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+//Style général
 body, head {
     font-family: "Montserrat";
 }
@@ -20,8 +23,4 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
-}
-
-h1{
-    margin: 0;
 }

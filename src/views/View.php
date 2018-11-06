@@ -4,25 +4,15 @@ namespace mygiftbox\views;
 
 class View{
 
-    protected $header, $menu;
-
-    public function __construct(){
-        $this->header = $this->header();
-        $this->menu = $this->menu();
-    }
-
     public function header(){
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
-        $t = '-1';
-        if(isset($_SESSION['id_user'])){
-            $t = $_SESSION['id_user'];
-        }
+      
         return <<<END
             <head>
                 <meta charset='UTF-8'>
                 <link rel='stylesheet' href='$link/assets/css/style.css'>
-                <title>MyGiftBox - $t </title>
+                <title>MyGiftBox</title>
             </head>
 END;
     }
