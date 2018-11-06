@@ -1,6 +1,7 @@
 <?php
 
 namespace mygiftbox\views;
+use mygiftbox\models\Prestation;
 
 class OffersView extends View{
 
@@ -8,6 +9,20 @@ class OffersView extends View{
         $header = $this->header("Prestations");
         $menu = $this->menu();
         $link = $this->getLink();
+        $pres = "";
+        $offers = Prestation::all();
+        foreach($offers as $offer) {
+            $pres .= <<<END
+            <a href='#' class='offer'>
+                <img src='$link/assets/img/prestations/$offer->image'>
+                <h2>$offer->titre</h2>
+                <div class='offer_info'>
+                    <p>$offer->categorie_id</p>
+                    <p>$offer->prix €</p>
+                </div>
+            </a>
+END;
+        }
 
         $html = "
 
@@ -27,6 +42,9 @@ class OffersView extends View{
                                     <p>XX €</p>
                                 </div>
                             </a>
+
+                           $pres 
+
                         </div>
                     </div>
                 </body>
