@@ -5,14 +5,14 @@ namespace mygiftbox\controllers;
 use mygiftbox\views\OffersView;
 use mygiftbox\views\OfferView;
 
-class UserController{
+class OffersController{
 
-    public function getLogin(){
-        $v = new LoginView();
+    public function getOffers(){
+        $v = new OffersView();
         return $v->render();
     }
 
-    public function getRegister(){
+    public function getDetailedOffer(){
         $v = new RegisterView();
         return $v->render();
     }

@@ -93,3 +93,19 @@ body, head {
         width:10%
     }
 }
+
+//Offers
+.offers {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 1.2em;
+    .offer {
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
