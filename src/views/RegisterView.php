@@ -5,17 +5,15 @@ namespace mygiftbox\views;
 class RegisterView extends View{
 
     public function render(){
-        $header = $this->header();
-        $menu = $this->menu();
+        $error = parent::error();
         $footer = $this->footer();
-
-        $html = "
+        $html = <<<END
             <html>
-                $header
+                $this->header
                 <body>     
                     <div class='container'>
-                        ".parent::error()."
-                        $menu
+                        $error
+                        $this->menu
                         <form class='register' method='POST'> 
                             <p class='label label_nom'>Nom</p>
                             <input type='text' name='lastname' class='input input_nom'>
@@ -32,7 +30,6 @@ class RegisterView extends View{
                             <p class='label label_password'>Confirmer le mot de passe</p>
                             <input type='password' name='password_confirm' class='input input_password'>
                             <div>
-                                <a href=' class='label label_alreadyRegister'>Déjà inscrit ?</a>
                                 <button type='submit' class='button button_login'>Register</button>
                             </div>
                         </form>
@@ -40,7 +37,7 @@ class RegisterView extends View{
                     </div>
                 </body>
             </html>  
-        ";
+END;
         echo $html;
     }
 

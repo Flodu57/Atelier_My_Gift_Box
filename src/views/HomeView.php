@@ -10,7 +10,7 @@ class HomeView extends View {
         $footer = $this->footer();
         $html = "
         <html>
-            $header
+            $this->header
             <body>
                 <div class='container'>
                 $menu
