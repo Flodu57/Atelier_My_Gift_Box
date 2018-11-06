@@ -5,17 +5,13 @@ namespace mygiftbox\views;
 class RegisterView extends View{
 
     public function render(){
-        $header = $this->header("Register");
+        $header = $this->header();
         $menu = $this->menu();
-
         $html = "
-
-
             <html>
                 $header
                 <body>
-                    <div class='container'>
-                        
+                    <div class='container'>        
                         $menu
                         <div class='register'> 
                             <p class='label label_nom'>Nom</p>
@@ -33,11 +29,8 @@ class RegisterView extends View{
                         </div>
                     </div>
                 </body>
-            </html>
-        
-        
+            </html>  
         ";
-
         echo $html;
     }
 
