@@ -16,17 +16,28 @@ class UserController{
     }
 
     public function postLogin(){
+        $app = \Slim\Slim::getInstance();
         if(isset($_POST['email']) && isset($_POST['password'])){
-            $mail = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
+            $mail = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
             $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
             if(!empty($mail) && !empty($password)){
-                \mygiftbox\actions\Authentification::authentificate($mail, $password);
+                $user = User::where('email','=',$mail)->first();
+                if($user){
+                    if(password_verify($password, $user->password)){
+                        $_SESSION['id_user'] = $user->id;
+                    }else{
+                        $app->flash('error', 'Mot de passe ou utilisateur incorrect');
+                        $app->redirect('login');
+                    }
+                }else{
+                    $app->flash('error', 'Mot de passe ou utilisateur incorrect');
+                    $app->redirect('login');
+                }
             } else {
                 $app->flash('error', 'Veuillez entrer des informations valides');
                 $app->redirect('login');
             }
         }else{
-            $app = \Slim\Slim::getInstance();
             $app->flash('error', 'Veuillez remplir tous les champs');
             $app->redirect('login');
         }
@@ -43,11 +54,11 @@ class UserController{
             $nom = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
             $prenom = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $password = password_hash(filter_var($_POST['password'], FILTER_SANITIZE_STRING), PASSWORD_DEFAULT, ['cost' => 12]);
-                $password_c = filter_var($_POST['password_confirm'], FILTER_SANITIZE_STRING);
-                if (password_verify($password_c, $password)) {
-                    \mygiftbox\actions\Authentification::createUser($nom, $prenom, $email, $password);
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                if (password_verify(filter_var($_POST['password_confirm'], FILTER_SANITIZE_STRING), $hash)) {
+                    \mygiftbox\actions\Authentification::createUser($nom, $prenom, $email, $hash);
                     \mygiftbox\actions\Authentification::authentificate($email, $password_c);
                     $app->redirect($app->urlFor('home'));
                 } else {

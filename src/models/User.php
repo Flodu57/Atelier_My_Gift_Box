@@ -16,13 +16,11 @@ class User extends \Illuminate\Database\Eloquent\Model{
     }
 
     public static function exists($email) {
-        $query = parent::select('email')->get();
-        foreach ($query as $k => $v) {
-            if ($v->email == $email) {
-                return true;
-            }
+        if(parent::where('email','=',$email)->first()){
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
 }
