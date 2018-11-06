@@ -8,7 +8,6 @@ $app->get("/login", function() use ($app){
 
 $app->post("/login", function() use ($app){
     include 'src/actions/login.php';
-    var_dump($_SESSION['id_user']);
 })->name('post_login');
 
 $app->post("/register", function() use ($app){
