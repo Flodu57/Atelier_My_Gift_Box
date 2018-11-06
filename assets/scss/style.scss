@@ -182,7 +182,7 @@ h1{
     grid-column-gap: 10px;
     grid-row-gap: 15px;
     grid-template-columns: repeat(4,1fr);
-    height: 150px;
+    flex-grow: 1;
 
     .boxItem{
         border: 2px solid black;
@@ -208,6 +208,7 @@ footer{
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 10px;
 
     p{
         margin-top : 5px;
