@@ -14,11 +14,15 @@ class View{
     public function header(){
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
+        $t = '-1';
+        if(isset($_SESSION['id_user'])){
+            $t = $_SESSION['id_user'];
+        }
         return <<<END
             <head>
                 <meta charset='UTF-8'>
                 <link rel='stylesheet' href='$link/assets/css/style.css'>
-                <title>MyGiftBox</title>
+                <title>MyGiftBox - $t </title>
             </head>
 END;
     }
