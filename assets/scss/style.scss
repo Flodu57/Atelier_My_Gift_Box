@@ -2,6 +2,11 @@
 $primary-color: #3399ff;
 $button-hover-color: #0782fc;
 
+body{
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
 body, head {
     font-family: "Montserrat";
 }
@@ -10,6 +15,10 @@ body, head {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+h1{
+    margin: 0;
 }
 
 .login, .register{
@@ -206,3 +215,4 @@ footer{
         font-size:0.7em;
     }
 }
+@import 'profile/settings.scss'
