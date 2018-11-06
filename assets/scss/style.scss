@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 $primary-color: #3399ff;
+$secondary-color: rgb(70, 70, 70);
 $button-hover-color: #0782fc;
 
 body, head {
@@ -96,15 +97,28 @@ body, head {
 
 //Offers
 .offers {
+    padding-top: 20px;
     width: 70%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 10px;
-    grid-row-gap: 1.2em;
+    grid-row-gap:30px;
     .offer {
+        text-decoration: none;
+        border: 2px solid $secondary-color;
+        padding: 3px;
+        color: $primary-color;
+        
         img {
             max-width: 100%;
+        }
+
+        .offer_info {
+            color: $secondary-color;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 15%; 
         }
     }
 }
