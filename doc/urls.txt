@@ -1,30 +1,55 @@
 <-----------Global---------->
-get mygiftbox
-get mygiftbox/prestations   -> affiche la liste des prestations
-get mygiftbox/prestations/2 -> affiche le détail d'une prestation ayant pour id 2
 
-<-----------User---------->
+get mygiftbox
+get mygiftbox/offers   -> affiche la liste des prestations
+get mygiftbox/offers/2 -> affiche le détail d'une prestation ayant pour id 2
+
+
+
+<-----------LOGIN / REGISTER / LOGOUT / RESET---------->
+
 get  mygiftbox/login
 post mygiftbox/login
 
 get  mygiftbox/register
 post mygiftbox/register
 
-get    mygiftbox/profile/56     -> affiche le profil global du user ayant pour id 56 (possibilité de changer de mdp/supprimer son compte)
-put    mygiftbox/profile/56     -> quand le user change son mdp
-delete mygiftbox/profile/56     -> quand le user supprime son compte
+post mygiftbox/logout
 
-get mygiftbox/profile/myboxes   -> affiche les box d'un user
-get mygiftbox/profile/myboxes/3 -> affiche le contenu de la box ayant pour id 3 (avec possibilité d'édition : valider la box/changer le {message|nom})
-put mygiftbox/profile/myboxes/3 -> quand on sauvegarde les changements
+get  mygiftbox/reset-password
+post mygiftbox/reset-password -> envoie un mail pour changer le mot de passe
 
-<-----------Visiteur---------->
+
+
+<-----------PROFILE---------->
+
+get mygiftbox/profile/3    -> affiche le profil global du user ayant pour id 56 (possibilité de changer de mdp/supprimer son compte)
+
+get mygiftbox/profile/3/{slug-box}   -> affiche la box du user 3 ayant pour id son slug
+
+get  mygiftbox/profile/3/{slug-box}/payement   -> payer la box
+post mygiftbox/profile/3/{slug-box}/payement   -> quand on valide le payement
+
+get    mygiftbox/profile/3/settings  -> affiche les options du user 3
+put    mygiftbox/profile/3/settings  -> quand on change le mdp
+delete mygiftbox/profile/3/settings  -> quand on supprime le compte
+
+get  mygiftbox/profile/3/create-box  -> ajouter une box
+post mygiftbox/profile/3/create-box  -> quand on valide l'ajout d'une box
+
+
+
+<-----------VISITEUR---------->
+
 get mygiftbox/box/CxIWumr3xV -> lien vers la box ayant pour id CxIWumr3xV
 
 get mygiftbox/box/cagnotte/CxIWumr3xV  -> lien vers la cagnotte de la box ayant pour id CxIWumr3xV
 post mygiftbox/box/cagnotte/CxIWumr3xV -> quand on saisit un montant
 
-<-----------Administrateur---------->
+
+
+<-----------ADMINISTRATEUR---------->
+
 get  mygiftbox/admin/prestations -> affiche la liste des prestations 
 
 get    mygiftbox/admin/prestations/2   -> affiche le détail d'une prestation ayant pour id 2 (bouton pour suspendre/supprimer)
