@@ -1,23 +1,39 @@
 <?php
 
+use mygiftbox\models\User;
 use mygiftbox\controllers\ProfileController;
 
-$app->get("/profile/:id", function($id){
-    $c = new ProfileController();
-    $c->getProfile($id);
-})->name('profile');
+function checkProfile($route){
+    $app = \Slim\Slim::getInstance();
+    $id  = $route->getParam('id');
 
-$app->get("/profile/:id/settings", function($id){
-    $c = new ProfileController();
-    $c->getSettings($id);
-})->name('profil.settings');
+    if(!isset($_SESSION['id_user']) || ($_SESSION['id_user'] != $id)){
+            $app->flash('error','Vous devez vous identifier');
+            $app->redirect($app->urlFor('login'));
+    }
+    
+};
 
-$app->post("/profile/:id/settings", function($id){
-    $c = new ProfileController();
-    $c->changePassword($id);    
+$app->group('/profile','checkProfile', function() use ($app){
+
+    $app->get("/:id", function($id){
+        $c = new ProfileController();
+        $c->getProfile($id);
+    })->name('profile');
+    
+    $app->get("/:id/settings", function($id){
+        $c = new ProfileController();
+        $c->getSettings($id);
+    })->name('profil.settings');
+    
+    $app->post("/:id/settings", function($id){
+        $c = new ProfileController();
+        $c->changePassword($id);    
+    });
+    
+    $app->delete("/:id/settings", function($id){
+        $c = new ProfileController();
+        $c->deleteAccount($id); 
+    });
 });
 
-$app->delete("/profile/:id/settings", function($id){
-    $c = new ProfileController();
-    $c->deleteAccount($id); 
-});

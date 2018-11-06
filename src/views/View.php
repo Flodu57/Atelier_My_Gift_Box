@@ -7,13 +7,14 @@ class View{
     public function header(){
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
-        return "
-                <head>
-                    <meta charset='UTF-8'>
-                    <link rel='stylesheet' href='$link/assets/css/style.css'>
-                    <title>MyGiftBox</title>
-                </head>
-            ";
+      
+        return <<<END
+            <head>
+                <meta charset='UTF-8'>
+                <link rel='stylesheet' href='$link/assets/css/style.css'>
+                <title>MyGiftBox</title>
+            </head>
+END;
     }
 
     public function menu(){
