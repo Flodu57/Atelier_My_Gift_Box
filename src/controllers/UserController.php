@@ -7,8 +7,6 @@ use mygiftbox\views\RegisterView;
 
 class UserController{
 
-    
-
     public function getLogin(){
         $v = new LoginView();
         $v->render();
