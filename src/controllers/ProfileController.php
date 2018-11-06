@@ -4,6 +4,7 @@ namespace mygiftbox\controllers;
 
 use mygiftbox\views\ProfileSettingsView;
 use mygiftbox\views\ProfileView;
+use mygiftbox\views\CreateBoxView;
 use mygiftbox\models\User;
 
 
@@ -46,6 +47,11 @@ class ProfileController {
 
     public function getProfile(){
         $v = new ProfileView();
+        $v->render();
+    }
+
+    public function getCreateBox(){
+        $v = new CreateBoxView();
         $v->render();
     }
 

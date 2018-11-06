@@ -9,7 +9,8 @@ class ProfileView extends View{
     public function render(){
         $link = $this->getLink();
         $app = \Slim\Slim::getInstance();
-        $urlSettings = $app->urlFor('profil.settings', ['id' => $_SESSION['id_user']]);
+        $urlSettings = $app->urlFor('profile.settings', ['id' => $_SESSION['id_user']]);
+        $urlCreateBox = $app->urlFor('profile.createBox', ['id' => $_SESSION['id_user']]);
         $user = User::where('id', '=', $_SESSION['id_user'])->first();
 
         $html = "
@@ -37,7 +38,9 @@ class ProfileView extends View{
 
                         <div class='mybox'>
                             <h1 class='title title_informations'>Mes box</h1>
-                            <img src='$link/assets/img/plus.svg' class='imageMybox'>
+                            <a href='$urlCreateBox'>
+                                <i class='fas fa-plus'></i>
+                            </a>
                         </div>
                         <div class='gridBox'>
                             <div class='boxItem'>

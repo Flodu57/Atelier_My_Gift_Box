@@ -20,11 +20,16 @@ $app->group('/profile','checkProfile', function() use ($app){
         $c = new ProfileController();
         $c->getProfile();
     })->name('profile');
+
+    $app->get("/:id/createBox", function($id){
+        $c = new ProfileController();
+        $c->getCreateBox();
+    })->name('profile.createBox');
     
     $app->get("/:id/settings", function($id){
         $c = new ProfileController();
         $c->getSettings();
-    })->name('profil.settings');
+    })->name('profile.settings');
     
     $app->post("/:id/settings", function($id){
         $c = new ProfileController();
