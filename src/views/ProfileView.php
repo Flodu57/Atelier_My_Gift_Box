@@ -2,6 +2,8 @@
 
 namespace mygiftbox\views;
 
+use mygiftbox\models\User;
+
 class ProfileView extends View{
 
     private $id;
@@ -16,6 +18,7 @@ class ProfileView extends View{
         $link = $this->getLink();
         $app = \Slim\Slim::getInstance();
         $urlSettings = $app->urlFor('profil.settings', ['id' => $this->id]);
+        $user = User::where('id', '=', $this->id)->first();
         $footer = $this->footer();
 
         $html = "
@@ -30,9 +33,9 @@ class ProfileView extends View{
                             <h1 class='title title_informations'>Mes informations</h1>
                             <div class='accountInformations'>
                                 <div class='accountLabel'>
-                                    <p class='label label_firstname'>Prénom</p>
-                                    <p class='label label_lastname'>Nom</p>
-                                    <p class='label label_mail'>Mail</p>
+                                    <p class='label label_firstname'>$user->prenom</p>
+                                    <p class='label label_lastname'>$user->nom</p>
+                                    <p class='label label_mail'>$user->email</p>
                                 </div>
                                 <div class='accountSettings'>
                                     <img src='$link/assets/img/settings.svg' class='imageSettings'>
