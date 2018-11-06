@@ -11,7 +11,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     }
 
     public function prestations(){
-        return $this->hasMany('mygiftbox\prestation');
+        return $this->belongsToMany('mygiftbox\prestation');
     }
 
 }
