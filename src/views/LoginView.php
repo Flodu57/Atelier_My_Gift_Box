@@ -5,27 +5,24 @@ namespace mygiftbox\views;
 class LoginView extends View{
 
     public function render(){
-        $header = $this->header();
-        $menu = $this->menu();
+        $app = \Slim\Slim::getInstance();
+        $urlForgot = $app->urlFor('forgotpass');
+        $error = parent::error();
         $footer = $this->footer();
-
-        $html = "
-
-
+        $html = <<<END
             <html>
-                $header
+                $this->header
                 <body>
                     <div class='container'>
-                    ".parent::error()."
-                        
-                        $menu
+                        $error
+                        $this->menu
                         <form class='login' method='POST'> 
                             <p class='label label_email'>Email</p>
                             <input type='email' name='email' class='input input_email'>
                             <p class='label label_password'>Mot de passe</p>
                             <input type='password' name='password' class='input input_password'>
                             <div>
-                                <a href='' class='label label_passwordLost'>Mot de passe oublié ?</a>
+                                <a href='$urlForgot' class='label label_passwordLost'>Mot de passe oublié ?</a>
                                 <button type='submit' class='button button_login'>Login</button>
                             </div>
                         </form>
@@ -33,10 +30,7 @@ class LoginView extends View{
                     </div>
                 </body>
             </html>
-        
-        
-        ";
-
+END;
         echo $html;
     }
 

@@ -5,13 +5,11 @@ namespace mygiftbox\views;
 class HomeView extends View {
 
     public function render(){
-        $header = $this->header();
-        $menu = $this->menu();
         $html = <<<END
         <html>
-            $header
+            $this->header
             <body>
-                $menu
+                $this->menu
             </body>
         </html>
 END;
