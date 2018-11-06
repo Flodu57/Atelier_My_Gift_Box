@@ -4,10 +4,16 @@ namespace mygiftbox\views;
 
 class View{
 
+    protected $header, $menu;
+
+    public function __construct(){
+        $this->header = $this->header();
+        $this->menu = $this->menu();
+    }
+
     public function header(){
         $app = \Slim\Slim::getInstance();
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
-      
         return <<<END
             <head>
                 <meta charset='UTF-8'>
