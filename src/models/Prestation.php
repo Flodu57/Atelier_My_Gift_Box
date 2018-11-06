@@ -11,7 +11,7 @@ class Prestation extends \Illuminate\Database\Eloquent\Model {
     }
 
     public function boxes(){
-        return $this->hasMany('mygiftbox\Box');
+        return $this->belongsToMany('mygiftbox\Box');
     }
 
 }
