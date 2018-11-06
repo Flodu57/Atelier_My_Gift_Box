@@ -10,11 +10,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom` text NOT NULL,
   `prenom` text NOT NULL,
   `password` text NOT NULL,
+  `account_level` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `categories`;
-
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `boxes`;
 
 CREATE TABLE IF NOT EXISTS `boxes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `titre` text NOT NULL,
   `date_ouverture` date NOT NULL,
   `url` text NOT NULL,
@@ -42,11 +42,9 @@ CREATE TABLE IF NOT EXISTS `boxes` (
 
 DROP TABLE IF EXISTS `prestations`;
 
-
 CREATE TABLE IF NOT EXISTS `prestations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_category` int(11) NOT NULL,
-  `id_box` int(11),
+  `categorie_id` int(11) NOT NULL,
   `titre` text NOT NULL,
   `description` text NOT NULL,
   `image` text NOT NULL,
@@ -55,3 +53,10 @@ CREATE TABLE IF NOT EXISTS `prestations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS `box_prestation`;
+
+CREATE TABLE IF NOT EXISTS `box_prestation` (
+  `box_id` int(11) NOT NULL,
+  `prestation_id` int(11) not null,
+  PRIMARY KEY (`box_id`, `prestation_id`)
+)ENGINE=InnoDB;
