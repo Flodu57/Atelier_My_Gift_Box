@@ -30,4 +30,9 @@ $app->get("/register", function() use ($app){
     $c->getRegister();
 })->name('register');
 
+$app->get("/offers", function() use ($app){
+    $c = new mygiftbox\controllers\OffersController;
+    $c->getOffers();
+})->name('offers');
+
 $app->run();
