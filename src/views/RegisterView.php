@@ -7,11 +7,8 @@ class RegisterView extends View{
     public function render(){
         $header = $this->header();
         $menu = $this->menu();
-<<<<<<< HEAD
         $footer = $this->footer();
 
-=======
->>>>>>> dc0e4720c3870c9fd6931db3b2972b8d2e40274d
         $html = "
             <html>
                 $header
@@ -38,12 +35,8 @@ class RegisterView extends View{
                                 <a href=' class='label label_alreadyRegister'>Déjà inscrit ?</a>
                                 <button type='submit' class='button button_login'>Register</button>
                             </div>
-<<<<<<< HEAD
-                        </div>
-                        $footer
-=======
                         </form>
->>>>>>> dc0e4720c3870c9fd6931db3b2972b8d2e40274d
+                        $footer
                     </div>
                 </body>
             </html>  

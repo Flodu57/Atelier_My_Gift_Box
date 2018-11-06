@@ -28,12 +28,8 @@ class LoginView extends View{
                                 <a href='' class='label label_passwordLost'>Mot de passe oublié ?</a>
                                 <button type='submit' class='button button_login'>Login</button>
                             </div>
-<<<<<<< HEAD
-                        </div>
-                        $footer
-=======
                         </form>
->>>>>>> dc0e4720c3870c9fd6931db3b2972b8d2e40274d
+                        $footer
                     </div>
                 </body>
             </html>
