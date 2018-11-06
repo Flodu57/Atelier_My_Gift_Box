@@ -31,7 +31,7 @@ END;
         $app = \Slim\Slim::getInstance();
         $link = $this->getLink();
         $urlHome = $app->urlFor('home');
-        $urlOffers = '#';
+        $urlOffers = $app->urlFor('offers');
         $html = <<<END
         <div class='menu'>
             <img src='$link/assets/img/logo.png'>
