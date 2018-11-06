@@ -21,17 +21,30 @@ class View{
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
         $urlHome = $app->urlFor('home');
         $urlOffers = '#';
-        $urlProfile = '#';
-        $urlLogout = $app->urlFor('logout');
-        return "
-            <div class='menu'>
-                <img src='$link/assets/img/logo.png'>
-                <a href='$urlHome'>Accueil</a>
-                <a href='$urlOffers'>Prestations</a>
-                <a href='$urlProfile'>Mon compte</a>
-                <a href='$urlLogout'>Déconnexion</a>
-            </div>
-        ";
+        $html = <<<END
+        <div class='menu'>
+            <img src='$link/assets/img/logo.png'>
+            <a href='$urlHome'>Accueil</a>
+            <a href='$urlOffers'>Prestations</a>
+END;
+        if(isset($_SESSION['id_user'])){
+            $urlProfile = '#';
+            $urlLogout = $app->urlFor('logout');
+            $html .= <<<END
+            <a href='$urlProfile'>Mon compte</a>
+            <a href='$urlLogout'>Déconnexion</a>
+        </div>
+END;
+        } else {
+            $urlLogin = $app->urlFor('login');
+            $urlRegister = $app->urlFor('register');
+            $html .= <<<END
+            <a href='$urlLogin'>Connexion</a>
+            <a href='$urlRegister'>Inscription</a>
+        </div>
+END;
+        }
+        return $html;
     }
 
     public function error(){
@@ -42,9 +55,7 @@ class View{
         if(isset($_SESSION['slim.flash']['success'])){
             return "<div class='success'><p class='p_success'>".$_SESSION['slim.flash']['success']."</p></div>";
         }
-
         return "";
-
     }
 
 }

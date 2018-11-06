@@ -26,7 +26,7 @@ if(isset($_POST['password']) && isset($_POST['password_confirm']) && isset($_POS
 
             \mygiftbox\actions\Authentification::createUser($nom, $prenom, $email, $password);
             \mygiftbox\actions\Authentification::authentificate($email, $password_c);
-
+            $app->redirect($app->urlFor('home'));
 
         }else{
 
