@@ -39,7 +39,7 @@ END;
             <a href='$urlOffers'>Prestations</a>
 END;
         if(isset($_SESSION['id_user'])){
-            $urlProfile = '#';
+            $urlProfile = $app->urlFor('profile', ['id' => $_SESSION['id_user']]);
             $urlLogout = $app->urlFor('logout');
             $html .= <<<END
             <a href='$urlProfile'>Mon compte</a>
