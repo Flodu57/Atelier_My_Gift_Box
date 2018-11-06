@@ -10,7 +10,7 @@ class View{
         return "
                 <head>
                     <meta charset='UTF-8'>
-                    <link rel='stylesheet' href='$link/assets/css/index.css'>
+                    <link rel='stylesheet' href='$link/assets/css/style.css'>
                     <title>MyGiftBox</title>
                 </head>
             ";
@@ -31,7 +31,20 @@ class View{
                 <a href='$urlProfile'>Mon compte</a>
                 <a href='$urlLogout'>Déconnexion</a>
             </div>
-        ";    
+        ";
+    }
+
+    public function error(){
+        if(isset($_SESSION['slim.flash']['error'])){
+            return "<div class='errors'><p class='p_error'>".$_SESSION['slim.flash']['error']."</p></div>";
+        }
+
+        if(isset($_SESSION['slim.flash']['success'])){
+            return "<div class='success'><p class='p_success'>".$_SESSION['slim.flash']['success']."</p></div>";
+        }
+
+        return "";
+
     }
 
 }
