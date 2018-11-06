@@ -6,6 +6,7 @@ class RegisterView extends View{
 
     public function render(){
         $error = parent::error();
+        $footer = $this->footer();
         $html = <<<END
             <html>
                 $this->header
@@ -32,6 +33,7 @@ class RegisterView extends View{
                                 <button type='submit' class='button button_login'>Register</button>
                             </div>
                         </form>
+                        $footer
                     </div>
                 </body>
             </html>  

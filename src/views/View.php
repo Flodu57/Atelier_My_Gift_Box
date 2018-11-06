@@ -54,6 +54,16 @@ END;
         return $html;
     }
 
+    public function footer(){
+        
+        return "
+            <footer>
+                <p>Conditions Générales de Vente | Politique de confidentialité | Mentions Légales</p>
+                <p>© 2018 - CORDIER | ROHRBACHER | RALLI | ZINK</p>
+            </footer>
+        ";
+    }
+
     public function error(){
         if(isset($_SESSION['slim.flash']['error'])){
             return "<div class='errors'><p class='p_error'>".$_SESSION['slim.flash']['error']."</p></div>";
@@ -64,5 +74,4 @@ END;
         }
         return "";
     }
-
 }

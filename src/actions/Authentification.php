@@ -55,13 +55,10 @@ class Authentification
                 self::loadProfil($user->email);
 
             }else{
-                var_dump('here');die();
                 $app->flash('error', 'Mot de passe ou utilisateur incorrect');
                 $app->redirect('login');
             }
         }else{
-            var_dump('herevcczc');die();
-
             $app->flash('error', 'Mot de passe ou utilisateur incorrect');
             $app->redirect('login');
         }
