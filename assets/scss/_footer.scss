@@ -1,0 +1,13 @@
+//FOOTER
+footer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+
+    p{
+        margin-top : 5px;
+        margin-bottom : 0;
+        font-size:0.7em;
+    }
+}

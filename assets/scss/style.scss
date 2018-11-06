@@ -1,16 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-$primary-color: #3399ff;
-$button-hover-color: #0782fc;
-
-body{
-    max-width: 1600px;
-    margin: 0 auto;
-}
+@import 'variables';
+@import 'reset';
+@import 'profile/settings';
+@import 'profile/login-register';
+@import 'profile/profile';
+@import 'menu';
+@import 'menu';
+@import 'offers/offers';
+@import 'footer';
 
 body, head {
     font-family: "Montserrat";
 }
 
+body{
+    max-width: 1600px;
+    margin: 0 auto;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -20,200 +25,3 @@ body, head {
 h1{
     margin: 0;
 }
-
-.login, .register{
-    margin:0;
-    width: 35vh;
-    margin-left: auto;
-    margin-right: auto;
-
-    flex-grow: 1;
-    padding-top: 20vh;
-    div{
-        display: flex;
-        margin-top: 10px;
-        justify-content: space-between;
-    }
-
-    .input{
-        padding: 4px 4px 4px 4px;
-        font-size:1em;
-    }
-}
-
-.label{
-    margin-bottom: 0;
-
-    &_passwordLost, &_alreadyRegister{
-        font-size:0.8em;
-    }
-}
-
-.input{
-    width: 100%;
-}
-
-.button{
-	padding:6px 0 6px 0;
-	background:$primary-color;
-	color:#fff;
-	border-radius:2px;
-    border:none;
-    outline: none;
-    cursor: pointer;
-    transition: 0.5s;
-
-    &_login{
-        width:5em;
-        font-size: 0.9em;
-    }
-
-    &:hover{
-        background-color:$button-hover-color;
-        transition: 0.5s;
-    }
-}
-
-@keyframes color-change {
-    to {background-color: $primary-color;}
-}
-//MENU
-.menu{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    a{  
-        transition: 0.5s;
-        padding-bottom: 5px;
-        border-bottom: 2px solid $primary-color;
-        border-top: 2px solid transparent;
-        font-size: 1.2em;
-        text-decoration: none;
-        color:black;
-    }
-
-    a:hover{
-        border-bottom: 2px solid transparent;
-        border-top: 2px solid $primary-color;
-    }
-
-    img{
-        width:10%
-    }
-}
-
-//ACCOUNT
-.accountInformations{
-    background-color:rgb(196, 196, 196);
-    height: 10vh;
-    width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-
-    .accountInformations{
-        display: flex;
-        flex-direction: row;
-
-        .accountLabel{
-            display: flex;
-            width: 75%;
-            .label{
-                margin-right: 30%;
-                margin-left: 1%;
-                font-size: 1em;
-                margin-top: 0;
-            }
-        }
-
-        .accountSettings{
-            display: flex;
-            justify-content: flex-end;
-            width: 25%;
-            height: 50%;
-            align-items: center;
-
-            .imageSettings{
-                width: 5%;
-                height: auto;
-            }
-
-            .label_settings{
-                margin-left: 1%;
-                margin-top: 0;
-                margin-right: 5%;
-                text-decoration: none;
-                color:black;
-            }
-        }
-    }
-
-    h1{
-        font-size: 1.4em;
-        margin: 10px 5px 5px 1%;
-    }
-}
-
-.mybox{
-    margin-top: 2%;
-    margin-left: 10%;
-    align-items: center;
-    display: flex;
-    h1{
-        font-size: 1.4em;
-        margin: 10px 5px 5px 1%;
-    }
-
-    .imageMybox{
-        margin-top: 10px;
-        margin-left:1%;
-        width: 3%;
-        height: auto;
-    }
-}
-
-.gridBox{
-    display: grid;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 1%;
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    grid-template-columns: repeat(4,1fr);
-    flex-grow: 1;
-
-    .boxItem{
-        border: 2px solid black;
-
-        .label_titreBox{
-            font-size: 1.4em;
-            margin-left:5%;
-        }
-
-        .label_prixBox{
-            font-size: 1em;
-            margin-left: auto;
-            margin-right: 30%;
-            margin-top:50px;
-            margin-bottom: 2%;
-            width: 1em;
-        }
-    }
-}
-
-//FOOTER
-footer{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 10px;
-
-    p{
-        margin-top : 5px;
-        margin-bottom : 0;
-        font-size:0.7em;
-    }
-}
-@import 'profile/settings.scss'
