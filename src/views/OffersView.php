@@ -12,14 +12,14 @@ class OffersView extends View{
         $link = $app->request()->getUrl() . $app->request()->getRootUri();
         $pres = "";
         $offers = Prestation::all();
-        foreach($offers as $k => $v) {
+        foreach($offers as $offer) {
             $pres .= <<<END
             <a href='#' class='offer'>
-                <img src='$link/assets/img/prestations/$v->image'>
-                <h2>$v->titre</h2>
+                <img src='$link/assets/img/prestations/$offer->image'>
+                <h2>$offer->titre</h2>
                 <div class='offer_info'>
-                    <p>$v->categorie_id</p>
-                    <p>$v->prix €</p>
+                    <p>$offer->categorie_id</p>
+                    <p>$offer->prix €</p>
                 </div>
             </a>
 END;
