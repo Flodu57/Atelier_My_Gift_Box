@@ -9,12 +9,18 @@ class UserController{
 
     public function getLogin(){
         $v = new LoginView();
-        return $v->render();
+        $v->render();
     }
 
     public function getRegister(){
         $v = new RegisterView();
-        return $v->render();
+        $v->render();
+    }
+
+    public function postLogout(){
+        $app = \Slim\Slim::getInstance();
+        session_destroy();
+        $app->redirect($app->urlFor('home'));
     }
 
 }

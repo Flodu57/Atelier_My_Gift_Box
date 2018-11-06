@@ -4,5 +4,5 @@ Le super atelier
 # Compilation sass
 
 ```
-sass --watch assets/scss/style.scss assets/css/index.css
+sass --watch assets/scss/style.scss assets/css/style.css
 ```
