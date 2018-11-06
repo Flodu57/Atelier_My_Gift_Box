@@ -31,9 +31,15 @@ class View{
             </div>
 
         ";
-        
-
-        
     }
 
+    public function footer(){
+        
+        return "
+            <footer>
+                <p>Conditions Générales de Vente | Politique de confidentialité | Mentions Légales</p>
+                <p>© 2018 - CORDIER | ROHRBACHER | RALLI | ZINK</p>
+            </footer>
+        ";
+    }
 }

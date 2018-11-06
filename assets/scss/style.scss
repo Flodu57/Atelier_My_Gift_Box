@@ -93,3 +93,16 @@ body, head {
         width:10%
     }
 }
+
+//FOOTER
+footer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    p{
+        margin-top : 5px;
+        margin-bottom : 0;
+        font-size:0.7em;
+    }
+}

@@ -7,6 +7,7 @@ class LoginView extends View{
     public function render(){
         $header = $this->header("Login");
         $menu = $this->menu();
+        $footer = $this->footer();
 
         $html = "
 
@@ -27,6 +28,7 @@ class LoginView extends View{
                                 <button type='submit' class='button button_login'>Login</button>
                             </div>
                         </div>
+                        $footer
                     </div>
                 </body>
             </html>
