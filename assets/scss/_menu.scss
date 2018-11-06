@@ -1,0 +1,25 @@
+//MENU
+.menu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    a{  
+        transition: 0.5s;
+        padding-bottom: 5px;
+        border-bottom: 2px solid $primary-color;
+        border-top: 2px solid transparent;
+        font-size: 1.2em;
+        text-decoration: none;
+        color:black;
+    }
+
+    a:hover{
+        border-bottom: 2px solid transparent;
+        border-top: 2px solid $primary-color;
+    }
+
+    img{
+        width:10%
+    }
+}
