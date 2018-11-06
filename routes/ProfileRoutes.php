@@ -18,12 +18,12 @@ $app->group('/profile','checkProfile', function() use ($app){
 
     $app->get("/:id", function($id){
         $c = new ProfileController();
-        $c->getProfile($id);
+        $c->getProfile();
     })->name('profile');
     
     $app->get("/:id/settings", function($id){
         $c = new ProfileController();
-        $c->getSettings($id);
+        $c->getSettings();
     })->name('profil.settings');
     
     $app->post("/:id/settings", function($id){

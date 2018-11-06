@@ -5,19 +5,17 @@ namespace mygiftbox\views;
 class OffersView extends View{
 
     public function render(){
-        $header = $this->header("Prestations");
-        $menu = $this->menu();
         $link = $this->getLink();
 
         $html = "
 
 
             <html>
-                $header
+                $this->header
                 <body>
                     <div class='container'>
                         
-                        $menu
+                        $this->menu
                         <div class='offers'> 
                             <a href='#' class='offer'>
                                 <img src='$link/assets/img/diner.jpg'>

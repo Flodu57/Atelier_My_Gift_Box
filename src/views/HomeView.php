@@ -6,15 +6,12 @@ class HomeView extends View {
 
     public function render(){
         $link = $this->getLink();
-        $header = $this->header();
-        $menu = $this->menu();
-        $footer = $this->footer();
         $html = "
         <html>
-            $header
+            $this->header
             <body>
                 <div class='container'>
-                $menu
+                $this->menu
                 <div class='home'>
                     <h1 class='label label_welcome'>Bienvenue sur MyGiftBox !</h1>
                     <div class='banner'>
@@ -24,7 +21,7 @@ class HomeView extends View {
                     </div>
                     <button type='submit' class='button button_createBox'>Commencer ma box</button>
                 </body>
-                $footer
+                $this->footer
             </div>
         </html>
         ";

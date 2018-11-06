@@ -4,11 +4,12 @@ namespace mygiftbox\views;
 
 class View{
 
-    protected $header, $menu;
+    protected $header, $menu, $footer;
 
     public function __construct(){
         $this->header = $this->header();
         $this->menu = $this->menu();
+        $this->footer = $this->footer();
     }
 
     public function header(){

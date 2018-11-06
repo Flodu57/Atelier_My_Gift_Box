@@ -6,29 +6,20 @@ use mygiftbox\models\User;
 
 class ProfileView extends View{
 
-    private $id;
-
-    function __construct($id){
-        $this->id = $id;
-    }
-
     public function render(){
-        $header = $this->header();
-        $menu = $this->menu();
         $link = $this->getLink();
         $app = \Slim\Slim::getInstance();
-        $urlSettings = $app->urlFor('profil.settings', ['id' => $this->id]);
-        $user = User::where('id', '=', $this->id)->first();
-        $footer = $this->footer();
+        $urlSettings = $app->urlFor('profil.settings', ['id' => $_SESSION['id_user']]);
+        $user = User::where('id', '=', $_SESSION['id_user'])->first();
 
         $html = "
 
             <html>
-                $header
+                $this->header
                 <body>
                     <div class='container'>
                     ".parent::error()."
-                        $menu
+                        $this->menu
                         <div class='accountInformations'> 
                             <h1 class='title title_informations'>Mes informations</h1>
                             <div class='accountInformations'>
@@ -70,7 +61,7 @@ class ProfileView extends View{
                             <p class='label_prixBox'>prix</p>
                         </div>
                     </div>
-                    $footer
+                    $this->footer
                 </body>
             </html>
         
