@@ -94,6 +94,106 @@ body, head {
     }
 }
 
+//ACCOUNT
+.accountInformations{
+    background-color:rgb(196, 196, 196);
+    height: 10vh;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+
+    .accountInformations{
+        display: flex;
+        flex-direction: row;
+
+        .accountLabel{
+            display: flex;
+            width: 75%;
+            .label{
+                margin-right: 30%;
+                margin-left: 1%;
+                font-size: 1em;
+                margin-top: 0;
+            }
+        }
+
+        .accountSettings{
+            display: flex;
+            justify-content: flex-end;
+            width: 25%;
+            height: 50%;
+            align-items: center;
+
+            .imageSettings{
+                width: 5%;
+                height: auto;
+            }
+
+            .label_settings{
+                margin-left: 1%;
+                margin-top: 0;
+                margin-right: 5%;
+                text-decoration: none;
+                color:black;
+            }
+        }
+    }
+
+    h1{
+        font-size: 1.4em;
+        margin: 10px 5px 5px 1%;
+    }
+}
+
+.mybox{
+    margin-top: 2%;
+    margin-left: 10%;
+    align-items: center;
+    display: flex;
+    h1{
+        font-size: 1.4em;
+        margin: 10px 5px 5px 1%;
+    }
+
+    .imageMybox{
+        margin-top: 10px;
+        margin-left:1%;
+        width: 3%;
+        height: auto;
+    }
+}
+
+.gridBox{
+    display: grid;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1%;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    grid-template-columns: repeat(4,1fr);
+    height: 150px;
+
+    .boxItem{
+        border: 2px solid black;
+
+        .label_titreBox{
+            font-size: 1.4em;
+            margin-left:5%;
+        }
+
+        .label_prixBox{
+            font-size: 1em;
+            margin-left: auto;
+            margin-right: 30%;
+            margin-top:50px;
+            margin-bottom: 2%;
+            width: 1em;
+        }
+    }
+}
+
 //FOOTER
 footer{
     display: flex;
