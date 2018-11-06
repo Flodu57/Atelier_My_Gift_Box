@@ -1,0 +1,41 @@
+.settings{
+    h1{
+        font-size: 1.5em;
+        background-color: #888;
+        padding: 5px 10px;
+        margin-bottom: 20px;
+    }
+
+    &_password, &_delete{
+        margin-bottom: 30px;
+        form{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+    
+            input{
+                width: 300px;
+                padding: 10px 10px;
+                margin-bottom: 10px;
+            }
+    
+            button{
+                width: 150px;
+                background-color: green;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 10px 0;
+            }
+        }
+    }
+
+    &_delete{
+        form{
+            button{
+                background-color: red;
+            }
+        }
+    }
+
+}
