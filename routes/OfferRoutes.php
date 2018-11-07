@@ -8,6 +8,11 @@ $app->get("/offers", function() use ($app){
     $c->getOffers();
 })->name('offers');
 
+$app->get("/offers/:category", function($category) use ($app){
+    $c = new OffersController;
+    $c->getOffersByCategory($category);
+})->name('offers.category');
+
 $app->get("/offers/:categorie/:id", function($categorie, $id) use ($app){
     $c = new OffersController;
     $offer = Prestation::byId($id);

@@ -41,12 +41,12 @@ END;
 
     public function listCategories($categs){
         $app = \Slim\Slim::getInstance();
-        //$urlCateg = $app->urlFor('');
         $cat = "";
         foreach($categs as $categ) {
+            $urlCateg = $app->urlFor('offers.category', ['category' => $categ->titre]);
             $cat .= <<<END
             <div>
-                <a href='#'>$categ->titre</a>
+                <a href='$urlCateg'>$categ->titre</a>
             </div>
 END;
         }

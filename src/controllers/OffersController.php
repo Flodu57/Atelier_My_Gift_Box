@@ -13,6 +13,11 @@ class OffersController{
         return $v->render();
     }
 
+    public function getOffersByCategory($categorie){
+        $v = new OffersView();
+        return $v->render();
+    }
+
     public function getDetailledOffer($offer){
         $v = new OfferDetailledView($offer);
         return $v->render();
