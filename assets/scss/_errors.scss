@@ -1,0 +1,15 @@
+.errors{
+    .error{
+        padding: 7px;
+        text-align: center;
+        border-radius: 4px;
+        &.danger{
+            background-color: red;
+        }
+    
+        &.success{
+            background-color: green;
+        }
+    }
+
+}

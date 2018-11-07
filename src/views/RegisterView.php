@@ -6,14 +6,13 @@ class RegisterView extends View{
 
     public function render(){
         $error = parent::error();
-        $footer = $this->footer();
         $html = <<<END
             <html>
                 $this->header
                 <body>     
                     <div class='container'>
-                        $error
                         $this->menu
+                        $error
                         <form class='register' method='POST'> 
                             <p class='label label_nom'>Nom</p>
                             <input type='text' name='lastname' class='input input_nom'>
@@ -33,7 +32,7 @@ class RegisterView extends View{
                                 <button type='submit' class='button button_login'>Register</button>
                             </div>
                         </form>
-                        $footer
+                        $this->footer
                     </div>
                 </body>
             </html>  
