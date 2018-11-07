@@ -3,7 +3,7 @@
 namespace mygiftbox\controllers;
 
 use mygiftbox\views\OffersView;
-use mygiftbox\views\OfferView;
+use mygiftbox\views\OfferDetailledView;
 
 class OffersController{
 
@@ -12,8 +12,8 @@ class OffersController{
         return $v->render();
     }
 
-    public function getDetailedOffer(){
-        $v = new RegisterView();
+    public function getDetailledOffer($offer){
+        $v = new OfferDetailledView($offer);
         return $v->render();
     }
 

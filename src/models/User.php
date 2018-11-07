@@ -15,6 +15,10 @@ class User extends \Illuminate\Database\Eloquent\Model{
         return parent::where('email', '=', $email)->first();
     }
 
+    public static function byId($id) {
+        return parent::where('id', '=', $id)->first();
+    }
+
     public static function exists($email) {
         if(parent::where('email','=',$email)->first()){
             return true;
