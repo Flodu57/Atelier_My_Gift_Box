@@ -7,11 +7,11 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     public $timestamps = false;
 
     public function user(){
-        return $this->belongsTo('mygiftbox\user');
+        return $this->belongsTo('mygiftbox\User');
     }
 
     public function prestations(){
-        return $this->hasMany('mygiftbox\prestation');
+        return $this->hasMany('mygiftbox\Prestation');
     }
 
 }

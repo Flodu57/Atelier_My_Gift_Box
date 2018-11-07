@@ -22,15 +22,16 @@ class UserController{
             $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
             if(!empty($mail) && !empty($password)){
                 $user = User::where('email','=',$mail)->first();
-                if($user){
+                if($user && $user->account_level > 0){
                     if(password_verify($password, $user->password)){
                         $_SESSION['id_user'] = $user->id;
+                        $app->redirect('home');
                     }else{
                         $app->flash('error', 'Mot de passe ou utilisateur incorrect');
                         $app->redirect('login');
                     }
                 }else{
-                    $app->flash('error', 'Mot de passe ou utilisateur incorrect');
+                    $app->flash('error', 'Votre compte ne rempli pas les conditions requises');
                     $app->redirect('login');
                 }
             } else {
@@ -56,11 +57,23 @@ class UserController{
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $hash = password_hash($password, PASSWORD_BCRYPT);
                 if (password_verify(filter_var($_POST['password_confirm'], FILTER_SANITIZE_STRING), $hash)) {
-                    \mygiftbox\actions\Authentification::createUser($nom, $prenom, $email, $hash);
-                    \mygiftbox\actions\Authentification::authentificate($email, $password_c);
-                    $app->redirect($app->urlFor('home'));
+                    if(!User::exists($email)){
+                        $mailer = new ServerMailer($app);
+                        $options = [0 => password_hash($hash, PASSWORD_BCRYPT)];
+                        if($mailer->sendMail($email, $options, 'register')){
+                            User::addNew($email, $hash, $nom, $prenom);
+                            $app->flash('success', "Vous vous êtes inscrit avec succès. Veuillez consulter vôtre boîte mail pour valider vôtre compte");
+                            $app->redirect($app->urlFor('home'));
+                        } else {
+                            $app->flash('error',"L'adresse email fournie est invalide");
+                            $app->redirect('register');
+                        }
+                    }else{
+                        $app->flash('error', "L'utilisateur existe déjà");
+                        $app->redirect('register');
+                    }
                 } else {
                     $app->flash('error', 'Les mots de passes ne sont pas identiques');
                     $app->redirect('register');
@@ -71,6 +84,28 @@ class UserController{
             }
         } else {
             $app->flash('error', 'Veuillez remplir tous les champs');
+            $app->redirect('register');
+        }
+    }
+
+    public function getRegisterMailCheck(){
+        $app = \Slim\Slim::getInstance();
+        $email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
+        $user = User::byMail($email);
+        if ($user && $user->account_level == 0) {
+            if (password_verify($user->password, $_GET['hash'])) {
+                $user->account_level = 1;
+                $user->save();
+                session_destroy();
+                session_start();
+                $_SESSION['id_user'] = $user->id;
+                $app->redirect('home');
+            } else {
+                $app->flash('error', 'Le lien que vous avez suivi est incorrect');
+                $app->redirect('register');
+            }
+        } else {
+            $app->flash('error', 'Le lien que vous avez suivi est expiré');
             $app->redirect('register');
         }
     }
@@ -108,7 +143,7 @@ class UserController{
         $app->redirect($app->urlFor('forgotpass'));
     }
 
-    public function getUserLinkClicked(){
+    public function getForgotLinkClicked(){
         $app = \Slim\Slim::getInstance();
         $email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
         $user = User::byMail($email);

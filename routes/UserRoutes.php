@@ -22,6 +22,11 @@ $app->post("/register", function() use ($app){
     $c->postRegister();
 })->name('post_register');
 
+$app->get('/mailcheck', function() use ($app){
+    $c = new UserController();
+    $c->getRegisterMailCheck();
+})->name('mailcheck');
+
 $app->get('/logout', function() use ($app){
     $c = new UserController();
     $c->getLogout();
@@ -39,5 +44,5 @@ $app->post('/forgot_password', function() use ($app){
 
 $app->get('/forgotpasslink', function() use ($app){
     $c = new UserController();
-    $c->getUserLinkClicked();
+    $c->getForgotLinkClicked();
 })->name('forgotpasslink');

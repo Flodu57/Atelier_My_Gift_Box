@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` text NOT NULL,
   `account_level` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `categories`;
 
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `boxes`;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `message` text NOT NULL,
   `message_retour` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `prestations`;
 
@@ -54,5 +54,4 @@ CREATE TABLE IF NOT EXISTS `prestations` (
   `prix` int(11) NOT NULL,
   `suspendue` BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
