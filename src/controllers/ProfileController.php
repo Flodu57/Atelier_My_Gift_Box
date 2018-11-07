@@ -91,8 +91,6 @@ class ProfileController {
             $app->flash('error','Veuillez remplir tous les champs');
             $app->redirect($app->urlFor('profile.createBox'));
         }
-
-        
     }
 
     public function getBox($slug){
@@ -100,5 +98,34 @@ class ProfileController {
 
         $v = new BoxView($box);
         $v->render();
+    }
+
+    public function getDeleteBox($slug){
+        $app = \Slim\Slim::getInstance();
+
+        $box = Box::bySlug($slug);
+
+        if($box){
+            $box->prestations()->detach();
+            $box->delete();
+            $app->flash('success','Coffret supprimé avec succès.');
+        }else{
+            $app->flash('error','Une erreur s\'est produite !');
+        }
+        $app->redirect($app->urlFor('profile'));
+    }
+
+    public function getDeleteOffer($slug, $id){
+        $app = \Slim\Slim::getInstance();
+
+        $box = Box::bySlug($slug);
+
+        if($box && $box->prestations()->where('id', '=', $id)){
+            $box->prestations()->detach($id);
+            $app->flash('success','Prestation supprimée avec succès.');
+        }else{
+            $app->flash('error','Une erreur s\'est produite !');
+        }
+        $app->redirect($app->urlFor('profile.box', ['slug' => $slug]));
     }
 }

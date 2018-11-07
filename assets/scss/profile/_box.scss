@@ -1,6 +1,7 @@
 .box{
     flex-grow: 1;
     &_head{
+        margin-bottom: 3%;
         display: flex;
         justify-content: space-between;
         background-color: rgb(196, 196, 196);
@@ -28,7 +29,7 @@
         margin-right: 10px;
         margin-top:1%;
         grid-template-columns: repeat(4, 1fr);
-        grid-column-gap: 10px;
+        grid-column-gap: 20px;
         grid-row-gap: 15px;
     }
 
@@ -49,7 +50,33 @@
             }
         }
     }
-    
+
+    &_grid{
+        .containerBox{
+            position: relative;
+            display: flex;
+        }
+
+        .delete{
+            text-decoration: none;
+            position: absolute;
+            font-size: 1em;
+            top: 0;
+            right: 0;
+            border: 2px solid rgb(120, 0, 0);
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bolder;
+            transform: translateY(-40%) translateX(40%);
+            z-index: 890;
+            background-color: red;
+        }
+    }
 }
 
 .offer{
