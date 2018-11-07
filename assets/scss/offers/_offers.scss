@@ -1,4 +1,3 @@
-//Offers
 .offers {
     padding-top: 20px;
     width: 70%;
@@ -10,18 +9,20 @@
     .offer {
         text-decoration: none;
         border: 2px solid $secondary-color;
-        padding: 3px;
         color: $primary-color;
         
         img {
-            max-width: 100%;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
         }
-
-        .offer_info {
-            color: $secondary-color;
-            display: flex;
-            justify-content: space-between;
-            padding-right: 15%; 
+        .offer_bottom{
+            padding: 20px;
+            &_infos {
+                color: $secondary-color;
+                display: flex;
+                justify-content: space-between;
+            }
         }
     }
 }

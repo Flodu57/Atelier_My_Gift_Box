@@ -1,0 +1,31 @@
+.home{
+    flex-grow:1;
+    .label{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        &_welcome{
+            font-size: 1.5em;
+            margin-left: 30vh;
+            margin-bottom: 2vh;
+        }
+    }
+
+    .banner{
+        height: 200px;
+    }
+
+    .img_welcome{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+}
+.button_createBox{
+    font-size: 1.4em;
+    padding: 10px 10px 10px 10px;
+    margin-top: 5vh;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 130px;
+}

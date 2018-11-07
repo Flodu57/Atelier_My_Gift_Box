@@ -8,14 +8,13 @@ class LoginView extends View{
         $app = \Slim\Slim::getInstance();
         $urlForgot = $app->urlFor('forgotpass');
         $error = parent::error();
-        $footer = $this->footer();
         $html = <<<END
             <html>
                 $this->header
                 <body>
                     <div class='container'>
-                        $error
                         $this->menu
+                        $error
                         <form class='login' method='POST'> 
                             <p class='label label_email'>Email</p>
                             <input type='email' name='email' class='input input_email'>
@@ -26,7 +25,7 @@ class LoginView extends View{
                                 <button type='submit' class='button button_login'>Login</button>
                             </div>
                         </form>
-                        $footer
+                        $this->footer
                     </div>
                 </body>
             </html>
