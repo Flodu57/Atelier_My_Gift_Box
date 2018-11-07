@@ -5,15 +5,13 @@ namespace mygiftbox\views;
 class ProfileSettingsView extends View{
 
     public function render(){
-        $header = $this->header();
-        $menu = $this->menu();
         $html = "
             <html>
-                $header
+                $this->header
                 <body>     
                     <div class='container'>
                         ".parent::error()."
-                        $menu
+                        $this->menu
 
                         <div class='settings'>
                             <div class='settings_password'>

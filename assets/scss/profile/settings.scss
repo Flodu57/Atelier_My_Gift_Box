@@ -4,6 +4,7 @@
         background-color: #888;
         padding: 5px 10px;
         margin-bottom: 20px;
+        margin-left:0;
     }
 
     &_password, &_delete{
@@ -12,20 +13,24 @@
             display: flex;
             flex-direction: column;
             margin: 0;
+            margin-left:10px;
     
             input{
                 width: 300px;
                 padding: 10px 10px;
-                margin-bottom: 10px;
+                margin-top: 10px;
+                font-size: 0.8em;
             }
     
             button{
+                margin-top: 10px;
                 width: 150px;
                 background-color: green;
                 border: none;
                 color: white;
                 cursor: pointer;
                 padding: 10px 0;
+                font-size: 1em;
             }
         }
     }

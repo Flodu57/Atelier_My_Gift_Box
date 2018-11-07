@@ -5,18 +5,15 @@ namespace mygiftbox\views;
 class PrestationsView extends View{
 
     public function render(){
-        $header = $this->header("Prestations");
-        $menu = $this->menu();
-
         $html = "
 
 
             <html>
-                $header
+                $this->header
                 <body>
                     <div class='container'>
                         
-                        $menu
+                        $this->menu
                         <div class='register'> 
                             <p class='label label_nom'>Nooooom</p>
                             <input type='text' class='input input_nom'>

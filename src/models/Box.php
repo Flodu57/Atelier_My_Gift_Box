@@ -7,11 +7,21 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     public $timestamps = false;
 
     public function user(){
-        return $this->belongsTo('mygiftbox\User');
+        return $this->belongsTo('mygiftbox\models\User');
     }
 
     public function prestations(){
-        return $this->hasMany('mygiftbox\Prestation');
+        return $this->belongsToMany('mygiftbox\models\Prestation');
     }
+
+    public static function exists($title) {
+        $user = User::where('id', '=', $_SESSION['id_user'])->first();
+        if($user->boxes()->where('titre', '=', $title)->first())
+           return true;
+        else{
+            return false;
+        }
+    }
+
 
 }

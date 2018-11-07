@@ -2,38 +2,45 @@
 
 namespace mygiftbox\views;
 
+use mygiftbox\models\User;
+
 class ProfileView extends View{
 
     public function render(){
-        $header = $this->header();
-        $menu = $this->menu();
-        $footer = $this->footer();
+        $link = $this->getLink();
+        $app = \Slim\Slim::getInstance();
+        $urlSettings = $app->urlFor('profile.settings');
+        $urlCreateBox = $app->urlFor('profile.createBox');
+        $user = User::where('id', '=', $_SESSION['id_user'])->first();
 
         $html = "
 
             <html>
-                $header
+                $this->header
                 <body>
                     <div class='container'>
                     ".parent::error()."
-                        $menu
+                        $this->menu
                         <div class='accountInformations'> 
                             <h1 class='title title_informations'>Mes informations</h1>
                             <div class='accountInformations'>
                                 <div class='accountLabel'>
-                                    <p class='label label_firstname'>Prénom</p>
-                                    <p class='label label_lastname'>Nom</p>
-                                    <p class='label label_mail'>Mail</p>
+                                    <p class='label label_firstname'>$user->prenom</p>
+                                    <p class='label label_lastname'>$user->nom</p>
+                                    <p class='label label_mail'>$user->email</p>
                                 </div>
                                 <div class='accountSettings'>
-                                    <img src='../../assets/img/settings.svg' class='imageSettings'><a href='#' class='label label_settings'>Paramètres</a>
+                                    <img src='$link/assets/img/settings.svg' class='imageSettings'>
+                                    <a href='$urlSettings' class='label label_settings'>Paramètres</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class='mybox'>
                             <h1 class='title title_informations'>Mes box</h1>
-                            <img src='../../assets/img/plus.svg' class='imageMybox'>
+                            <a href='$urlCreateBox'>
+                                <i class='fas fa-plus'></i>
+                            </a>
                         </div>
                         <div class='gridBox'>
                             <div class='boxItem'>
@@ -57,7 +64,7 @@ class ProfileView extends View{
                             <p class='label_prixBox'>prix</p>
                         </div>
                     </div>
-                    $footer
+                    $this->footer
                 </body>
             </html>
         

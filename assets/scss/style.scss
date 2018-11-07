@@ -3,11 +3,15 @@
 @import 'profile/settings';
 @import 'profile/login-register';
 @import 'profile/profile';
-@import 'menu';
+@import 'profile/createBox';
 @import 'menu';
 @import 'offers/offers';
+@import 'home/home';
+@import 'errors';
 @import 'footer';
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+//Style général
 body, head {
     font-family: "Montserrat";
 }
@@ -19,9 +23,5 @@ body{
 .container{
     display: flex;
     flex-direction: column;
-    height: 100%;
-}
-
-h1{
-    margin: 0;
+    min-height: 100vh;
 }
