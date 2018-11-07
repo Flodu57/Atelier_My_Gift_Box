@@ -63,8 +63,8 @@ END;
                         <div class='gridBox'>
                             $pres
                         </div>
+                        $this->footer
                     </div>
-                    $this->footer
                 </body>
             </html>
         

@@ -43,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `url` text NOT NULL,
   `valide` BOOLEAN NOT NULL DEFAULT 0,
   `payer` BOOLEAN NOT NULL DEFAULT 0,
-  `prix_total` int(11) NOT NULL,
+  `prix_total` int(11) NOT NULL DEFAULT 0,
   `mode_paiement` text,
-  `message` text NOT NULL,
+  `message` text NOT NULL DEFAULT '',
   `message_retour` text,
   `slug` text,
   PRIMARY KEY (`id`)

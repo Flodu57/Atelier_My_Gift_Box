@@ -1,10 +1,12 @@
 .box{
-
+    flex-grow: 1;
     &_head{
         display: flex;
         justify-content: space-between;
-        background-color: #999;
+        background-color: rgb(196, 196, 196);
         padding: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
 
         h2{
             font-size: 1.6em;
@@ -19,7 +21,63 @@
             }
         }
     }
-
     
+    &_grid{
+        display: grid;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top:1%;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 15px;
+    }
 
+    .buttonLayout{
+        margin-top:2%;
+        display: flex;
+        justify-content: center;
+        .button{
+            padding: 10px 10px 10px 10px;
+            font-size: 1.2em;
+            
+            &_continueBox{
+                margin-right: 20px;
+            }
+
+            &_validateBox{
+                background-color:green;
+            }
+        }
+    }
+    
+}
+
+.offer{
+    display: flex;
+    flex-direction: column;
+    padding:5px 5px 5px 5px;
+    border:2px solid black;
+    text-decoration: none;
+    color:black;
+    img{
+        width: 100%;
+    }
+
+    &_bottom{
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+        flex-direction: column;
+    }
+
+    .label{
+
+        &_title{
+            font-size:1.2em;
+        }
+
+        &_price{
+            text-align: right;
+        }
+    }
 }
