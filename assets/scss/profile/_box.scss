@@ -2,8 +2,10 @@
     &_head{
         display: flex;
         justify-content: space-between;
-        background-color: #999;
+        background-color: rgb(196, 196, 196);
         padding: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
 
         h2{
             font-size: 1.6em;
@@ -18,7 +20,22 @@
             }
         }
     }
-
     
+    &_grid{
+        display: grid;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top:1%;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 15px;
+        flex-grow: 1;
+    }
+}
 
+.offer{
+    display: block;
+    img{
+        width: 100%;
+    }
 }
