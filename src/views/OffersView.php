@@ -2,6 +2,7 @@
 
 namespace mygiftbox\views;
 use mygiftbox\models\Prestation;
+use mygiftbox\models\Categorie;
 
 class OffersView extends View{
 
@@ -25,6 +26,17 @@ class OffersView extends View{
 END;
         }
 
+        $cat = "";
+        $categories = Categorie::all();
+        foreach($categories as $categorie) {
+            $cat .= <<<END
+            <div>
+                <input type='checkbox' id='$categorie->id' name='$categorie->titre' value='$categorie->titre' checked />
+                <label for='$categorie->titre'>$categorie->titre</label>
+            </div>
+END;
+        }
+
         $html = "
 
 
@@ -35,7 +47,8 @@ END;
                         
                         $this->menu
                         $error
-
+                        $cat
+                        
                         <div class='offers'> 
                            $pres 
                         </div>
