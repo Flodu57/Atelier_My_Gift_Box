@@ -57,7 +57,6 @@ END;
                             $pres 
                           </div>
                         </div>
-
                         $this->footer
                     </div>
                 </body>
