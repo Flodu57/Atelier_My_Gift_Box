@@ -56,6 +56,7 @@ END;
 
     public function listOffers($offers){
         $app = \Slim\Slim::getInstance();
+        $link = $this->getLink();
         $pres = "";
         foreach($offers as $offer) {
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
