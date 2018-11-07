@@ -19,7 +19,7 @@ class ProfileView extends View{
         foreach($boxes as $box) {
 
             $slug = Box::getSlug($box->titre);
-            $urlBox = $app->urlFor('profile.box', ['slug' => $slug]);
+            $urlBox = $app->urlFor('profile.box', compact('slug'));
 
             $pres .= <<<END
             <a href="$urlBox">
