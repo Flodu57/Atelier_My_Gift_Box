@@ -7,11 +7,15 @@ class Prestation extends \Illuminate\Database\Eloquent\Model {
     public $timestamps = false;
 
     public function categorie(){
-        return $this->belongsTo('mygiftbox\Categorie');
+        return $this->belongsTo('mygiftbox\models\Categorie');
     }
 
     public function boxes(){
-        return $this->belongsToMany('mygiftbox\Box');
+        return $this->belongsToMany('mygiftbox\models\Box');
+    }
+
+    public static function byId($id) {
+        return parent::where('id', '=', $id)->first();
     }
 
 }

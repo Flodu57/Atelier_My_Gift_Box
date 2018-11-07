@@ -14,13 +14,48 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return $this->belongsToMany('mygiftbox\models\Prestation');
     }
 
+    public static function byUserId($user_id) {
+        return parent::where('user_id', '=', $user_id)->get();
+    }
+
+    public static function bySlug($slug) {
+        return parent::where('slug', '=', $slug)->first();
+    }
+
     public static function exists($title) {
-        $user = User::where('id', '=', $_SESSION['id_user'])->first();
+        $user = User::byId($_SESSION['id_user']);
         if($user->boxes()->where('titre', '=', $title)->first())
            return true;
         else{
             return false;
         }
+    }
+
+    public static function getSlug($title)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $title);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+        return 'n-a';
+        }
+
+        return $text;
     }
 
 

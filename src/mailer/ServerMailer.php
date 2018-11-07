@@ -5,6 +5,7 @@ namespace mygiftbox\mailer;
 require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
 use mygiftbox\mailer\presets\ForgotPasswordMail;
+use mygiftbox\mailer\presets\RegisterMail;
 
 class ServerMailer
 {

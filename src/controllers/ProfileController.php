@@ -5,6 +5,7 @@ namespace mygiftbox\controllers;
 use mygiftbox\views\ProfileSettingsView;
 use mygiftbox\views\ProfileView;
 use mygiftbox\views\CreateBoxView;
+use mygiftbox\views\BoxView;
 use mygiftbox\models\User;
 use mygiftbox\models\Box;
 
@@ -17,9 +18,9 @@ class ProfileController {
     }
 
     public function changePassword(){
-        $app = \Slim\Slim::getInstance();
+        $app      = \Slim\Slim::getInstance();
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
-        $user     = User::where('id','=',$_SESSION['id_user'])->first();
+        $user     = User::byId($_SESSION['id_user']);
 
         if($user){
             if(password_verify($password,$user->password)){
@@ -34,7 +35,7 @@ class ProfileController {
 
     public function deleteAccount(){
         $app = \Slim\Slim::getInstance();
-        $user     = User::where('id','=',$_SESSION['id_user'])->first();
+        $user     = User::byId($_SESSION['id_user']);
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
 
         if($user){
@@ -72,6 +73,7 @@ class ProfileController {
                     $box = new Box();
                     $box->user_id = $_SESSION['id_user'];
                     $box->titre = $title;
+                    $box->slug = Box::getSlug($title);
                     $box->date_ouverture = $date;
                     $box->url = $token;
                     $box->save();
@@ -91,5 +93,12 @@ class ProfileController {
         }
 
         
+    }
+
+    public function getBox($slug){
+        $box = Box::bySlug($slug);
+
+        $v = new BoxView($box);
+        $v->render();
     }
 }

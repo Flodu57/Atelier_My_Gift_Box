@@ -4,8 +4,6 @@ namespace mygiftbox\mailer\presets;
 
 class ForgotPasswordMail {
 
-    //$route utile uniquement pour le test en local
-    //utiliser $urlForgot en href une fois déployé sur le serveur
     public static function Mail($app, $email, $options){
         $hash = $options[0];
         $pass = $options[1];

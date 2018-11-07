@@ -7,7 +7,7 @@ class Categorie extends \Illuminate\Database\Eloquent\Model {
     public $timestamps = false;
 
     public function prestations(){
-        return $this->hasMany('mygiftbox\prestation');
+        return $this->hasMany('mygiftbox\models\Prestation');
     }
 
 }

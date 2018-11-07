@@ -2,9 +2,43 @@
     flex-grow: 1;
     margin-top: 50px;
 
+    h1{
+        margin-left: 10px;
+        font-size: 1.2em;
+    }
+
     &_form{
         margin-top: 30px;
         display: flex;
-        
+
+        .form_group{
+            .input{
+                font-size:1em;
+                padding: 2px 2px 2px 2px;
+                height: 30px;
+                margin-left: 10px;
+
+                &_title{
+                    margin-right: 10px;
+                    width: 300px;
+                }
+
+                &_date{
+                    width: 150px;
+                }
+            }
+        }
+
+        .label{
+            margin-left: 10px;
+            color:$primary-color;
+        }
+    }
+
+    .buttonCreateBox{
+        padding: 5px 5px 5px 5px;
+        font-size: 1.3em;
+        margin-left: 50px;
+        margin-top:24px;
     }
 }

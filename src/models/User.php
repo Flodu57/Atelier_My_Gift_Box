@@ -15,14 +15,26 @@ class User extends \Illuminate\Database\Eloquent\Model{
         return parent::where('email', '=', $email)->first();
     }
 
+    public static function byId($id) {
+        return parent::where('id', '=', $id)->first();
+    }
+
     public static function exists($email) {
-        $query = parent::select('email')->get();
-        foreach ($query as $k => $v) {
-            if ($v->email == $email) {
-                return true;
-            }
+        if(parent::where('email','=',$email)->first()){
+            return true;
+        } else {
+            return false;
         }
-        return false;
+    }
+
+    public static function addNew($email, $pass, $nom, $prenom){
+        $user = new User();
+        $user->email = $email;
+        $user->password = $pass;
+        $user->nom = $nom;
+        $user->prenom = $prenom;
+        $user->save();
+        return $user->id;
     }
 
 }

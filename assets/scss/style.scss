@@ -4,8 +4,10 @@
 @import 'profile/login-register';
 @import 'profile/profile';
 @import 'profile/createBox';
+@import 'profile/box';
 @import 'menu';
 @import 'offers/offers';
+@import 'offers/offerDetailled';
 @import 'home/home';
 @import 'errors';
 @import 'footer';
@@ -23,4 +25,5 @@ body{
 .container{
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
