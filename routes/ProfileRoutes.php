@@ -8,7 +8,7 @@ function checkProfile($route){
 
     if(!isset($_SESSION['id_user'])){
             $app->flash('error','Vous devez vous identifier');
-            $app->redirect($app->urlFor('login'));
+            $app->redirect('login');
     }
     
 };

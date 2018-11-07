@@ -140,7 +140,7 @@ class UserController{
                 }
             }
         }
-        $app->redirect($app->urlFor('forgotpass'));
+        $app->redirect('forgotpass');
     }
 
     public function getForgotLinkClicked(){
@@ -153,7 +153,7 @@ class UserController{
                 $user->save();
             }
         }
-        $app->redirect($app->urlFor('login'));
+        $app->redirect('login');
     }
 
 }

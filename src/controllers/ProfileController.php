@@ -26,7 +26,7 @@ class ProfileController {
             if(password_verify($password,$user->password)){
                 $user->password = password_hash(filter_var($_POST['new_password'],FILTER_SANITIZE_STRING), PASSWORD_DEFAULT,['cost' => 12]);
                 $user->save();
-                $app->redirect($app->urlFor('logout'));
+                $app->redirect('logout');
             }
         }
 
@@ -41,7 +41,7 @@ class ProfileController {
         if($user){
             if(password_verify($password,$user->password)){
                 $user->delete();
-                $app->redirect($app->urlFor('logout'));
+                $app->redirect('logout');
             }
         }
 
@@ -68,7 +68,7 @@ class ProfileController {
             if(!empty($title) && !empty($date)){
                 if(Box::exists($title)){
                     $app->flash('error','Vous avez déjà une box avec ce titre');
-                    $app->redirect($app->urlFor('profile.createBox'));
+                    $app->redirect('profile.createBox');
                 }else{
                     $box = new Box();
                     $box->user_id = $_SESSION['id_user'];
@@ -79,17 +79,17 @@ class ProfileController {
                     $box->save();
 
                     $app->flash('success',"La box a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
-                    $app->redirect($app->urlFor('offers'));
+                    $app->redirect('offers');
                 }
             }else{
                 $app->flash('error','Veuillez remplir tous les champs');
-                $app->redirect($app->urlFor('profile.createBox'));
+                $app->redirect('profile.createBox');
             }
 
             
         }else{
             $app->flash('error','Veuillez remplir tous les champs');
-            $app->redirect($app->urlFor('profile.createBox'));
+            $app->redirect('profile.createBox');
         }
 
         
