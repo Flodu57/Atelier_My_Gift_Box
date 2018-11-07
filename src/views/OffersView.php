@@ -9,10 +9,54 @@ class OffersView extends View{
     public function render(){
         $app = \Slim\Slim::getInstance();
         $link = $this->getLink();
-        $error = parent::error();
+        $error = parent::error();  
+        $listed_offers = $this->listOffers(Prestation::all());
+        $listed_categories = $this->listCategories(Categorie::all());
+        $html = <<<END
+        <!DOCTYPE html>
+            <html>
+                $this->header
+                <body>
+                    <div class='container'>
+                        $this->menu
+                        $error
+                        <div class='tri_categories'>
+                            <p>Trier par catégories</p>
+                            <i id='slide_arrow' class='fas fa-angle-down'></i>
+                            <div id='cat_list' class='categories'>
+                                $listed_categories
+                            </div>
+                        </div>
+                        <div class='offers'> 
+                           $listed_offers
+                        </div>
+                    </div>
+                    <script src='$link/assets/scripts/jquery.js'></script>
+                    <script src='$link/assets/scripts/offers_sliding_sort.js'></script>
+                </body>
+            </html>
+END;
+        echo $html;
+    }
+
+    public function listCategories($categs){
+        $app = \Slim\Slim::getInstance();
+        //$urlCateg = $app->urlFor('');
+        $cat = "";
+        foreach($categs as $categ) {
+            $cat .= <<<END
+            <div>
+                <a href='#'>$categ->titre</a>
+            </div>
+END;
+        }
+        return $cat;
+    }
+
+    public function listOffers($offers){
+        $app = \Slim\Slim::getInstance();
+        $link = $this->getLink();
         $pres = "";
-        $offers = Prestation::all();
-        
         foreach($offers as $offer) {
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
             $categorie = $offer->categorie->titre;
@@ -28,48 +72,9 @@ class OffersView extends View{
                 </div>
             </a>
 END;
-        }
-
-        $cat = "";
-        $categories = Categorie::all();
-        foreach($categories as $categorie) {
-            $cat .= <<<END
-            <div>
-                <a href='#'>$categorie->titre</a>
-            </div>
-END;
-        }
-
-        $html = "
-            <html>
-                $this->header
-                <body>
-                    <div class='container'>
-                        
-                        $this->menu
-                        $error
-                        <div class='tri_categories'>
-                            <p>Trier par catégories</p>
-                            <i id='slide_arrow' class='fas fa-angle-down'></i>
-                            <div id='cat_list' class='categories'>
-                                $cat
-                            </div>
-                        </div>
-                        <div class='offers'> 
-                           $pres 
-                        </div>
-                    </div>
-                    <script src='$link/assets/scripts/jquery.js'></script>
-                    <script src='$link/assets/scripts/offers_sliding_sort.js'></script>
-                </body>
-            </html>
         
-        
-        ";
-
-        echo $html;
+        }
+        return $pres;
     }
-
-
 
 }

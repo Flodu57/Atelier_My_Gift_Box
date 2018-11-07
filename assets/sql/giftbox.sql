@@ -14,6 +14,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `users` (`id`, `email`, `nom`, `prenom`, `password`, `account_level`) VALUES
+(1, 'atelier_mygiftbox@outlook.com', 'admin', 'admin', '$2y$10$hNoKt.t8BCImVwm/3G8H5OamOcD3RrGkLa3n3lfrmGp8af5HFLHOi', 2);
+
 -- CATEGORIES
 DROP TABLE IF EXISTS `categories`;
 
@@ -40,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `url` text NOT NULL,
   `valide` BOOLEAN NOT NULL DEFAULT 0,
   `payer` BOOLEAN NOT NULL DEFAULT 0,
-  `prix_total` int(11) NOT NULL,
+  `prix_total` int(11) NOT NULL DEFAULT 0,
   `mode_paiement` text,
-  `message` text NOT NULL,
+  `message` text NOT NULL DEFAULT '',
   `message_retour` text,
   `slug` text,
   PRIMARY KEY (`id`)

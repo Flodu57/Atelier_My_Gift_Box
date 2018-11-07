@@ -11,13 +11,15 @@ class ForgotPasswordView extends View {
         <html>
             $this->header
             <body>
-                $this->menu
-                <h2>Récupération du mot de passe</h2>
-                <form action='$urlForgot' method='post'>
-                    <p class='label label_email'>Email</p>
-                    <input type='email' name='email' class='input input_email'>
-                    <button type='submit' class='button button_login'>Récupération</button>
-                </form>
+                <div class="container">
+                    $this->menu
+                    <h2>Récupération du mot de passe</h2>
+                    <form class="login" action='$urlForgot' method='post'>
+                        <p class='label label_email'>Email</p>
+                        <input type='email' name='email' class='input input_email'>
+                        <button type='submit' class='button button_login'>Récupération</button>
+                    </form>
+                </div>
             </body>
         </html>
 END;
