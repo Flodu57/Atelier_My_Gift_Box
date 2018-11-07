@@ -5,6 +5,9 @@ namespace mygiftbox\views;
 class HomeView extends View {
 
     public function render(){
+        $app = \Slim\Slim::getInstance();
+        $id = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
+        $urlCreateBox = $app->urlFor('profile.createBox', ['id' => $id]);
         $link = $this->getLink();
         $html = "
         <html>
@@ -19,7 +22,7 @@ class HomeView extends View {
                         </div>
                         <p class='label label_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim vulputate vehicula. Proin auctor felis quis justo finibus, nec venenatis ligula consectetur. Vivamus vel metus ipsum. Cras in maximus erat. Donec rutrum cursus arcu eu accumsan. Donec feugiat dignissim metus, dignissim imperdiet ex malesuada eu. Nulla vel feugiat ipsum. Vivamus mauris tellus, pharetra vitae bibendum eget, mollis quis est. Sed egestas venenatis odio at lacinia. Morbi sed ipsum sit amet nisl sodales malesuada quis ac sem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim vulputate vehicula. Proin auctor felis quis justo finibus, nec venenatis ligula consectetur. Vivamus vel metus ipsum. Cras in maximus erat. Donec rutrum cursus arcu eu accumsan. Donec feugiat dignissim metus, dignissim imperdiet ex malesuada eu. Nulla vel feugiat ipsum. Vivamus mauris tellus, pharetra vitae bibendum eget, mollis quis est. Sed egestas venenatis odio at lacinia. Morbi sed ipsum sit amet nisl sodales malesuada quis ac sem.</p>
                     </div>
-                    <button type='submit' class='button button_createBox'>Commencer ma box</button>
+                    <a href='$urlCreateBox' class='button button_createBox'>Commencer ma box</a>
                 </body>
                 $this->footer
             </div>
