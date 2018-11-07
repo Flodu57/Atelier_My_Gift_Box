@@ -1,0 +1,25 @@
+.box{
+
+    &_head{
+        display: flex;
+        justify-content: space-between;
+        background-color: #999;
+        padding: 10px;
+
+        h2{
+            font-size: 1.6em;
+        }
+    
+        &_total{
+            display: flex;
+            font-size: 1.5em;
+
+            .p_total{
+                margin-right: 10px;
+            }
+        }
+    }
+
+    
+
+}
