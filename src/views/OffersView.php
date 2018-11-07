@@ -2,6 +2,7 @@
 
 namespace mygiftbox\views;
 use mygiftbox\models\Prestation;
+use mygiftbox\models\Categorie;
 
 class OffersView extends View{
 
@@ -13,6 +14,7 @@ class OffersView extends View{
         $offers = Prestation::all();
         
         foreach($offers as $offer) {
+            //$categorie = $offer->categorie()->first();
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
             $pres .= <<<END
             <a href='$urlDetailledOffer' class='offer'>
@@ -20,7 +22,7 @@ class OffersView extends View{
                 <div class='offer_bottom'>
                     <h2>$offer->titre</h2>
                     <div class='offer_bottom_infos'>
-                        <p>$offer->categorie_id</p>
+                        <p></p>
                         <p>$offer->prix €</p>
                     </div>
                 </div>
@@ -28,9 +30,17 @@ class OffersView extends View{
 END;
         }
 
+        $cat = "";
+        $categories = Categorie::all();
+        foreach($categories as $categorie) {
+            $cat .= <<<END
+            <div>
+                <a href='#'>$categorie->titre</a>
+            </div>
+END;
+        }
+
         $html = "
-
-
             <html>
                 $this->header
                 <body>
@@ -38,11 +48,19 @@ END;
                         
                         $this->menu
                         $error
-
+                        <div class='tri_categories'>
+                            <p>Trier par catégories</p>
+                            <i id='slide_arrow' class='fas fa-angle-down'></i>
+                            <div id='cat_list' class='categories'>
+                                $cat
+                            </div>
+                        </div>
                         <div class='offers'> 
                            $pres 
                         </div>
                     </div>
+                    <script src='$link/assets/scripts/jquery.js'></script>
+                    <script src='$link/assets/scripts/offers_sliding_sort.js'></script>
                 </body>
             </html>
         
@@ -51,5 +69,7 @@ END;
 
         echo $html;
     }
+
+
 
 }
