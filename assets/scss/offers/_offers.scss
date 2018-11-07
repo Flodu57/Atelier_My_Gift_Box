@@ -26,3 +26,20 @@
         }
     }
 }
+.tri_categories{
+    margin: 0 auto;
+    padding: 1.2em 1.2em; 
+    border-radius: 10px;
+    color: white;
+    width: 70%;
+    background-color: $primary-color;
+
+    p {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .categories {
+        display: none;
+        margin: 10px auto;
+    }
+}
