@@ -19,15 +19,15 @@ class CreateBoxView extends View{
 
                             <form class='create_box_form' method='POST'>
                                 <div class='form_group'>
-                                    <p class='label label_password'>Titre</p>
-                                    <input type='text' name='title' class='input input_titre'>
+                                    <p class='label label_title'>Titre</p>
+                                    <input type='text' name='title' class='input input_title'>
                                 </div>
 
                                 <div class='form_group'>
-                                    <p class='label label_password'>Date</p>
+                                    <p class='label label_date'>Date</p>
                                     <input type='date' name='date' class='input input_date'>
                                 </div>
-                                <button type='submit'>Ajouter</button>
+                                <button type='submit' class='button buttonCreateBox'>Créer</button>
                             </form>
                         </div>
 
