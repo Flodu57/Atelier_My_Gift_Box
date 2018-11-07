@@ -13,10 +13,12 @@ class OffersView extends View{
             $pres .= <<<END
             <a href='#' class='offer'>
                 <img src='$link/assets/img/prestations/$offer->image'>
-                <h2>$offer->titre</h2>
-                <div class='offer_info'>
-                    <p>$offer->categorie_id</p>
-                    <p>$offer->prix €</p>
+                <div class='offer_bottom'>
+                    <h2>$offer->titre</h2>
+                    <div class='offer_bottom_infos'>
+                        <p>$offer->categorie_id</p>
+                        <p>$offer->prix €</p>
+                    </div>
                 </div>
             </a>
 END;
@@ -32,17 +34,7 @@ END;
                         
                         $this->menu
                         <div class='offers'> 
-                            <a href='#' class='offer'>
-                                <img src='$link/assets/img/diner.jpg'>
-                                <h2>Prestations</h2>
-                                <div class='offer_info'>
-                                    <p>Catégorie</p>
-                                    <p>XX €</p>
-                                </div>
-                            </a>
-
                            $pres 
-
                         </div>
                     </div>
                 </body>
