@@ -61,7 +61,7 @@ END;
                             </div>
                             <div class='buttonLayout'>
                                 <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
-                                <a href='#' class='button button_validateBox'>Passer au payement</a>
+                                <a href='#' class='button button_validateBox'>Passer au paiement</a>
                             </div>
                         </div>
                         $this->footer

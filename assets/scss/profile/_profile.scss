@@ -84,7 +84,12 @@
     grid-template-columns: repeat(4,1fr);
     flex-grow: 1;
 
+    a{
+        text-decoration: none;
+    }
+
     .boxItem{
+        color:black;
         border: 2px solid black;
 
         .label_titreBox{
