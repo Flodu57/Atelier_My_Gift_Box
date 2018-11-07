@@ -15,6 +15,7 @@ class OfferDetailledView extends View{
 
     public function render(){
 
+        $error = parent::error();
         $link = $this->getLink();
         $categorie = $this->offer->categorie()->first();
         $image = $this->offer->image;
@@ -31,7 +32,7 @@ class OfferDetailledView extends View{
         $pres = '';
         foreach ($boxes as $box) {
             $pres .= <<<END
-                <option value='$box->titre'>$box->titre</option>
+                <option value='$box->id'>$box->titre</option>
 END;
         }
 
@@ -43,7 +44,7 @@ END;
                 <body>
                     <div class='container'>
                         $this->menu
-                       
+                       $error
                         <div class='detailled_offer'>  
                             <div class='detailled_offer_top'>  
                                 <img src='$link/assets/img/prestations/$image'>
@@ -57,7 +58,7 @@ END;
                                     </div>
                                     <form method='POST' class='detailled_offer_top_add'>
                                         <p>Ajouter à la box </p>
-                                        <select>
+                                        <select name='box_id'>
                                             $pres
                                         
                                         </select>
