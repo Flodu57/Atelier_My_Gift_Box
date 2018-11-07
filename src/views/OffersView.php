@@ -47,12 +47,19 @@ END;
                         
                         $this->menu
                         $error
-                        $cat
-                        
+                        <div class='tri_categories'>
+                            <p>Trier par catégories</p>
+                            <i class='fas fa-angle-down'></i>
+                            <div class='categories'>
+                                $cat
+                            </div>
+                        </div>
                         <div class='offers'> 
                            $pres 
                         </div>
                     </div>
+                    <script src='jquery.js'></script>
+                    <script src='mon_script.js'></script>
                 </body>
             </html>
         
