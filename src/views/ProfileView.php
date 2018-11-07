@@ -12,7 +12,7 @@ class ProfileView extends View{
         $app = \Slim\Slim::getInstance();
         $urlSettings = $app->urlFor('profile.settings');
         $urlCreateBox = $app->urlFor('profile.createBox');
-        $user  = User::where('id', '=', $_SESSION['id_user'])->first();
+        $user  = User::byId($_SESSION['id_user']);
         $boxes = Box::where('user_id', '=', $_SESSION['id_user'])->get();
 
         $pres = '';

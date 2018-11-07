@@ -15,7 +15,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     }
 
     public static function exists($title) {
-        $user = User::where('id', '=', $_SESSION['id_user'])->first();
+        $user = User::byId($_SESSION['id_user']);
         if($user->boxes()->where('titre', '=', $title)->first())
            return true;
         else{

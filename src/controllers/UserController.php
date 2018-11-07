@@ -21,7 +21,7 @@ class UserController{
             $mail = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
             $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
             if(!empty($mail) && !empty($password)){
-                $user = User::where('email','=',$mail)->first();
+                $user = User::byMail($mail);
                 if($user && $user->account_level > 0){
                     if(password_verify($password, $user->password)){
                         $_SESSION['id_user'] = $user->id;
@@ -113,7 +113,7 @@ class UserController{
     public function getLogout(){
         $app = \Slim\Slim::getInstance();
         session_destroy();
-        $app->redirect($app->urlFor('home'));
+        $app->redirect('home');
     }
 
     public function getForgotPassword(){

@@ -18,9 +18,9 @@ class ProfileController {
     }
 
     public function changePassword(){
-        $app = \Slim\Slim::getInstance();
+        $app      = \Slim\Slim::getInstance();
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
-        $user     = User::where('id','=',$_SESSION['id_user'])->first();
+        $user     = User::byId($_SESSION['id_user']);
 
         if($user){
             if(password_verify($password,$user->password)){
@@ -35,7 +35,7 @@ class ProfileController {
 
     public function deleteAccount(){
         $app = \Slim\Slim::getInstance();
-        $user     = User::where('id','=',$_SESSION['id_user'])->first();
+        $user     = User::byId($_SESSION['id_user']);
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
 
         if($user){
