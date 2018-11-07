@@ -13,8 +13,8 @@ class LoginView extends View{
                 $this->header
                 <body>
                     <div class='container'>
-                        $error
                         $this->menu
+                        $error
                         <form class='login' method='POST'> 
                             <p class='label label_email'>Email</p>
                             <input type='email' name='email' class='input input_email'>

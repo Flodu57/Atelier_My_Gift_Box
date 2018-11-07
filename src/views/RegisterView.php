@@ -11,8 +11,8 @@ class RegisterView extends View{
                 $this->header
                 <body>     
                     <div class='container'>
-                        $error
                         $this->menu
+                        $error
                         <form class='register' method='POST'> 
                             <p class='label label_nom'>Nom</p>
                             <input type='text' name='lastname' class='input input_nom'>

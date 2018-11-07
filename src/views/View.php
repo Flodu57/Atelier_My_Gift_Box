@@ -72,11 +72,11 @@ END;
 
     public function error(){
         if(isset($_SESSION['slim.flash']['error'])){
-            return "<div class='errors'><p class='p_error'>".$_SESSION['slim.flash']['error']."</p></div>";
+            return "<div class='errors'><p class='error danger'>".$_SESSION['slim.flash']['error']."</p></div>";
         }
 
         if(isset($_SESSION['slim.flash']['success'])){
-            return "<div class='success'><p class='p_success'>".$_SESSION['slim.flash']['success']."</p></div>";
+            return "<div class='errors'><p class='error success'>".$_SESSION['slim.flash']['success']."</p></div>";
         }
         return "";
     }
