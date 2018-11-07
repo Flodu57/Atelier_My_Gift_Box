@@ -49,5 +49,10 @@ $app->group('/profile','checkProfile', function() use ($app){
         $c = new ProfileController();
         $c->getBox($slug);
     })->name('profile.box');
+
+    $app->get("/deletebox/:slug", function($slug){
+        $c = new ProfileController();
+        $c->getDeleteBox($slug);
+    })->name('profile.deleteBox');
 });
 

@@ -20,6 +20,7 @@ class ProfileView extends View{
 
             $slug = Box::getSlug($box->titre);
             $urlBox = $app->urlFor('profile.box', compact('slug'));
+            $urlDeleteBox = $app->urlFor('profile.deleteBox', compact('slug'));
 
             $pres .= <<<END
             <div class='boxItem'>
@@ -29,7 +30,7 @@ class ProfileView extends View{
                         <p class='label_prixBox'>$box->prix_total €</p>
                     </div>
                 </a>
-                <a href="#" class='delete'>
+                <a href="$urlDeleteBox" class='delete'>
                     <p>x</p>
                 </a>
             </div>
