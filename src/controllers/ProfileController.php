@@ -96,7 +96,7 @@ class ProfileController {
     }
 
     public function getBox($slug){
-        $box = Box::where('slug', '=', $slug)->first();
+        $box = Box::bySlug($slug);
 
         $v = new BoxView($box);
         $v->render();

@@ -13,7 +13,7 @@ class ProfileView extends View{
         $urlSettings = $app->urlFor('profile.settings');
         $urlCreateBox = $app->urlFor('profile.createBox');
         $user  = User::byId($_SESSION['id_user']);
-        $boxes = Box::where('user_id', '=', $_SESSION['id_user'])->get();
+        $boxes = Box::byUserId($_SESSION['id_user']);
 
         $pres = '';
         foreach($boxes as $box) {
