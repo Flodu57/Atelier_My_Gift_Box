@@ -8,7 +8,8 @@ $app->get("/login", function() use ($app){
 })->name('login');
 
 $app->post("/login", function() use ($app){
-    include 'src/actions/login.php';
+    $c = new UserController();
+    $c->postLogin();
 })->name('post_login');
 
 $app->get("/register", function() use ($app){
@@ -17,8 +18,14 @@ $app->get("/register", function() use ($app){
 })->name('register');
 
 $app->post("/register", function() use ($app){
-    include 'src/actions/register.php';
+    $c = new UserController();
+    $c->postRegister();
 })->name('post_register');
+
+$app->get('/mailcheck', function() use ($app){
+    $c = new UserController();
+    $c->getRegisterMailCheck();
+})->name('mailcheck');
 
 $app->get('/logout', function() use ($app){
     $c = new UserController();
@@ -37,5 +44,5 @@ $app->post('/forgot_password', function() use ($app){
 
 $app->get('/forgotpasslink', function() use ($app){
     $c = new UserController();
-    $c->getUserLinkClicked();
+    $c->getForgotLinkClicked();
 })->name('forgotpasslink');
