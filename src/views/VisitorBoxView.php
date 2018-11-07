@@ -1,9 +1,9 @@
 <?php
 
 namespace mygiftbox\views;
-use mygiftbox\models\Prestation;
 
-class BoxView extends View{
+
+class VisitorBoxView extends View{
 
     private $box;
 
@@ -17,6 +17,8 @@ class BoxView extends View{
         $error = parent::error();
         $titre = $this->box->titre;
         $total = $this->box->prix_total;
+        $message = $this->box->message;
+        $user = $this->box->user;
         $error = parent::error();
 
         $app = \Slim\Slim::getInstance();
@@ -37,12 +39,8 @@ class BoxView extends View{
                         <h2 class='label label_title'>$offer->titre</h2>
                         <div class='offer_bottom_infos'>
                             <p class='label label_category'>$offer->categorie_id</p>
-                            <p class='label label_price'>$offer->prix €</p>
                         </div>
                     </div>
-                </a>
-                <a href="$urlDeleteOffer" class='delete'>
-                    <p>x</p>
                 </a>
             </div>
 END;
@@ -56,22 +54,24 @@ END;
                         $this->menu
                         $error
                         <div class='box'>
-                            <div class='box_head'>
+                            <div class='box_head visitor'>
                                 <h2>$titre</h2>
-                                <div class='box_head_total'>
-                                    <p class='p_total'>Total </p>
-                                    $total
-                                    <p>€</p>
-                                </div>
+                                $user->nom
+                                $user->prenom
                             </div>  
+                            <p>$message</p>
 
                             <div class='box_grid'>
                                 $pres 
                             </div>
-                            <div class='buttonLayout buttonLayout-center'>
-                                <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
-                                <a href='#' class='button button_validateBox'>Passer au paiement</a>
-                            </div>
+                            <form class='thanks' method='POST'>
+                                <h3>Remercier $user->nom $user->prenom</h3>
+                                <textarea name='back_message' placeholder='Entrer votre message ici'></textarea>
+
+                                <div class='buttonLayout buttonLayout-right'>
+                                    <button class='button ' type='submit'>Remercier</button>
+                                </div>
+                            </form>
                         </div>
                         $this->footer
                     </div>
@@ -80,5 +80,6 @@ END;
 END;
         echo $html;
     }
+
 
 }
