@@ -25,10 +25,6 @@ $app->get("/home", function() use ($app){
 
 include 'routes/UserRoutes.php';
 include 'routes/ProfileRoutes.php';
-
-$app->get("/offers", function() use ($app){
-    $c = new mygiftbox\controllers\OffersController;
-    $c->getOffers();
-})->name('offers');
+include 'routes/OfferRoutes.php';
 
 $app->run();

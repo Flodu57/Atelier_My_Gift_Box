@@ -12,14 +12,14 @@ class ProfileView extends View{
         $app = \Slim\Slim::getInstance();
         $urlSettings = $app->urlFor('profile.settings');
         $urlCreateBox = $app->urlFor('profile.createBox');
-        $user  = User::where('id', '=', $_SESSION['id_user'])->first();
-        $boxes = Box::where('user_id', '=', $_SESSION['id_user'])->get();
+        $user  = User::byId($_SESSION['id_user']);
+        $boxes = Box::byUserId($_SESSION['id_user']);
 
         $pres = '';
         foreach($boxes as $box) {
 
             $slug = Box::getSlug($box->titre);
-            $urlBox = $app->urlFor('profile.box', ['slug' => $slug]);
+            $urlBox = $app->urlFor('profile.box', compact('slug'));
 
             $pres .= <<<END
             <a href="$urlBox">

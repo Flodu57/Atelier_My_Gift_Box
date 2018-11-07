@@ -14,8 +14,20 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return $this->belongsToMany('mygiftbox\models\Prestation');
     }
 
+    public static function byId($id) {
+        return parent::where('id', '=', $id)->first();
+    }
+
+    public static function byUserId($user_id) {
+        return parent::where('user_id', '=', $user_id)->get();
+    }
+
+    public static function bySlug($slug) {
+        return parent::where('slug', '=', $slug)->first();
+    }
+
     public static function exists($title) {
-        $user = User::where('id', '=', $_SESSION['id_user'])->first();
+        $user = User::byId($_SESSION['id_user']);
         if($user->boxes()->where('titre', '=', $title)->first())
            return true;
         else{
