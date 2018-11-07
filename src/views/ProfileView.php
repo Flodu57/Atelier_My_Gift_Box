@@ -22,12 +22,17 @@ class ProfileView extends View{
             $urlBox = $app->urlFor('profile.box', compact('slug'));
 
             $pres .= <<<END
-            <a href="$urlBox">
-                <div class='boxItem'>
+            <div class='boxItem'>
+                <a href="$urlBox">
                     <h1 class='label_titreBox'>$box->titre</h1>
-                    <p class='label_prixBox'>$box->prix_total</p>
-                </div>
-            </a>
+                    <div class='box_price'>
+                        <p class='label_prixBox'>$box->prix_total €</p>
+                    </div>
+                </a>
+                <a href="#" class='delete'>
+                    <p>x</p>
+                </a>
+            </div>
 END;
         }
 

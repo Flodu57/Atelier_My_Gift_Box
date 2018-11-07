@@ -68,8 +68,9 @@
         width: 3%;
         height: auto;
     }
-
-    .fas{
+     
+    .fa-plus{
+        color: $primary-color;
         margin-top:50%;
     }
 }
@@ -89,6 +90,7 @@
     }
 
     .boxItem{
+        position: relative;
         color:black;
         border: 2px solid black;
 
@@ -104,7 +106,29 @@
             margin-right: 30%;
             margin-top:50px;
             margin-bottom: 2%;
-            width: 1em;
+        }
+
+        .box_price{
+            display: flex;
+        }
+
+        .delete{
+            position: absolute;
+            font-size: 1em;
+            top: 0;
+            right: 0;
+            border: 2px solid rgb(120, 0, 0);
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bolder;
+            transform: translateY(-40%) translateX(40%);
+            z-index: 890;
+            background-color: red;
         }
     }
 }

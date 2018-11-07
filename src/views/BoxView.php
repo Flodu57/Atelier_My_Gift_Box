@@ -28,16 +28,21 @@ class BoxView extends View{
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
 
             $pres .= <<<END
-            <a href='$urlDetailledOffer' class='offer'>
-                <img src='$link/assets/img/prestations/$offer->image'>
-                <div class='offer_bottom'>
-                    <h2 class='label label_title'>$offer->titre</h2>
-                    <div class='offer_bottom_infos'>
-                        <p class='label label_category'>$offer->categorie_id</p>
-                        <p class='label label_price'>$offer->prix €</p>
+            <div class='containerBox'>
+                <a href='$urlDetailledOffer' class='offer'>
+                    <img src='$link/assets/img/prestations/$offer->image'>
+                    <div class='offer_bottom'>
+                        <h2 class='label label_title'>$offer->titre</h2>
+                        <div class='offer_bottom_infos'>
+                            <p class='label label_category'>$offer->categorie_id</p>
+                            <p class='label label_price'>$offer->prix €</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                <a href="#" class='delete'>
+                    <p>x</p>
+                </a>
+            </div>
 END;
         }
 
