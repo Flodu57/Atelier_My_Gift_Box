@@ -29,7 +29,7 @@ class OffersController{
             if($box){
                 $box->prestations()->attach($offer);
     
-                $app->flash('success', "Prestation bien ajoutée à la box $box->titre !");
+                $app->flash('success', "Prestation bien ajoutée au coffret $box->titre !");
                 $app->redirect($app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]));
             }else{
                 $app->flash('error', "Une erreur est survenue !");

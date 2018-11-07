@@ -67,7 +67,7 @@ class ProfileController {
 
             if(!empty($title) && !empty($date)){
                 if(Box::exists($title)){
-                    $app->flash('error','Vous avez déjà une box avec ce titre');
+                    $app->flash('error','Vous avez déjà un coffret avec ce titre');
                     $app->redirect($app->urlFor('profile.createBox'));
                 }else{
                     $box = new Box();
@@ -78,7 +78,7 @@ class ProfileController {
                     $box->url = $token;
                     $box->save();
 
-                    $app->flash('success',"La box a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
+                    $app->flash('success',"Le coffret a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
                     $app->redirect($app->urlFor('offers'));
                 }
             }else{
