@@ -6,6 +6,7 @@ use mygiftbox\views\ProfileSettingsView;
 use mygiftbox\views\ProfileView;
 use mygiftbox\views\CreateBoxView;
 use mygiftbox\models\User;
+use mygiftbox\models\Box;
 
 
 class ProfileController {
@@ -15,10 +16,10 @@ class ProfileController {
         $v->render();
     }
 
-    public function changePassword($id){
+    public function changePassword(){
         $app = \Slim\Slim::getInstance();
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
-        $user     = User::where('id','=',$id)->first();
+        $user     = User::where('id','=',$_SESSION['id_user'])->first();
 
         if($user){
             if(password_verify($password,$user->password)){
@@ -31,9 +32,9 @@ class ProfileController {
         
     }
 
-    public function deleteAccount($id){
+    public function deleteAccount(){
         $app = \Slim\Slim::getInstance();
-        $user     = User::where('id','=',$id)->first();
+        $user     = User::where('id','=',$_SESSION['id_user'])->first();
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
 
         if($user){
@@ -55,4 +56,40 @@ class ProfileController {
         $v->render();
     }
 
+    public function postCreateBox(){
+        $app = \Slim\Slim::getInstance();
+        
+        if(isset($_POST['title']) && isset($_POST['title'])){
+            $title = filter_var($_POST['title'],FILTER_SANITIZE_STRING);
+            $date  = filter_var($_POST['date'],FILTER_SANITIZE_STRING);
+            $token = bin2hex(random_bytes(12));
+
+            if(!empty($title) && !empty($date)){
+                if(Box::exists($title)){
+                    $app->flash('error','Vous avez déjà une box avec ce titre');
+                    $app->redirect($app->urlFor('profile.createBox'));
+                }else{
+                    $box = new Box();
+                    $box->user_id = $_SESSION['id_user'];
+                    $box->titre = $title;
+                    $box->date_ouverture = $date;
+                    $box->url = $token;
+                    $box->save();
+
+                    $app->flash('success',"La box a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
+                    $app->redirect($app->urlFor('offers'));
+                }
+            }else{
+                $app->flash('error','Veuillez remplir tous les champs');
+                $app->redirect($app->urlFor('profile.createBox'));
+            }
+
+            
+        }else{
+            $app->flash('error','Veuillez remplir tous les champs');
+            $app->redirect($app->urlFor('profile.createBox'));
+        }
+
+        
+    }
 }

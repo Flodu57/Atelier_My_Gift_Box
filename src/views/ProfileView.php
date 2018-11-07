@@ -9,8 +9,8 @@ class ProfileView extends View{
     public function render(){
         $link = $this->getLink();
         $app = \Slim\Slim::getInstance();
-        $urlSettings = $app->urlFor('profile.settings', ['id' => $_SESSION['id_user']]);
-        $urlCreateBox = $app->urlFor('profile.createBox', ['id' => $_SESSION['id_user']]);
+        $urlSettings = $app->urlFor('profile.settings');
+        $urlCreateBox = $app->urlFor('profile.createBox');
         $user = User::where('id', '=', $_SESSION['id_user'])->first();
 
         $html = "

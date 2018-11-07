@@ -7,6 +7,7 @@ class OffersView extends View{
 
     public function render(){
         $link = $this->getLink();
+        $error = parent::error();
         $pres = "";
         $offers = Prestation::all();
         foreach($offers as $offer) {
@@ -33,6 +34,8 @@ END;
                     <div class='container'>
                         
                         $this->menu
+                        $error
+
                         <div class='offers'> 
                            $pres 
                         </div>

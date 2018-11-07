@@ -11,8 +11,8 @@ class CreateBoxView extends View{
                 $this->header
                 <body>     
                     <div class='container'>
-                        $error
                         $this->menu
+                        $error
                         
                         <div class='create_box'>
                             <h1>Créer une box</h1>
