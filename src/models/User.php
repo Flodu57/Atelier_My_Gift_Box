@@ -8,7 +8,7 @@ class User extends \Illuminate\Database\Eloquent\Model{
     public $timestamps = false;
 
     public function boxes(){
-        return $this->hasMany('mygiftbox\Box');
+        return $this->hasMany('mygiftbox\models\Box');
     }
 
     public static function byMail($email) {

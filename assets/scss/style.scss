@@ -3,10 +3,11 @@
 @import 'profile/settings';
 @import 'profile/login-register';
 @import 'profile/profile';
-@import 'menu';
+@import 'profile/createBox';
 @import 'menu';
 @import 'offers/offers';
 @import 'home/home';
+@import 'errors';
 @import 'footer';
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
@@ -22,5 +23,4 @@ body{
 .container{
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
