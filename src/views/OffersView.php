@@ -9,12 +9,11 @@ class OffersView extends View{
     public function render(){
         $app = \Slim\Slim::getInstance();
         $link = $this->getLink();
-        $error = parent::error();
-        $offers = Prestation::all();
-        $listed_offers = $this->listOffers($offers);
-        $categories = Categorie::all();
-        $listed_categories = $this->listedCategories($categories);
+        $error = parent::error();  
+        $listed_offers = $this->listOffers(Prestation::all());
+        $listed_categories = $this->listCategories(Categorie::all());
         $html = <<<END
+        <!DOCTYPE html>
             <html>
                 $this->header
                 <body>
@@ -40,18 +39,18 @@ END;
         echo $html;
     }
 
-    public function listedCategories($categs){
+    public function listCategories($categs){
         $app = \Slim\Slim::getInstance();
         //$urlCateg = $app->urlFor('');
         $cat = "";
-        foreach($categs as $categorie) {
+        foreach($categs as $categ) {
             $cat .= <<<END
             <div>
-                <a href='$urlCateg'>$categorie->titre</a>
+                <a href='#'>$categ->titre</a>
             </div>
 END;
-        return $cat;
         }
+        return $cat;
     }
 
     public function listOffers($offers){
@@ -73,8 +72,9 @@ END;
                 </div>
             </a>
 END;
-        return $pres;
+        
         }
+        return $pres;
     }
 
 }
