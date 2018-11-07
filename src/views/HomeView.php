@@ -7,7 +7,7 @@ class HomeView extends View {
     public function render(){
         $app = \Slim\Slim::getInstance();
         $id = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
-        $urlCreateBox = $app->urlFor('profile.createBox', ['id' => $id]);
+        $urlCreateBox = $app->urlFor('profile.createBox', compact('id'));
         $link = $this->getLink();
         $html = "
         <html>

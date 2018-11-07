@@ -6,13 +6,16 @@ use mygiftbox\models\Prestation;
 class OffersView extends View{
 
     public function render(){
+        $app = \Slim\Slim::getInstance();
         $link = $this->getLink();
         $error = parent::error();
         $pres = "";
         $offers = Prestation::all();
+        
         foreach($offers as $offer) {
+            $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
             $pres .= <<<END
-            <a href='#' class='offer'>
+            <a href='$urlDetailledOffer' class='offer'>
                 <img src='$link/assets/img/prestations/$offer->image'>
                 <div class='offer_bottom'>
                     <h2>$offer->titre</h2>
