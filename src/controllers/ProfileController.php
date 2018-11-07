@@ -5,6 +5,7 @@ namespace mygiftbox\controllers;
 use mygiftbox\views\ProfileSettingsView;
 use mygiftbox\views\ProfileView;
 use mygiftbox\views\CreateBoxView;
+use mygiftbox\views\BoxView;
 use mygiftbox\models\User;
 use mygiftbox\models\Box;
 
@@ -72,6 +73,7 @@ class ProfileController {
                     $box = new Box();
                     $box->user_id = $_SESSION['id_user'];
                     $box->titre = $title;
+                    $box->slug = Box::getSlug($title);
                     $box->date_ouverture = $date;
                     $box->url = $token;
                     $box->save();
@@ -91,5 +93,12 @@ class ProfileController {
         }
 
         
+    }
+
+    public function getBox($slug){
+        $box = Box::where('slug', '=', $slug)->first();
+
+        $v = new BoxView($box);
+        $v->render();
     }
 }

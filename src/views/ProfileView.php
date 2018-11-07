@@ -3,6 +3,7 @@
 namespace mygiftbox\views;
 
 use mygiftbox\models\User;
+use mygiftbox\models\Box;
 
 class ProfileView extends View{
 
@@ -11,7 +12,24 @@ class ProfileView extends View{
         $app = \Slim\Slim::getInstance();
         $urlSettings = $app->urlFor('profile.settings');
         $urlCreateBox = $app->urlFor('profile.createBox');
-        $user = User::where('id', '=', $_SESSION['id_user'])->first();
+        $user  = User::where('id', '=', $_SESSION['id_user'])->first();
+        $boxes = Box::where('user_id', '=', $_SESSION['id_user'])->get();
+
+        $pres = '';
+        foreach($boxes as $box) {
+
+            $slug = Box::getSlug($box->titre);
+            $urlBox = $app->urlFor('profile.box', ['slug' => $slug]);
+
+            $pres .= <<<END
+            <a href="$urlBox">
+                <div class='boxItem'>
+                    <h1 class='label_titreBox'>$box->titre</h1>
+                    <p class='label_prixBox'>$box->prix_total</p>
+                </div>
+            </a>
+END;
+        }
 
         $html = "
 
@@ -43,25 +61,7 @@ class ProfileView extends View{
                             </a>
                         </div>
                         <div class='gridBox'>
-                            <div class='boxItem'>
-                                <h1 class='label_titreBox'>Titre box</h1>
-                                <p class='label_prixBox'>prix</p>
-                        </div>
-                        <div class='boxItem'>
-                            <h1 class='label_titreBox'>Titre box</h1>
-                            <p class='label_prixBox'>prix</p>
-                        </div>
-                        <div class='boxItem'>
-                            <h1 class='label_titreBox'>Titre box</h1>
-                            <p class='label_prixBox'>prix</p>
-                        </div>
-                        <div class='boxItem'>
-                            <h1 class='label_titreBox'>Titre box</h1>
-                            <p class='label_prixBox'>prix</p>
-                        </div>
-                        <div class='boxItem'>
-                            <h1 class='label_titreBox'>Titre box</h1>
-                            <p class='label_prixBox'>prix</p>
+                            $pres
                         </div>
                     </div>
                     $this->footer
