@@ -14,15 +14,15 @@ class OffersView extends View{
         $offers = Prestation::all();
         
         foreach($offers as $offer) {
-            //$categorie = $offer->categorie()->first();
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
+            $categorie = $offer->categorie->titre;
             $pres .= <<<END
             <a href='$urlDetailledOffer' class='offer'>
                 <img src='$link/assets/img/prestations/$offer->image'>
                 <div class='offer_bottom'>
                     <h2>$offer->titre</h2>
                     <div class='offer_bottom_infos'>
-                        <p></p>
+                        <p>$categorie</p>
                         <p>$offer->prix €</p>
                     </div>
                 </div>
