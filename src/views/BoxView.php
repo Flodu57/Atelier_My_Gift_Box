@@ -25,8 +25,10 @@ class BoxView extends View{
         $pres = "";
         $offers = $this->box->prestations()->get();
         foreach($offers as $offer) {
+            $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
+
             $pres .= <<<END
-            <a href='#' class='offer'>
+            <a href='$urlDetailledOffer' class='offer'>
                 <img src='$link/assets/img/prestations/$offer->image'>
                 <div class='offer_bottom'>
                     <h2 class='label label_title'>$offer->titre</h2>
