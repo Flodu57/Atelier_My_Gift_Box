@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `mode_paiement` text,
   `message` text NOT NULL,
   `message_retour` text,
+  `slug` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
