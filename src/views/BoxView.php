@@ -17,6 +17,7 @@ class BoxView extends View{
         $error = parent::error();
         $titre = $this->box->titre;
         $total = $this->box->prix_total;
+        $error = parent::error();
 
         $app = \Slim\Slim::getInstance();
 
@@ -26,6 +27,7 @@ class BoxView extends View{
         $offers = $this->box->prestations()->get();
         foreach($offers as $offer) {
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
+            $urlDeleteOffer = $app->urlFor('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]);
 
             $pres .= <<<END
             <div class='containerBox'>
@@ -39,7 +41,7 @@ class BoxView extends View{
                         </div>
                     </div>
                 </a>
-                <a href="#" class='delete'>
+                <a href="$urlDeleteOffer" class='delete'>
                     <p>x</p>
                 </a>
             </div>
@@ -52,7 +54,7 @@ END;
                 <body>     
                     <div class='container'>
                         $this->menu
-                        
+                        $error
                         <div class='box'>
                             <div class='box_head'>
                                 <h2>$titre</h2>

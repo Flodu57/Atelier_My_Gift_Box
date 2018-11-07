@@ -14,6 +14,7 @@ class ProfileView extends View{
         $urlCreateBox = $app->urlFor('profile.createBox');
         $user  = User::byId($_SESSION['id_user']);
         $boxes = Box::byUserId($_SESSION['id_user']);
+        $error = parent::error();
 
         $pres = '';
         foreach($boxes as $box) {
@@ -43,8 +44,8 @@ END;
                 $this->header
                 <body>
                     <div class='container'>
-                    ".parent::error()."
                         $this->menu
+                        $error
                         <div class='accountInformations'> 
                             <h1 class='title title_informations'>Mes informations</h1>
                             <div class='accountInformations'>

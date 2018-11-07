@@ -114,4 +114,18 @@ class ProfileController {
         }
         $app->redirect($app->urlFor('profile'));
     }
+
+    public function getDeleteOffer($slug, $id){
+        $app = \Slim\Slim::getInstance();
+
+        $box = Box::bySlug($slug);
+
+        if($box && $box->prestations()->where('id', '=', $id)){
+            $box->prestations()->detach($id);
+            $app->flash('success','Prestation supprimée avec succès.');
+        }else{
+            $app->flash('error','Une erreur s\'est produite !');
+        }
+        $app->redirect($app->urlFor('profile.box', ['slug' => $slug]));
+    }
 }
