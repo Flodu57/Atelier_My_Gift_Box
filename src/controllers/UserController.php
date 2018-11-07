@@ -65,7 +65,7 @@ class UserController{
                         if($mailer->sendMail($email, $options, 'register')){
                             User::addNew($email, $hash, $nom, $prenom);
                             $app->flash('success', "Vous vous êtes inscrit avec succès. Veuillez consulter vôtre boîte mail pour valider vôtre compte");
-                            $app->redirect($app->urlFor('home'));
+                            $app->redirect($app->urlFor('login'));
                         } else {
                             $app->flash('error',"L'adresse email fournie est invalide");
                             $app->redirect('register');
