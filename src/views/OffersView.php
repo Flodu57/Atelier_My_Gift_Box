@@ -6,11 +6,16 @@ use mygiftbox\models\Categorie;
 
 class OffersView extends View{
 
-    public function render(){
+    public function render($sorting_category = "all"){
         $app = \Slim\Slim::getInstance();
         $link = $this->getLink();
-        $error = parent::error();  
-        $listed_offers = $this->listOffers(Prestation::all());
+        $error = parent::error();
+
+        if($sorting_category == "all")
+            $listed_offers = $this->listOffers(Prestation::all());
+        else
+            $listed_offers = $this->listOffersByCategory(Prestation::all(), $sorting_category);
+
         $listed_categories = $this->listCategories(Categorie::all());
         $html = <<<END
         <!DOCTYPE html>
@@ -73,6 +78,31 @@ END;
             </a>
 END;
         
+        }
+        return $pres;
+    }
+
+    public function listOffersByCategory($offers, $sorting_category){
+        $app = \Slim\Slim::getInstance();
+        $link = $this->getLink();
+        $pres = "";
+        foreach($offers as $offer) {
+            if($offer->categorie->titre == $sorting_category){
+                $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
+                $categorie = $offer->categorie->titre;
+                $pres .= <<<END
+                <a href='$urlDetailledOffer' class='offer'>
+                    <img src='$link/assets/img/prestations/$offer->image'>
+                    <div class='offer_bottom'>
+                        <h2>$offer->titre</h2>
+                        <div class='offer_bottom_infos'>
+                            <p>$categorie</p>
+                            <p>$offer->prix €</p>
+                        </div>
+                    </div>
+                </a>
+END;
+            }
         }
         return $pres;
     }

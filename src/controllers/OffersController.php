@@ -13,9 +13,9 @@ class OffersController{
         return $v->render();
     }
 
-    public function getOffersByCategory($categorie){
+    public function getOffersByCategory($category){
         $v = new OffersView();
-        return $v->render();
+        return $v->render($category);
     }
 
     public function getDetailledOffer($offer){
