@@ -14,6 +14,10 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return $this->belongsToMany('mygiftbox\models\Prestation');
     }
 
+    public static function byId($id) {
+        return parent::where('id', '=', $id)->first();
+    }
+
     public static function byUserId($user_id) {
         return parent::where('user_id', '=', $user_id)->get();
     }
