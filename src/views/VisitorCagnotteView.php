@@ -68,7 +68,7 @@ END;
                             </div>
                             <form class='participate' method='POST'>
                                 <h3>Participer à la cagnotte</h3>
-                                <input type='text' name='amount'>
+                                <input type='number' min='0' value='0' name='amount'>
                                 <div class='buttonLayout'>
                                     <button class='button' type='submit'>Participer</button>
                                 </div>

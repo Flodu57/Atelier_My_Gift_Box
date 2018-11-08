@@ -27,6 +27,11 @@ $app->get('/:token_cagnotte/cagnotte', function($token_cagnotte){
     $c->getCagnotte($token_cagnotte);
 })->name('visitor.cagnotte');
 
+$app->post('/:token_cagnotte/cagnotte', function($token_cagnotte){
+    $c = new VisitorController();
+    $c->postCagnotte($token_cagnotte);
+});
+
 $app->get('/wait/:token', function($token){
     $c = new VisitorController();
     $c->getWait($token);
