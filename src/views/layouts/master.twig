@@ -10,8 +10,11 @@
     
 </head>
 <body>
+<div class="container">
+    {% include 'partials/menu.twig' %}
+    {% include 'partials/error.twig' %}
     {% block content %}{% endblock %}
-    
-    {% block scripts %}{% endblock %}
+    {% include 'partials/footer.twig' %}
+</div>
 </body>
 </html>

@@ -5,13 +5,38 @@ namespace mygiftbox\controllers;
 use mygiftbox\views\OffersView;
 use mygiftbox\views\OfferDetailledView;
 use mygiftbox\models\Box;
-use mygiftbox\models\Prestation;
+use mygiftbox\models\Offer;
+use mygiftbox\models\Category;
 
-class OffersController{
+class OffersController extends Controller {
 
     public function getOffers(){
-        $v = new OffersView();
-        return $v->render();
+        $app = \Slim\Slim::getInstance();
+        $offers = [];
+        $categories = [];
+        foreach(Category::all() as $category){
+            array_push($categories, ['title' => $category->title, 'url' => $app->urlFor('offers.category', ['category' => $category->title])]);
+        }
+        foreach(Offer::all() as $offer){
+            array_push($offers,
+                ['title' => $offer->title,
+                 'img' => $offer->image,
+                 'categ' => $offer->category->title,
+                 'price' => $offer->price,
+                 'on_hold' => $offer->on_hold,
+                 'urls' => [
+                        'main' => $app->urlFor('offers.detailed', ['category' => $offer->category->title, 'id' => $offer->id]),
+                        'delete' => $app->urlFor('deleteOffer', ['id' => $offer->id]),
+                        'modify' => $app->urlFor('modifyOffer', ['id' => $offer->id]),
+                        'lock' => $app->urlFor('lockOffer', ['id' => $offer->id])
+                        ],
+                ]);
+        }
+        $this->twigParams['categories'] = $categories;
+        $this->twigParams['offers'] = $offers;
+        $this->twigParams['link'] = $this->getLink();
+        $this->twigParams['sorting_category'] = 'all';
+        $app->render('OffersView.twig', $this->twigParams);
     }
 
     public function getOffersByCategory($category){
@@ -25,7 +50,6 @@ class OffersController{
     }
 
     public function postAddOfferToBox($offer){
-
         $app = \Slim\Slim::getInstance();
         $boxId = $_POST['box_id'];
 
