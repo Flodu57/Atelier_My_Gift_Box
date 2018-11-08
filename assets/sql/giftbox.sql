@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `titre` text NOT NULL,
   `date_ouverture` date NOT NULL,
   `url` text NOT NULL,
-  `etat` text NOT NULL DEFAULT,
+  `etat` text NOT NULL,
   `payer` BOOLEAN NOT NULL DEFAULT 0,
   `prix_total` int(11) NOT NULL DEFAULT 0,
   `mode_paiement` text,
