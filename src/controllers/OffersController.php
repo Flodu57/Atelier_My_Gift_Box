@@ -7,7 +7,7 @@ use mygiftbox\views\OfferDetailledView;
 use mygiftbox\models\Box;
 use mygiftbox\models\Prestation;
 
-class OffersController{
+class OffersController extends Controller{
 
     public function getOffers(){
         $v = new OffersView();
@@ -19,9 +19,10 @@ class OffersController{
         return $v->render();
     }
 
-    public function getDetailledOffer($offer){
-        $v = new OfferDetailledView($offer);
-        return $v->render();
+    public function getDetailedOffer($offer){
+        $app = \Slim\Slim::getInstance();
+        $this->twigParams['offer'] = $offer;
+        $app->render('DetailedOffer.twig', $this->twigParams);
     }
 
     public function postAddOfferToBox($offer){

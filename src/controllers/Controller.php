@@ -14,6 +14,8 @@ class Controller{
             'register'=>  $app->urlFor('register'),
             'logout' => $app->urlFor('logout'),
             'home' => $app->urlFor('home'),
+            'offer' => $app->urlFor('detailed.offer'),
+
 
         ];
 

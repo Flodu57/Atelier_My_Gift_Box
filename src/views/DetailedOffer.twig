@@ -1,0 +1,33 @@
+{% extends "layouts/master.twig" %}
+{% block content %}
+
+<div class='container'>
+    {% include 'partials/menu.twig' %}
+    {% include 'partials/error.twig' %}
+    {{ offer }}
+
+    <div class='detailled_offer'>  
+        <div class='detailled_offer_top'>  
+            <img src='$link/assets/img/prestations/$image'>
+            <div class='wrap'>
+                <div class='detailled_offer_top_infos'>
+                    <div class='titles'>
+                        <h2>{{ offer.title }}</h2>
+                        <p>{{ offer.category }}</p>
+                    </div>
+                    <p class='price'>{{ offer.price }} €</p>
+                </div>
+                $form
+            </div>
+        </div>
+        <div class='detailled_offer_description'> 
+            {{ offer.description }}
+        </div>
+    </div> 
+    {% include 'partials/footer.twig' %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
