@@ -10,17 +10,17 @@ use mygiftbox\models\User;
 use mygiftbox\models\Box;
 
 
-class ProfileController {
+class ProfileController extends Controller{
 
     public function getSettings(){
-        $v = new ProfileSettingsView();
-        $v->render();
+        $app = \Slim\Slim::getInstance();
+        $app->render('ProfileSettingsView.twig', $this->twigParams);
     }
 
     public function changePassword(){
-        $app      = \Slim\Slim::getInstance();
+        $app = \Slim\Slim::getInstance();
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
-        $user     = User::byId($_SESSION['id_user']);
+        $user = User::byId($_SESSION['id_user']);
 
         if($user){
             if(password_verify($password,$user->password)){
@@ -48,8 +48,27 @@ class ProfileController {
     }
 
     public function getProfile(){
-        $v = new ProfileView();
-        $v->render();
+        $user  = User::byId($_SESSION['id_user']);
+        $boxes = Box::byUserId($_SESSION['id_user']);
+
+        $reformatBox = [];
+
+        foreach ($boxes as $box) {
+            $slug = Box::getSlug($box->title);
+            array_push($reformatBox, [
+                'title' => $box->title,
+                'jackpot_url' => $box->jackpot_url,
+                'price' => $box->price,
+                'urlBox' => $this->getRoute('profile.box', compact('slug')),
+                'urlDeleteBox' => $this->getRoute('profile.deleteBox', compact('slug'))
+            ]);
+        }
+
+        
+        $this->twigParams['user']  = User::byId($_SESSION['id_user']);
+        $this->twigParams['boxes'] = $reformatBox;
+        $app = \Slim\Slim::getInstance();
+        $app->render('ProfileView.twig', $this->twigParams);
     }
 
     public function getCreateBox(){
