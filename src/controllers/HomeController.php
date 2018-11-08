@@ -4,11 +4,11 @@ namespace mygiftbox\controllers;
 
 use mygiftbox\views\HomeView;
 
-class HomeController {
+class HomeController extends Controller {
 
     public function getHomePage(){
-        $v = new HomeView();
-        $v->render();
+        $app = \Slim\Slim::getInstance();
+        $app->render('HomeView.twig', $this->twigParams);
     }
 
 }
