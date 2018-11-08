@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `message_retour` text,
   `slug` text,
   `url_cagnotte` text,
-  `montant_cagnotte` int(11)
+  `montant_cagnotte` int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -104,4 +104,4 @@ CREATE TABLE IF NOT EXISTS `box_prestation` (
   `box_id` int(11) NOT NULL,
   `prestation_id` int(11) not null,
   PRIMARY KEY (`box_id`, `prestation_id`)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
