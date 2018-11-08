@@ -31,6 +31,7 @@ class OffersView extends View{
                 <body>
                     <div class='container'>
                         $this->menu
+                        <button class="admin admin-create" onclick="$link/create_offer">Ajouter une prestation</button>
                         <div class='menu_categories'>
                             <p>Trier par catégories</p>
                             <i id='slide_arrow' class='fas fa-angle-down'></i>

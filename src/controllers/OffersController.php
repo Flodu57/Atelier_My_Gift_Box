@@ -5,6 +5,7 @@ namespace mygiftbox\controllers;
 use mygiftbox\views\OffersView;
 use mygiftbox\views\OfferDetailledView;
 use mygiftbox\models\Box;
+use mygiftbox\models\Prestation;
 
 class OffersController{
 
@@ -48,44 +49,4 @@ class OffersController{
         }
     }
 
-    public function getDeleteOffer($id){
-        $app = \Slim\Slim::getInstance();
-        $offer = Prestation::byId($id);
-        if($offer){
-            $offer->boxes()->detach($id);
-            $app->flash('success', "La prestation a bien été supprimée.");
-        } else {
-            $app->flash('error', "Une erreur s'est produite");
-        }
-        $app->redirect($app->urlFor('offers'));
-    }
-
-    public function getModifyOffer($id){
-        $app = \Slim\Slim::getInstance();
-        $offer = Prestation::byId($id);
-        if($offer){
-            //REDIRECT TO MODIFY PAGE
-        } else {
-            $app->flash('error', "Une erreur s'est produite.");
-        }
-        $app->redirect($app->urlFor('offers'));
-    }
-
-    public function getLockOffer($id){
-        $app = \Slim\Slim::getInstance();
-        $offer = Prestation::byId($id);
-        if($offer){
-            if($offer->suspendue){
-                $offer->suspendue = false;
-                $app->flash('success', "La prestation a bien été rétablie.");
-            } else {
-                $offer->suspendue = true;
-                $app->flash('success', "La prestation a bien été suspendue.");
-            }
-            $offer->save();
-        } else {
-            $app->flash('error', "Une erreur s'est produite.");
-        }
-        $app->redirect($app->urlFor('offers'));
-    }
 }

@@ -27,5 +27,6 @@ include 'routes/UserRoutes.php';
 include 'routes/ProfileRoutes.php';
 include 'routes/OfferRoutes.php';
 include 'routes/VisitorRoutes.php';
+include 'routes/AdminRoutes.php';
 
 $app->run();
