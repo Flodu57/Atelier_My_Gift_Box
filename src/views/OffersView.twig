@@ -2,31 +2,34 @@
 
 {% block content %}
 
-    <button class="admin admin-create" onclick="$link/create_offer">Ajouter une prestation</button>
+    {% if user_level == 2 %}
+        <button class="admin admin-create" onclick="$link/create_offer">Ajouter une prestation</button>
+    {% endif %}
     <div class='menu_categories'>
         <p>Trier par catégories</p>
         <i id='slide_arrow' class='fas fa-angle-down'></i>
         <div id='cat_list' class='cat_list'> 
-                    $urlCateg = $app->urlFor('offers.category', ['category' => $categ->titre]);   
-            <a href='{{ urls['offers'] }}' class='{{ sorting_category == 'all' ? 'selected_category':'' }}'>Toutes</a>
+            <a href='{{ urls.offers }}' class='{{ sorting_category == 'all' ? 'selected_category':'' }}'>Toutes</a>
             {% for category in categories %}
-                <a href='{{ category['url'] }}' class='{{ sorting_category == category['title'] ? 'selected_category' : ''}}'>category.title</a>
+                <a href='{{ category.url }}' class='{{ sorting_category == category.title ? 'selected_category' : ''}}'>{{category.title}}</a>
             {% endfor %}
         </div>
     </div>
     <div class='offers'> 
        {% for offer in offers %}
             <div class="offer">
-            <a href='{{ offer['urls']['main']}}' >
-                <img src='{{link}}/assets/img/prestations/{{offer['image']}}'>
+            <a href='{{ offer.urls.main}}' >
+                <img src='{{ siteUrl('/assets/img/offers/' ~ offer.img) }}'>
                 <div class='offer_bottom'>
-                    <h2>{{offer['title']}}</h2>
+                    <h2>{{offer.title}}</h2>
                     <div class='offer_bottom_infos'>
-                        <p>{{offer['categ']}}</p>
-                        <p>{{offer['price']}} €</p>
-                        <a href='{{offer['urls']['delete']}}'><i class='fa fa-trash'></i></a>
-                        <a href='{{offer['urls']['lock']}}'><i class='fa fa-{{offer['on_hold'] == true ? 'lock-open' : 'unlock-alt'}}'></i></a>
-                        <a href='{{offer['urls']['modify']}}'><i class='fa fa-cog'></i></a>
+                        <p>{{offer.categ}}</p>
+                        <p>{{offer.price}} €</p>
+                        {% if user_level == 2 %}
+                            <a href='{{offer.urls.delete}}'><i class='fa fa-trash'></i></a>
+                            <a href='{{offer.urls.lock}}'><i class='fa fa-{{offer.on_hold == true ? 'lock-open' : 'unlock-alt'}}'></i></a>
+                            <a href='{{offer.urls.modify}}'><i class='fa fa-cog'></i></a>
+                        {% endif %}
                     </div>
                 </div>
             </a>
@@ -34,4 +37,9 @@
        {% endfor %}
     </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script src='{{ siteUrl('/assets/scripts/jquery.js')}}'></script>
+    <script src='{{ siteUrl('/assets/scripts/offers_sliding_sort.js')}}'></script>
 {% endblock %}
