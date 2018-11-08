@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class='container'>
-    {% include 'partials/menu.twig' %}
     <div class='accountInformations'> 
         <h1 class='title title_informations'>Mes informations</h1>
         <div class='accountInformations'>
@@ -18,7 +17,6 @@
             </div>
         </div>
     </div>
-    {% include 'partials/error.twig' %}
     <div class='mybox'>
         <h1 class='title title_informations'>Mes box</h1>
         <a href='{{ urls['createBox'] }}'>

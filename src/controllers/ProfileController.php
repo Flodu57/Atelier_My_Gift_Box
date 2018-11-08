@@ -91,15 +91,15 @@ class ProfileController extends Controller{
                 }else{
                     $box = new Box();
                     $box->user_id        = $_SESSION['id_user'];
-                    $box->titre          = $title;
+                    $box->title          = $title;
                     $box->slug           = Box::getSlug($title);
-                    $box->date_ouverture = $date;
+                    $box->opening_date   = $date;
                     $box->url            = $token;
-                    $box->etat           = 'En cours';
+                    $box->status          = 'En cours';
 
                     if(isset($_POST['cagnotte'])){
-                        $box->url_cagnotte     = bin2hex(random_bytes(5));
-                        $box->montant_cagnotte = 0;
+                        $box->jackpot_url     = bin2hex(random_bytes(5));
+                        $box->jackpot_amount  = 0;
                     }
 
                     $box->save();
@@ -122,8 +122,6 @@ class ProfileController extends Controller{
     public function getBox($slug){
         $box = Box::bySlug($slug);
 
-        // $payment = $this->payment();
-        // $paymentButton = $this->paymentButton();
         $this->twigParams['box']['title'] = $box->title;
         $this->twigParams['box']['total'] = $box->price;
         $this->twigParams['box']['status'] = $box->status;
@@ -151,10 +149,7 @@ class ProfileController extends Controller{
         else{
             if($box->jackpot_amount >= $box->prix_total && $box->status != 'fermé' && $box->prestations->count() >= 2)
             $this->twigParams['box']['paymentButton']=  "<a href='$urlClose' class='button button_validateBox'>Fermer la cagnotte</a>";
-        }
-
-//
-        
+        }       
 
         $formatOffer = [];
 
@@ -167,7 +162,7 @@ class ProfileController extends Controller{
                 'price' => $offer->price,
                 'image' => $offer->image,
                 'urlDeleteOffer' => $this->getRoute('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]),
-                'urlDetailledOffer' => $this->getRoute('offers.detailled', ['categorie' => $cat->title, 'id' => $offer->id])
+                'urlDetailledOffer' => $this->getRoute('detailed.offer', ['categorie' => $cat->title, 'id' => $offer->id])
 
 
             ]);

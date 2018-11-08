@@ -31,12 +31,12 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     }
 
     public static function byTokenCagnotte($token) {
-        return parent::where('url_cagnotte', '=', $token)->first();
+        return parent::where('jackpot_url', '=', $token)->first();
     }
 
     public static function exists($title) {
         $user = User::byId($_SESSION['id_user']);
-        if($user->boxes()->where('titre', '=', $title)->first())
+        if($user->boxes()->where('title', '=', $title)->first())
            return true;
         else{
             return false;
