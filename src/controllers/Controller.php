@@ -1,6 +1,8 @@
 <?php
 namespace mygiftbox\controllers;
 
+use mygiftbox\models\User;
+
 class Controller{
 
     protected $urls, $twigParams;

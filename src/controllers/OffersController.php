@@ -25,7 +25,7 @@ class OffersController extends Controller {
                  'price' => $offer->price,
                  'on_hold' => $offer->on_hold,
                  'urls' => [
-                        'main' => $app->urlFor('offers.detailed', ['category' => $offer->category->title, 'id' => $offer->id]),
+                        'main' => $app->urlFor('detailed.offer', ['category' => $offer->category->title, 'id' => $offer->id]),
                         'delete' => $app->urlFor('deleteOffer', ['id' => $offer->id]),
                         'modify' => $app->urlFor('modifyOffer', ['id' => $offer->id]),
                         'lock' => $app->urlFor('lockOffer', ['id' => $offer->id])
