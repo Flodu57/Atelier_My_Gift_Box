@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `message` text NOT NULL DEFAULT '',
   `message_retour` text,
   `slug` text,
+  `url_cagnotte` text,
+  `montant_cagnotte` int(11)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -22,11 +22,13 @@ class ProfileView extends View{
             $slug = Box::getSlug($box->titre);
             $urlBox = $app->urlFor('profile.box', compact('slug'));
             $urlDeleteBox = $app->urlFor('profile.deleteBox', compact('slug'));
+            $cagnotte = $box->url_cagnotte ? 'Cagnotte' : '';
 
             $pres .= <<<END
             <div class='boxItem'>
                 <a href="$urlBox">
                     <h1 class='label_titreBox'>$box->titre</h1>
+                    $cagnotte
                     <div class='box_price'>
                         <p class='label_prixBox'>$box->prix_total €</p>
                     </div>
@@ -45,7 +47,6 @@ END;
                 <body>
                     <div class='container'>
                         $this->menu
-                        $error
                         <div class='accountInformations'> 
                             <h1 class='title title_informations'>Mes informations</h1>
                             <div class='accountInformations'>
@@ -60,7 +61,7 @@ END;
                                 </div>
                             </div>
                         </div>
-
+                        $error
                         <div class='mybox'>
                             <h1 class='title title_informations'>Mes box</h1>
                             <a href='$urlCreateBox'>
