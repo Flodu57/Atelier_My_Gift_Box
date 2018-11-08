@@ -17,8 +17,8 @@ class BoxView extends View{
         $error = parent::error();
         $titre = $this->box->titre;
         $total = $this->box->prix_total;
-        $payement = $this->payement();
-        $payementButton = $this->payementButton();
+        $payment = $this->payment();
+        $paymentButton = $this->paymentButton();
         $etat = $this->box->etat;
         $error = parent::error();
 
@@ -62,7 +62,7 @@ END;
                                 <div>
                                     <h2>$titre</h2>
                                     <p>Etat : $etat</p>
-                                    $payement
+                                    $payment
                                 </div>
                                 <div class='box_head_total'>
                                     <p class='p_total'>Total </p>
@@ -76,7 +76,7 @@ END;
                             </div>
                             <div class='buttonLayout buttonLayout-center'>
                                 <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
-                                $payementButton
+                                $paymentButton
                             </div>
                         </div>
                         $this->footer
@@ -87,7 +87,7 @@ END;
         echo $html;
     }
 
-    private function payement(){
+    private function payment(){
         if($this->box->url_cagnotte){
             $total = $this->box->prix_total;
             $amount_cagnotte = $this->box->montant_cagnotte;
@@ -104,7 +104,7 @@ END;
         }
     }
 
-    private function payementButton(){
+    private function paymentButton(){
         $app  = \Slim\Slim::getInstance();
 
         $urlClose = $app->urlFor('profile.closeCagnotte', ['slug' => $this->box->slug]);

@@ -32,6 +32,9 @@ class VisitorController {
         $app = \Slim\Slim::getInstance();
 
         if($box && $box->url_cagnotte){
+
+            $_POST['amount'] = filter_var($_POST['amount'],FILTER_SANITIZE_NUMBER_INT);
+
             if(isset($_POST['amount'])){
                 $add = $box->montant_cagnotte + intval($_POST['amount']);
                 $box->montant_cagnotte = $box->montant_cagnotte + intval($_POST['amount']);
