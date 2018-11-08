@@ -50,6 +50,11 @@ $app->group('/profile','checkProfile', function() use ($app){
         $c->getBox($slug);
     })->name('profile.box');
 
+    $app->get("/:slug/closeCagnotte", function($slug){
+        $c = new ProfileController();
+        $c->getCloseCagnotte($slug);
+    })->name('profile.closeCagnotte');
+
     $app->get("/deletebox/:slug", function($slug){
         $c = new ProfileController();
         $c->getDeleteBox($slug);

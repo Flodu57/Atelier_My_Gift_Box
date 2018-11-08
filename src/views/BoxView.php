@@ -17,7 +17,8 @@ class BoxView extends View{
         $error = parent::error();
         $titre = $this->box->titre;
         $total = $this->box->prix_total;
-        $payer = $this->box->payer ? 'Payé' : 'Non payé';
+        $payment = $this->payment();
+        $paymentButton = $this->paymentButton();
         $etat = $this->box->etat;
         $error = parent::error();
 
@@ -29,7 +30,8 @@ class BoxView extends View{
         $offers = $this->box->prestations()->get();
         foreach($offers as $offer) {
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
-            $urlDeleteOffer = $app->urlFor('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]);
+            
+            $deleteOffer = $this->deleteOffer($offer);
 
             $pres .= <<<END
             <div class='containerBox'>
@@ -43,9 +45,7 @@ class BoxView extends View{
                         </div>
                     </div>
                 </a>
-                <a href="$urlDeleteOffer" class='delete'>
-                    <p>x</p>
-                </a>
+                $deleteOffer
             </div>
 END;
         }
@@ -62,7 +62,7 @@ END;
                                 <div>
                                     <h2>$titre</h2>
                                     <p>Etat : $etat</p>
-                                    <p>Payer : $payer</p>
+                                    $payment
                                 </div>
                                 <div class='box_head_total'>
                                     <p class='p_total'>Total </p>
@@ -76,7 +76,7 @@ END;
                             </div>
                             <div class='buttonLayout buttonLayout-center'>
                                 <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
-                                <a href='#' class='button button_validateBox'>Passer au paiement</a>
+                                $paymentButton
                             </div>
                         </div>
                         $this->footer
@@ -85,6 +85,45 @@ END;
             </html>  
 END;
         echo $html;
+    }
+
+    private function payment(){
+        if($this->box->url_cagnotte){
+            $total = $this->box->prix_total;
+            $amount_cagnotte = $this->box->montant_cagnotte;
+
+            if($this->box->etat== 'fermé'){
+                return "La cagnotte est fermée et a totalisé : $amount_cagnotte / $total €";
+            }
+
+            return "Cagnotte : $amount_cagnotte / $total €";
+        }
+        else{
+            $p = $this->box->payer ? 'Payé' : 'Non payé';
+            return "<p>Payer : $p</p>";
+        }
+    }
+
+    private function paymentButton(){
+        $app  = \Slim\Slim::getInstance();
+
+        $urlClose = $app->urlFor('profile.closeCagnotte', ['slug' => $this->box->slug]);
+        if(!$this->box->url_cagnotte)          
+            return "<a href='#' class='button button_validateBox'>Passer au paiement</a>";
+        else{
+            if($this->box->montant_cagnotte >= $this->box->prix_total && $this->box->etat != 'fermé' )
+                return "<a href='$urlClose' class='button button_validateBox'>Fermer la cagnotte</a>";
+        }
+    }
+
+    private function deleteOffer($offer){
+        $app  = \Slim\Slim::getInstance();
+
+        $urlDeleteOffer = $app->urlFor('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]);
+        if($this->box->etat != 'fermé'){
+            return "<a href='$urlDeleteOffer' class='delete'><p>x</p></a>";
+        }
+        
     }
 
 }

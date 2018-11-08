@@ -27,6 +27,11 @@ class CreateBoxView extends View{
                                     <p class='label label_date'>Date</p>
                                     <input type='date' name='date' class='input input_date'>
                                 </div>
+
+                                <div class='form_group'>
+                                    <label class='label label_title'>Cagnotte</p>
+                                    <input type='checkbox' name='cagnotte' class='input'>
+                                </div>
                                 <button type='submit' class='button buttonCreateBox'>Créer</button>
                             </form>
                         </div>

@@ -71,11 +71,17 @@ class ProfileController {
                     $app->redirect($app->urlFor('profile.createBox'));
                 }else{
                     $box = new Box();
-                    $box->user_id = $_SESSION['id_user'];
-                    $box->titre = $title;
-                    $box->slug = Box::getSlug($title);
+                    $box->user_id        = $_SESSION['id_user'];
+                    $box->titre          = $title;
+                    $box->slug           = Box::getSlug($title);
                     $box->date_ouverture = $date;
-                    $box->url = $token;
+                    $box->url            = $token;
+
+                    if(isset($_POST['cagnotte'])){
+                        $box->url_cagnotte     = bin2hex(random_bytes(5));
+                        $box->montant_cagnotte = 0;
+                    }
+
                     $box->save();
 
                     $app->flash('success',"Le coffret a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
@@ -95,7 +101,6 @@ class ProfileController {
 
     public function getBox($slug){
         $box = Box::bySlug($slug);
-
         $v = new BoxView($box);
         $v->render();
     }
@@ -120,12 +125,32 @@ class ProfileController {
 
         $box = Box::bySlug($slug);
 
-        if($box && $box->prestations()->where('id', '=', $id)){
+        $prestation = $box->prestations()->where('id', '=', $id)->first();
+
+        if($box && $prestation){
+            $box->prix_total = $box->prix_total - $prestation->prix;
+            $box->save();
             $box->prestations()->detach($id);
             $app->flash('success','Prestation supprimée avec succès.');
         }else{
             $app->flash('error','Une erreur s\'est produite !');
         }
         $app->redirect($app->urlFor('profile.box', ['slug' => $slug]));
+    }
+
+    public function getCloseCagnotte($slug){
+        $box = Box::bySlug($slug);
+        $app = \Slim\Slim::getInstance();
+
+        if($box && $box->etat != 'fermé'){
+            $box->etat = 'fermé';
+            $box->save();
+            $app->flash('success', 'La cagnotte a été fermé');
+            $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));
+        }else{
+            $app->flash('error', 'Une erreur est survenue');
+            $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));
+        }
+
     }
 }
