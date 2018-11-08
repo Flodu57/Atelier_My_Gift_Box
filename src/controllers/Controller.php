@@ -15,12 +15,21 @@ class Controller{
             'logout' => $app->urlFor('logout')
         ];
 
-        
-        
         if(isset($_SESSION['id_user'])){
-            $this->urls['profile'] = $app->urlFor('profile', ['id' => $_SESSION['id_user']]);
+            $this->twigParams['user_id'] = $_SESSION['id_user'];
+            $this->twigParams['profile'] = $app->urlFor('profile', ['id' => $_SESSION['id_user']]);
+        
+        }
+
+        if(isset($_SESSION['slim.flash']['success'])){
+            $this->twigParams['error'] = $_SESSION['slim.flash']['success'];
+        }
+
+        if(isset($_SESSION['slim.flash']['error'])){
+            $this->twigParams['error'] = $_SESSION['slim.flash']['error'];
         }
         
-        $this->twigParams = ['urls' => $this->urls];
+        $this->twigParams['urls'] = $this->urls;
+
     }
 }
