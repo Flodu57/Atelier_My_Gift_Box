@@ -8,11 +8,12 @@ use mygiftbox\views\ForgotPasswordView;
 use mygiftbox\views\LoginView;
 use mygiftbox\views\RegisterView;
 
-class UserController{
+class UserController extends Controller{
 
     public function getLogin(){
-        $v = new LoginView();
-        $v->render();
+        $app = \Slim\Slim::getInstance(); 
+        
+        $app->render('LoginView.twig', $this->twigParams);
     }
 
     public function postLogin(){
