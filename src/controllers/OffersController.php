@@ -3,7 +3,7 @@
 namespace mygiftbox\controllers;
 
 use mygiftbox\views\OffersView;
-use mygiftbox\views\OfferDetailledView;
+use mygiftbox\views\OfferDetailedView;
 use mygiftbox\models\Box;
 use mygiftbox\models\Offer;
 use mygiftbox\models\Category;
@@ -34,7 +34,6 @@ class OffersController extends Controller {
         }
         $this->twigParams['categories'] = $categories;
         $this->twigParams['offers'] = $offers;
-        $this->twigParams['link'] = $this->getLink();
         $this->twigParams['sorting_category'] = 'all';
         $app->render('OffersView.twig', $this->twigParams);
     }

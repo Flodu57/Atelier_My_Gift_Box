@@ -2,6 +2,7 @@
 
 namespace mygiftbox\models;
 
+
 class Offer extends \Illuminate\Database\Eloquent\Model {
     protected $table = 'offers';
     public $timestamps = false;
