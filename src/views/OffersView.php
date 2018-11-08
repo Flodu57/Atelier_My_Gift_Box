@@ -19,10 +19,10 @@ class OffersView extends View{
                 <body>
                     <div class='container'>
                         $this->menu
-                        $error
                         <div class='tri_categories'>
                             <p>Trier par catégories</p>
                             <i id='slide_arrow' class='fas fa-angle-down'></i>
+                            $error
                             <div id='cat_list' class='categories'>
                                 $listed_categories
                             </div>
@@ -30,6 +30,7 @@ class OffersView extends View{
                         <div class='offers'> 
                            $listed_offers
                         </div>
+                        $this->footer
                     </div>
                     <script src='$link/assets/scripts/jquery.js'></script>
                     <script src='$link/assets/scripts/offers_sliding_sort.js'></script>

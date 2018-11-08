@@ -22,7 +22,7 @@ class LoginView extends View{
                             <input type='password' name='password' class='input input_password'>
                             <div>
                                 <a href='$urlForgot' class='label label_passwordLost'>Mot de passe oublié ?</a>
-                                <button type='submit' class='button button_login'>Login</button>
+                                <button type='submit' class='button button_login'>Connexion</button>
                             </div>
                         </form>
                         $this->footer
