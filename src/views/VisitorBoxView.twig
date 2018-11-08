@@ -1,0 +1,38 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+
+    <div class='box'>
+        <div class='box_head visitor'>
+            <h2>{{boxTitle}}</h2>
+            {{userName}}
+            {{userFirstName}}
+            <p>Cagnotte : $amount_cagnotte/{{boxAmount}} €</p>
+        </div>  
+        <p>{{message}}</p>
+
+        <div class='box_grid'>
+            {% for offers as offer %}
+            <div class='containerBox'>
+                <a href='$urlDetailledOffer' class='offer'>
+                    <img src='$link/assets/img/prestations/$offer->image'>
+                    <div class='offer_bottom'>
+                        <h2 class='label label_title'>{{offer.title}}</h2>
+                        <div class='offer_bottom_infos'>
+                            <p class='label label_category'>{{offer.category_id}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <form class='participate' method='POST'>
+            <h3>Participer à la cagnotte</h3>
+            <input type='number' min='0' value='0' name='amount'>
+            <div class='buttonLayout'>
+                <button class='button' type='submit'>Participer</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

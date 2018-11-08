@@ -10,9 +10,28 @@ use mygiftbox\models\Box;
 class VisitorController {
 
     public function getBoxVisitor($token){
+        $app = \Slim\Slim::getInstance(); 
+        $user  = User::byId($_SESSION['id_user']);
+        
         $box = Box::byToken($token);
-        $v = new VisitorBoxView($box);
-        $v->render();
+        $offers = Box::prestations();
+        $reformatOffers = [];
+
+        foreach($offers as $offer){
+            array_push($reformatOffers, [
+                'title' => $offer->title,
+                'category_id' => $offer->category_id
+            ]);
+        }
+
+        $this->twigParams['userFirstName']  = $user->first_name;
+        $this->twigParams['userName']  = $user->name;;
+        $this->twigParams['boxTitle']  = $box->title;
+        $this->twigParams['boxAmount']  = $box->jackpot_amount;
+        $this->twigParams['message']  = $box->message;
+        $this->twigParams['offers']  = $reformatOffers;
+
+        $app->render('VisitorBoxView.twig', $this->twigParams);
     }
 
     public function getWait($token){
