@@ -35,7 +35,7 @@ class UserController extends Controller{
             $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
             if(!empty($mail) && !empty($password)){
                 $user = User::byMail($mail);
-                if($user && $user->account_level > 0){
+                //if($user && $user->account_level > 0){
                     if(password_verify($password, $user->password)){
                         $_SESSION['id_user'] = $user->id;
                         $app->redirect('home');
@@ -43,10 +43,10 @@ class UserController extends Controller{
                         $app->flash('error', 'Mot de passe ou utilisateur incorrect');
                         $app->redirect('login');
                     }
-                }else{
+                /*}else{
                     $app->flash('error', 'Votre compte ne rempli pas les conditions requises');
                     $app->redirect('login');
-                }
+                }*/
             } else {
                 $app->flash('error', 'Veuillez entrer des informations valides');
                 $app->redirect('login');

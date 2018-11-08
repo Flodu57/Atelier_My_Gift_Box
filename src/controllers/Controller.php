@@ -12,7 +12,8 @@ class Controller{
             'login' => $app->urlFor('login'),
             'forgot' => $app->urlFor('forgotpass'),
             'register'=>  $app->urlFor('register'),
-            'logout' => $app->urlFor('logout')
+            'logout' => $app->urlFor('logout'),
+            'offers' => $app->urlFor('offers')
         ];
 
         
