@@ -27,7 +27,7 @@ class User extends \Illuminate\Database\Eloquent\Model{
         }
     }
 
-    public static function addNew($email, $pass, $nom, $prenom){
+    public static function addNew($email, $pass, $name, $first_name){
         $user = new User();
         $user->email = $email;
         $user->password = $pass;
