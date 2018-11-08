@@ -7,14 +7,14 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` text NOT NULL,
-  `nom` text NOT NULL,
-  `prenom` text NOT NULL,
+  `name` text NOT NULL,
+  `first_name` text NOT NULL,
   `password` text NOT NULL,
   `account_level` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `users` (`id`, `email`, `nom`, `prenom`, `password`, `account_level`) VALUES
+INSERT INTO `users` (`id`, `email`, `name`, `first_name`, `password`, `account_level`) VALUES
 (1, 'atelier_mygiftbox@outlook.com', 'admin', 'admin', '$2y$10$hNoKt.t8BCImVwm/3G8H5OamOcD3RrGkLa3n3lfrmGp8af5HFLHOi', 2);
 
 -- CATEGORIES
@@ -22,11 +22,11 @@ DROP TABLE IF EXISTS `categories`;
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` text NOT NULL,
+  `title` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `categories` (`id`, `titre`) VALUES
+INSERT INTO `categories` (`id`, `title`) VALUES
 (1, 'Attention'),
 (2, 'Activité'),
 (3, 'Restauration'),
@@ -38,36 +38,36 @@ DROP TABLE IF EXISTS `boxes`;
 CREATE TABLE IF NOT EXISTS `boxes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `titre` text NOT NULL,
-  `date_ouverture` date NOT NULL,
+  `title` text NOT NULL,
+  `opening_date` date NOT NULL,
   `url` text NOT NULL,
-  `etat` text NOT NULL,
-  `payer` BOOLEAN NOT NULL DEFAULT 0,
-  `prix_total` int(11) NOT NULL DEFAULT 0,
-  `mode_paiement` text,
+  `status` text NOT NULL,
+  `paid` BOOLEAN NOT NULL DEFAULT 0,
+  `price` int(11) NOT NULL DEFAULT 0,
+  `payment_method` text,
   `message` text NOT NULL DEFAULT '',
-  `message_retour` text,
+  `message_return` text,
   `slug` text,
-  `url_cagnotte` text,
-  `montant_cagnotte` int(11),
+  `jackpot_url` text,
+  `jackpot_amount` int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- PRESTATIONS
-DROP TABLE IF EXISTS `prestations`;
+-- offers
+DROP TABLE IF EXISTS `offers`;
 
-CREATE TABLE IF NOT EXISTS `prestations` (
+CREATE TABLE IF NOT EXISTS `offers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categorie_id` int(11) NOT NULL,
-  `titre` text NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `title` text NOT NULL,
   `description` text NOT NULL,
   `image` text NOT NULL,
-  `prix` int(11) NOT NULL,
-  `suspendue` BOOLEAN NOT NULL DEFAULT 0,
+  `price` int(11) NOT NULL,
+  `on_hold` BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `prestations` (`id`, `titre`, `description`, `categorie_id`, `image`, `prix`) VALUES
+INSERT INTO `offers` (`id`, `title`, `description`, `category_id`, `image`, `price`) VALUES
 (1, 'Champagne', 'Bouteille de champagne + flutes + jeux à gratter', 1, 'champagne.jpg', '20.00'),
 (2, 'Musique', 'Partitions de piano à 4 mains', 1, 'musique.jpg', '25.00'),
 (3, 'Exposition', 'Visite guidée de l’exposition ‘REGARDER’ à la galerie Poirel', 2, 'poirelregarder.jpg', '14.00'),
@@ -98,10 +98,10 @@ INSERT INTO `prestations` (`id`, `titre`, `description`, `categorie_id`, `image`
 
 
 -- BOX_PRESENTATION
-DROP TABLE IF EXISTS `box_prestation`;
+DROP TABLE IF EXISTS `box_offer`;
 
-CREATE TABLE IF NOT EXISTS `box_prestation` (
+CREATE TABLE IF NOT EXISTS `box_offer` (
   `box_id` int(11) NOT NULL,
-  `prestation_id` int(11) not null,
-  PRIMARY KEY (`box_id`, `prestation_id`)
+  `offer_id` int(11) not null,
+  PRIMARY KEY (`box_id`, `offer_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
