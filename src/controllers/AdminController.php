@@ -2,9 +2,10 @@
 
 namespace mygiftbox\controllers;
 
-use mygiftbox\models\Prestation;
+use mygiftbox\models\Offers;
+use mygiftbox\models\User;
 
-class AdminController {
+class AdminController extends Controller {
 
     public function getDeleteOffer($id){
         $app = \Slim\Slim::getInstance();
