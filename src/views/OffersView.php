@@ -3,6 +3,7 @@
 namespace mygiftbox\views;
 use mygiftbox\models\Prestation;
 use mygiftbox\models\Categorie;
+use mygiftbox\models\User;
 
 class OffersView extends View{
 
@@ -64,11 +65,19 @@ END;
             $categorie = $offer->categorie->titre;
             $urlDelete = $app->urlFor('deleteOffer', ['id' => $offer->id]);
             $urlModify = $app->urlFor('modifyOffer', ['id' => $offer->id]);
-            $urlLock = $app->urlFor('lockOffer', ['id' => $offer->id]);
+            $urlLock = $app->urlFor('lockOffer', ['id' => $offer->id]);  
             if($offer->suspendue){
                 $lock = "<a href='$urlLock'><i class='fa fa-lock-open'></i></a>";
             } else {
                 $lock = "<a href='$urlLock'><i class='fa fa-unlock-alt'></i></a>";
+            }
+            $admin_functions = "";
+            if(User::byId($_SESSION['id_user'])->account_level == 2){
+                $admin_functions = <<<END
+                <a href='$urlDelete'><i class='fa fa-trash'></i></a>
+                $lock
+                <a href='$urlModify'><i class='fa fa-cog'></i></a>
+END;
             }
             $pres .= <<<END
             <div class="offer">
@@ -79,13 +88,11 @@ END;
                     <div class='offer_bottom_infos'>
                         <p>$categorie</p>
                         <p>$offer->prix €</p>
-                        
+                        $admin_functions
                     </div>
                 </div>
             </a>
-            <a href='$urlDelete'><i class='fa fa-trash'></i></a>
-            $lock
-            <a href='$urlModify'><i class='fa fa-cog'></i></a>
+            
             </div>
 END;
         }
