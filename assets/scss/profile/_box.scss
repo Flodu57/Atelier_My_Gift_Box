@@ -9,6 +9,11 @@
         margin-left: 10px;
         margin-right: 10px;
 
+        &.visitor{
+            flex-direction: column;
+            align-items: center;
+        }
+
         h2{
             font-size: 1.6em;
         }
@@ -36,7 +41,15 @@
     .buttonLayout{
         margin-top:2%;
         display: flex;
-        justify-content: center;
+
+        &-right{
+            justify-content: flex-end;
+        }
+
+        &-center{
+            justify-content: center;
+        }
+
         .button{
             padding: 10px 10px 10px 10px;
             font-size: 1.2em;
