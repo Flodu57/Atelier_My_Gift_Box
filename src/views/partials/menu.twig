@@ -1,0 +1,19 @@
+<div class='menu'>
+    <img src='{{ siteUrl('assets/img/logo.png')}}'>
+    <a href='$urlHome'>Accueil</a>
+    <a href='$urlOffers'>Prestations</a>
+
+    {% if user_id %}
+    
+        <a href='{{ urls['profile'] }}'>Mon compte</a>
+        <a href='{{ urls['logout'] }}'>Déconnexion</a>
+
+    {% else %}
+        
+
+    <a href='{{ urls['login'] }}'>Connexion</a>
+    <a href='{{ urls['register'] }}'>Inscription</a>
+
+
+    {% endif %}
+</div>

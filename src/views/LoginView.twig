@@ -1,14 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+{% extends "layouts/master.twig" %}
 
-    test
+{% block content %}
+
+<div class='container'>
+    {% include 'partials/menu.twig' %}
+    {% include 'partials/error.twig' %}
+    <form class='login' method='POST'> 
+        <p class='label label_email'>Email</p>
+        <input type='email' name='email' class='input input_email'>
+        <p class='label label_password'>Mot de passe</p>
+        <input type='password' name='password' class='input input_password'>
+        <div>
+            <a href='{{ urls['forgot'] }}' class='label label_passwordLost'>Mot de passe oublié ?</a>
+            <button type='submit' class='button button_login'>Connexion</button>
+        </div>
+    </form>
+    {% include 'partials/footer.twig' %}
+</div>
     
-</body>
-</html>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

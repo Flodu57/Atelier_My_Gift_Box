@@ -14,7 +14,8 @@ $db->bootEloquent();
 
 $app = new \Slim\Slim([
     'debug' => true,
-    'templates.path' => 'src/views'
+    'templates.path' => 'src/views',
+    'assets.path' => 'assets'
 ]);
 
 $app->view = new \Slim\Views\Twig();
