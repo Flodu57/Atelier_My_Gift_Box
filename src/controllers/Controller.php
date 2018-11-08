@@ -12,7 +12,9 @@ class Controller{
             'login' => $app->urlFor('login'),
             'forgot' => $app->urlFor('forgotpass'),
             'register'=>  $app->urlFor('register'),
-            'logout' => $app->urlFor('logout')
+            'logout' => $app->urlFor('logout'),
+            'home' => $app->urlFor('home'),
+
         ];
 
         if(isset($_SESSION['id_user'])){
