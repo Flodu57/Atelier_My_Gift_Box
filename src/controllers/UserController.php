@@ -11,8 +11,9 @@ use mygiftbox\views\RegisterView;
 class UserController{
 
     public function getLogin(){
-        $v = new LoginView();
-        $v->render();
+        $app = \Slim\Slim::getInstance();
+
+        $app->render('LoginView.twig');
     }
 
     public function postLogin(){
