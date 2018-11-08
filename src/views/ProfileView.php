@@ -47,7 +47,6 @@ END;
                 <body>
                     <div class='container'>
                         $this->menu
-                        $error
                         <div class='accountInformations'> 
                             <h1 class='title title_informations'>Mes informations</h1>
                             <div class='accountInformations'>
@@ -62,7 +61,7 @@ END;
                                 </div>
                             </div>
                         </div>
-
+                        $error
                         <div class='mybox'>
                             <h1 class='title title_informations'>Mes box</h1>
                             <a href='$urlCreateBox'>

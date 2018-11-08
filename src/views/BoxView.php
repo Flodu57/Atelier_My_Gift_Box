@@ -56,7 +56,6 @@ END;
                 <body>     
                     <div class='container'>
                         $this->menu
-                        $error
                         <div class='box'>
                             <div class='box_head'>
                                 <div>
@@ -70,6 +69,7 @@ END;
                                     <p>€</p>
                                 </div>
                             </div>  
+                            $error
 
                             <div class='box_grid'>
                                 $pres 
@@ -103,15 +103,16 @@ END;
             return "<p>Payer : $p</p>";
         }
     }
-
+  
     private function paymentButton(){
         $app  = \Slim\Slim::getInstance();
 
         $urlClose = $app->urlFor('profile.closeCagnotte', ['slug' => $this->box->slug]);
-        if(!$this->box->url_cagnotte)          
+  
+        if(!$this->box->url_cagnotte && $this->box->prestations->count() >= 2 )          
             return "<a href='#' class='button button_validateBox'>Passer au paiement</a>";
         else{
-            if($this->box->montant_cagnotte >= $this->box->prix_total && $this->box->etat != 'fermé' )
+            if($this->box->montant_cagnotte >= $this->box->prix_total && $this->box->etat != 'fermé' && $this->box->prestations->count() >= 2)
                 return "<a href='$urlClose' class='button button_validateBox'>Fermer la cagnotte</a>";
         }
     }
@@ -125,5 +126,4 @@ END;
         }
         
     }
-
 }
