@@ -13,74 +13,23 @@ class BoxView extends View{
     }
 
     public function render(){
-        $link = $this->getLink();
-        $error = parent::error();
         $titre = $this->box->titre;
         $total = $this->box->prix_total;
         $payment = $this->payment();
         $paymentButton = $this->paymentButton();
         $etat = $this->box->etat;
-        $error = parent::error();
-
-        $app = \Slim\Slim::getInstance();
 
         $urlOffers = $app->urlFor('offers');
 
         $pres = "";
         $offers = $this->box->prestations()->get();
-        foreach($offers as $offer) {
-            $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
-            
-            $deleteOffer = $this->deleteOffer($offer);
-
-            $pres .= <<<END
-            <div class='containerBox'>
-                <a href='$urlDetailledOffer' class='offer'>
-                    <img src='$link/assets/img/prestations/$offer->image'>
-                    <div class='offer_bottom'>
-                        <h2 class='label label_title'>$offer->titre</h2>
-                        <div class='offer_bottom_infos'>
-                            <p class='label label_category'>$offer->categorie_id</p>
-                            <p class='label label_price'>$offer->prix €</p>
-                        </div>
-                    </div>
-                </a>
-                $deleteOffer
-            </div>
-END;
-        }
+        
 
         $html = <<<END
             <html>
                 $this->header
                 <body>     
-                    <div class='container'>
-                        $this->menu
-                        <div class='box'>
-                            <div class='box_head'>
-                                <div>
-                                    <h2>$titre</h2>
-                                    <p>Etat : $etat</p>
-                                    $payment
-                                </div>
-                                <div class='box_head_total'>
-                                    <p class='p_total'>Total </p>
-                                    $total
-                                    <p>€</p>
-                                </div>
-                            </div>  
-                            $error
-
-                            <div class='box_grid'>
-                                $pres 
-                            </div>
-                            <div class='buttonLayout buttonLayout-center'>
-                                <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
-                                $paymentButton
-                            </div>
-                        </div>
-                        $this->footer
-                    </div>
+                    
                 </body>
             </html>  
 END;

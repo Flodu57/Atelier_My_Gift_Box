@@ -121,8 +121,39 @@ class ProfileController extends Controller{
 
     public function getBox($slug){
         $box = Box::bySlug($slug);
-        $v = new BoxView($box);
-        $v->render();
+
+
+        // $payment = $this->payment();
+        // $paymentButton = $this->paymentButton();
+        $this->twigParams['box']['title'] = $box->title;
+        $this->twigParams['box']['total'] = $box->price;
+        $this->twigParams['box']['status'] = $box->status;
+
+        $offers = $box->prestations()->get();
+
+        $formatOffer = [];
+
+        foreach ($offers as $offer) {
+            $cat = $offer->categorie()->first();
+            echo '<pre>';
+            var_dump($offer);
+            echo '</pre>';
+            
+            die();
+            array_push($formatOffer, [
+                'title' => $offer->title,
+                'category' => $cat->title,
+                'price' => $offer->price,
+                'image' => $offer->image
+
+            ]);
+        }
+
+        $this->twigParams['offers'] = $formatOffer;
+
+
+        $app = \Slim\Slim::getInstance();
+        $app->render('BoxView.twig', $this->twigParams);
     }
 
     public function getDeleteBox($slug){

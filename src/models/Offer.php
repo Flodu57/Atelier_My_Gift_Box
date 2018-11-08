@@ -3,7 +3,7 @@
 namespace mygiftbox\models;
 
 class Prestation extends \Illuminate\Database\Eloquent\Model {
-    protected $table = 'prestations';
+    protected $table = 'offers';
     public $timestamps = false;
 
     public function categorie(){

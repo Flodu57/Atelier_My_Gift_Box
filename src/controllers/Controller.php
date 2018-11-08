@@ -15,8 +15,9 @@ class Controller{
             'logout' => $app->urlFor('logout'),
             'settings' => $app->urlFor('profile.settings'),
             'createBox' => $app->urlFor('profile.createBox'),
-            'box' => $app->urlFor('profile.box', compact('slug'))
+            'box' => $app->urlFor('profile.box', compact('slug')),
             'home' => $app->urlFor('home'),
+            'offers' => $app->urlFor('offers')
 
 
         ];

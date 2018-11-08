@@ -1,0 +1,59 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+
+<div class='container'>
+    
+    <div class='container'>
+    {% include 'partials/menu.twig' %}
+        <div class='box'>
+            <div class='box_head'>
+                <div>
+                    <h2>{{ box.title }}</h2>
+                    <p>Etat : {{ box.status }}</p>
+                    $payment
+                </div>
+                <div class='box_head_total'>
+                    <p class='p_total'>Total </p>
+                    {{ box.total }}
+                    <p>€</p>
+                </div>
+            </div>  
+             {% include 'partials/error.twig' %}
+
+            <div class='box_grid'>
+             {% for offer in offers %}
+                 
+                
+                {# $deleteOffer = $this->deleteOffer($offer); #}
+
+                <div class='containerBox'>
+                    <a href='$urlDetailledOffer' class='offer'>
+                        <img src='{{ siteUrl('assets/img/prestations/' ~ offer.image)}}'>
+                        <div class='offer_bottom'>
+                            <h2 class='label label_title'>{{ offer.title }}</h2>
+                            <div class='offer_bottom_infos'>
+                                <p class='label label_category'>{{ offer.category }}</p>
+                                <p class='label label_price'>{{ offer.price }} €</p>
+                            </div>
+                        </div>
+                    </a>
+                    $deleteOffer
+                </div>
+             {% endfor %}
+
+        
+            </div>
+            <div class='buttonLayout buttonLayout-center'>
+                <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
+                $paymentButton
+            </div>
+        </div>
+    {% include 'partials/footer.twig' %}
+    </div>  
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
