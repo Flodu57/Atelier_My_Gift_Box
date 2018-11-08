@@ -76,6 +76,7 @@ class ProfileController {
                     $box->slug           = Box::getSlug($title);
                     $box->date_ouverture = $date;
                     $box->url            = $token;
+                    $box->etat           = 'En cours';
 
                     if(isset($_POST['cagnotte'])){
                         $box->url_cagnotte     = bin2hex(random_bytes(5));
