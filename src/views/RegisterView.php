@@ -29,7 +29,7 @@ class RegisterView extends View{
                             <p class='label label_password'>Confirmer le mot de passe</p>
                             <input type='password' name='password_confirm' class='input input_password'>
                             <div>
-                                <button type='submit' class='button button_login'>Register</button>
+                                <button type='submit' class='button button_register'>Inscription</button>
                             </div>
                         </form>
                         $this->footer

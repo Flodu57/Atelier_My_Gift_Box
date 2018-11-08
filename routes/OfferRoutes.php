@@ -3,7 +3,7 @@
 use mygiftbox\controllers\OffersController;
 use  mygiftbox\models\Prestation;
 
-$app->get("/offers", function() use ($app){
+$app->get("/offers", function(){
     $c = new OffersController;
     $c->getOffers();
 })->name('offers');

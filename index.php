@@ -26,5 +26,6 @@ $app->get("/home", function() use ($app){
 include 'routes/UserRoutes.php';
 include 'routes/ProfileRoutes.php';
 include 'routes/OfferRoutes.php';
+include 'routes/VisitorRoutes.php';
 
 $app->run();

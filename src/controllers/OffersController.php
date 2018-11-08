@@ -28,7 +28,9 @@ class OffersController{
         if(!$offer->boxes()->where('id', '=', $boxId)->first()){
             if($box){
                 $box->prestations()->attach($offer);
-    
+                $box->prix_total = $box->prix_total + $offer->prix;
+                $box->save();
+
                 $app->flash('success', "Prestation bien ajoutée à la box $box->titre !");
                 $app->redirect($app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]));
             }else{
