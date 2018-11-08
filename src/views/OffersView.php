@@ -19,10 +19,12 @@ class OffersView extends View{
         $link = $this->getLink();
         $error = parent::error();
 
-        if($this->sorting_category == "all")
+        if($this->sorting_category == "all"){
             $listed_offers = $this->listOffers(Prestation::all());
-        else
-            $listed_offers = $this->listOffersByCategory(Prestation::all(), $this->sorting_category);
+        } else {
+            $listed_offers = $this->listOffers($this->sorting_category->prestations()->get());
+        }
+            //$listed_offers = $this->listOffersByCategory(Prestation::all(), $this->sorting_category);
 
         $listed_categories = $this->listCategories(Categorie::all());
         $html = <<<END
