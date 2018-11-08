@@ -43,10 +43,10 @@ class OffersController extends Controller {
         return $v->render();
     }
 
-    public function getDetailedOffer($id){
-        $v = new OfferDetailedView($id);
-        $offer = Offer::byId($id);
-        return $v->render();
+    public function getDetailedOffer($offer){
+        $app = \Slim\Slim::getInstance();
+        $this->twigParams['offer'] = $offer;
+        $app->render('DetailedOffer.twig', $this->twigParams);
     }
 
     public function postAddOfferToBox($offer){

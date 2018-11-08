@@ -15,7 +15,7 @@ $app->get("/offers/:category", function($category){
 $app->get("/offers/:categorie/:id", function($categorie, $id) {
     $c = new OffersController;
     $c->getDetailedOffer($id);
-})->name('offers.detailed');
+})->name('detailed.offer');
 
 $app->post("/offers/:categorie/:id", function($categorie, $id) {
     $c = new OffersController;

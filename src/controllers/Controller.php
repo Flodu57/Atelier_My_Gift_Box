@@ -16,7 +16,8 @@ class Controller{
             'settings' => $app->urlFor('profile.settings'),
             'createBox' => $app->urlFor('profile.createBox'),
             'box' => $app->urlFor('profile.box', compact('slug')),
-            'home' => $app->urlFor('home')
+            'home' => $app->urlFor('home'),
+            'offer' => $app->urlFor('detailed.offer')
         ];
         $this->twigParams['urls'] = $this->urls;
         if(isset($_SESSION['id_user'])){
