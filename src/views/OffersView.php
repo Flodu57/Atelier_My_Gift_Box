@@ -96,7 +96,7 @@ END;
                 $lock = "<a href='$urlLock'><i class='fa fa-unlock-alt'></i></a>";
             }
             $admin_functions = "";
-            if(User::byId($_SESSION['id_user'])->account_level == 2){
+            if(isset($_SESSION['id_user']) && User::byId($_SESSION['id_user'])->account_level == 2){
                 $admin_functions = <<<END
                 <a href='$urlDelete'><i class='fa fa-trash'></i></a>
                 $lock
