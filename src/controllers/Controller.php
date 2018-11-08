@@ -13,14 +13,20 @@ class Controller{
             'forgot' => $app->urlFor('forgotpass'),
             'register'=>  $app->urlFor('register'),
             'logout' => $app->urlFor('logout'),
+            'settings' => $app->urlFor('profile.settings'),
+            'createBox' => $app->urlFor('profile.createBox'),
+            'box' => $app->urlFor('profile.box', compact('slug'))
             'home' => $app->urlFor('home'),
+
 
         ];
 
+        $this->twigParams['urls'] = $this->urls;
+
         if(isset($_SESSION['id_user'])){
             $this->twigParams['user_id'] = $_SESSION['id_user'];
-            $this->twigParams['profile'] = $app->urlFor('profile', ['id' => $_SESSION['id_user']]);
-        
+            $this->twigParams['urls']['profile'] = $app->urlFor('profile');
+
         }
 
         if(isset($_SESSION['slim.flash']['success'])){
@@ -31,7 +37,11 @@ class Controller{
             $this->twigParams['error'] = $_SESSION['slim.flash']['error'];
         }
         
-        $this->twigParams['urls'] = $this->urls;
 
+    }
+
+    public function getRoute($name, $param){
+        $app = \Slim\Slim::getInstance();
+        return $app->urlFor($name, $param);
     }
 }
