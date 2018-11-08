@@ -1,33 +1,32 @@
 {% extends "layouts/master.twig" %}
 {% block content %}
 
-<div class='container'>
-    {% include 'partials/menu.twig' %}
-    {% include 'partials/error.twig' %}
-    {{ offer }}
-
-    <div class='detailled_offer'>  
-        <div class='detailled_offer_top'>  
-            <img src='$link/assets/img/prestations/$image'>
-            <div class='wrap'>
-                <div class='detailled_offer_top_infos'>
-                    <div class='titles'>
-                        <h2>{{ offer.title }}</h2>
-                        <p>{{ offer.category }}</p>
-                    </div>
-                    <p class='price'>{{ offer.price }} €</p>
+<div class='detailled_offer'>  
+    <div class='detailled_offer_top'>  
+        <img src='{{ siteUrl('assets/img/offers/' ~ offer.image  )}}'>
+        <div class='wrap'>
+            <div class='detailled_offer_top_infos'>
+                <div class='titles'>
+                    <h2>{{ offer.title }}</h2>
+                    <p>{{ offer.category.title }}</p>
                 </div>
-                $form
+                <p class='price'>{{ offer.price }} €</p>
             </div>
+            {% if user_id %}
+                <form method='POST' class='detailled_offer_top_add'>
+                    <p>Ajouter à la box </p>
+                    <select name='box_id'>
+                        
+                    </select>
+                    <button class='button button_addOffer' type='submit'>Valider</button>
+                </form>
+            {% endif %}
         </div>
-        <div class='detailled_offer_description'> 
-            {{ offer.description }}
-        </div>
-    </div> 
-    {% include 'partials/footer.twig' %}
-</div>
+    </div>
+    <div class='detailled_offer_description'> 
+        {{ offer.description }}
+    </div>
+</div> 
 
-{% endblock %}
 
-{% block scripts %}
 {% endblock %}
