@@ -16,6 +16,7 @@ class Controller{
             'settings' => $app->urlFor('profile.settings'),
             'createBox' => $app->urlFor('profile.createBox'),
             'box' => $app->urlFor('profile.box', compact('slug'))
+            'home' => $app->urlFor('home'),
 
 
         ];
