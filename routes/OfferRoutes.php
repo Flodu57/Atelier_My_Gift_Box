@@ -1,7 +1,6 @@
 <?php
 
 use mygiftbox\controllers\OffersController;
-use  mygiftbox\models\Prestation;
 
 $app->get("/offers", function(){
     $c = new OffersController;
@@ -15,9 +14,8 @@ $app->get("/offers/:category", function($category){
 
 $app->get("/offers/:categorie/:id", function($categorie, $id) {
     $c = new OffersController;
-    $offer = Prestation::byId($id);
-    $c->getDetailledOffer($offer);
-})->name('offers.detailled');
+    $c->getDetailedOffer($id);
+})->name('offers.detailed');
 
 $app->post("/offers/:categorie/:id", function($categorie, $id) {
     $c = new OffersController;

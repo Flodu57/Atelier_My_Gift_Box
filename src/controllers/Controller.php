@@ -20,6 +20,9 @@ class Controller{
         
         if(isset($_SESSION['id_user'])){
             $this->urls['profile'] = $app->urlFor('profile', ['id' => $_SESSION['id_user']]);
+            $this->twigParams['user_level'] = User::byId($_SESSION['id_user'])->account_level;
+        } else {
+            $this->twigParams['user_level'] = 0;
         }
         
         $this->twigParams = ['urls' => $this->urls];
