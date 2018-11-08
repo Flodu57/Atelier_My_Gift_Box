@@ -19,18 +19,3 @@ $app->post("/offers/:categorie/:id", function($categorie, $id) {
     $offer = Prestation::byId($id);
     $c->postAddOfferToBox($offer);
 });
-
-$app->get("/deleteoffer/:id", function($id){
-    $c = new OffersController();
-    $c->getDeleteOffer($id);
-})->name('deleteOffer');
-
-$app->get("/modifyoffer/:id", function($id){
-    $c = new OfferController();
-    $c->getModifyOffer($id);
-})->name('modifyOffer');
-
-$app->get("/lockoffer/:id", function($id){
-    $c = new OfferController();
-    $c->getLockOffer($id);
-})->name('lockOffer');
