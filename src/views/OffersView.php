@@ -6,15 +6,22 @@ use mygiftbox\models\Categorie;
 
 class OffersView extends View{
 
-    public function render($sorting_category = "all"){
+    private $sorting_category;
+
+    public function __construct($sorting_category = "all"){
+        parent::__construct();
+        $this->sorting_category = $sorting_category;
+    }
+
+    public function render(){
         $app = \Slim\Slim::getInstance();
         $link = $this->getLink();
         $error = parent::error();
 
-        if($sorting_category == "all")
+        if($this->sorting_category == "all")
             $listed_offers = $this->listOffers(Prestation::all());
         else
-            $listed_offers = $this->listOffersByCategory(Prestation::all(), $sorting_category);
+            $listed_offers = $this->listOffersByCategory(Prestation::all(), $this->sorting_category);
 
         $listed_categories = $this->listCategories(Categorie::all());
         $html = <<<END
@@ -25,10 +32,10 @@ class OffersView extends View{
                     <div class='container'>
                         $this->menu
                         $error
-                        <div class='tri_categories'>
+                        <div class='menu_categories'>
                             <p>Trier par catégories</p>
                             <i id='slide_arrow' class='fas fa-angle-down'></i>
-                            <div id='cat_list' class='categories'>
+                            <div id='cat_list' class='cat_list'>
                                 $listed_categories
                             </div>
                         </div>
@@ -46,14 +53,24 @@ END;
 
     public function listCategories($categs){
         $app = \Slim\Slim::getInstance();
-        $cat = "";
+        $urlOffers = $app->urlFor('offers');
+        if($this->sorting_category == 'all')
+            $cat = "<a href='$urlOffers' class='selected_category'>Toutes</a>";
+        else
+            $cat = "<a href='$urlOffers'>Toutes</a>";
+        
         foreach($categs as $categ) {
             $urlCateg = $app->urlFor('offers.category', ['category' => $categ->titre]);
-            $cat .= <<<END
-            <div>
-                <a href='$urlCateg'>$categ->titre</a>
-            </div>
+            if($this->sorting_category == $categ->titre){
+                $cat .= <<<END
+                <a href='$urlCateg' class='selected_category'>$categ->titre</a>
 END;
+            }
+            else {
+                $cat .= <<<END
+                <a href='$urlCateg'>$categ->titre</a>
+END;
+            }
         }
         return $cat;
     }
