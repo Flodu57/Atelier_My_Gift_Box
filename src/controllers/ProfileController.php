@@ -160,14 +160,14 @@ class ProfileController extends Controller{
 
         foreach ($offers as $offer) {
             $cat = $offer->category()->first();
-
+            
             array_push($formatOffer, [
                 'title' => $offer->title,
                 'category' => $cat->title,
                 'price' => $offer->price,
                 'image' => $offer->image,
                 'urlDeleteOffer' => $this->getRoute('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]),
-                'urlDetailledOffer' => $this->getRoute('offers.detailled', ['categorie' => $offer->category->titre, 'id' => $offer->id])
+                'urlDetailledOffer' => $this->getRoute('offers.detailled', ['categorie' => $cat->title, 'id' => $offer->id])
 
 
             ]);
