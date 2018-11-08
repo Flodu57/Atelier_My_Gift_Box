@@ -34,14 +34,9 @@ class VisitorController {
         if($box && $box->url_cagnotte){
             if(isset($_POST['amount'])){
                 $add = $box->montant_cagnotte + intval($_POST['amount']);
-                if($add <= $box->prix_total){
-                    $box->montant_cagnotte = $box->montant_cagnotte + intval($_POST['amount']);
-                    $box->save();
-                }else{
-                    $reste = $box->prix_total - $box->montant_cagnotte;
-                    $app->flash('error', "Veuillez donner un montant inférieur ou égal à $reste");
-                    $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));
-                }
+                $box->montant_cagnotte = $box->montant_cagnotte + intval($_POST['amount']);
+                $box->save();
+                
             }else{
                 $app->flash('error', "Une erreur est survenue");
                 $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));

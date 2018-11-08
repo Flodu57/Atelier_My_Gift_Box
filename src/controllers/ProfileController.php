@@ -101,7 +101,6 @@ class ProfileController {
 
     public function getBox($slug){
         $box = Box::bySlug($slug);
-
         $v = new BoxView($box);
         $v->render();
     }
@@ -126,12 +125,32 @@ class ProfileController {
 
         $box = Box::bySlug($slug);
 
-        if($box && $box->prestations()->where('id', '=', $id)){
+        $prestation = $box->prestations()->where('id', '=', $id)->first();
+
+        if($box && $prestation){
+            $box->prix_total = $box->prix_total - $prestation->prix;
+            $box->save();
             $box->prestations()->detach($id);
             $app->flash('success','Prestation supprimée avec succès.');
         }else{
             $app->flash('error','Une erreur s\'est produite !');
         }
         $app->redirect($app->urlFor('profile.box', ['slug' => $slug]));
+    }
+
+    public function getCloseCagnotte($slug){
+        $box = Box::bySlug($slug);
+        $app = \Slim\Slim::getInstance();
+
+        if($box && $box->etat != 'fermé'){
+            $box->etat = 'fermé';
+            $box->save();
+            $app->flash('success', 'La cagnotte a été fermé');
+            $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));
+        }else{
+            $app->flash('error', 'Une erreur est survenue');
+            $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));
+        }
+
     }
 }

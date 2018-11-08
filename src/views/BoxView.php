@@ -30,7 +30,8 @@ class BoxView extends View{
         $offers = $this->box->prestations()->get();
         foreach($offers as $offer) {
             $urlDetailledOffer = $app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]);
-            $urlDeleteOffer = $app->urlFor('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]);
+            
+            $deleteOffer = $this->deleteOffer($offer);
 
             $pres .= <<<END
             <div class='containerBox'>
@@ -44,9 +45,7 @@ class BoxView extends View{
                         </div>
                     </div>
                 </a>
-                <a href="$urlDeleteOffer" class='delete'>
-                    <p>x</p>
-                </a>
+                $deleteOffer
             </div>
 END;
         }
@@ -92,6 +91,11 @@ END;
         if($this->box->url_cagnotte){
             $total = $this->box->prix_total;
             $amount_cagnotte = $this->box->montant_cagnotte;
+
+            if($this->box->etat== 'fermé'){
+                return "La cagnotte est fermée et a totalisé : $amount_cagnotte / $total €";
+            }
+
             return "Cagnotte : $amount_cagnotte / $total €";
         }
         else{
@@ -101,12 +105,25 @@ END;
     }
 
     private function payementButton(){
+        $app  = \Slim\Slim::getInstance();
+
+        $urlClose = $app->urlFor('profile.closeCagnotte', ['slug' => $this->box->slug]);
         if(!$this->box->url_cagnotte)          
             return "<a href='#' class='button button_validateBox'>Passer au paiement</a>";
         else{
-            if($this->box->montant_cagnotte >= $this->box->prix_total)
-                return "<a href='#' class='button button_validateBox'>Fermer la cagnotte</a>";
+            if($this->box->montant_cagnotte >= $this->box->prix_total && $this->box->etat != 'fermé' )
+                return "<a href='$urlClose' class='button button_validateBox'>Fermer la cagnotte</a>";
         }
+    }
+
+    private function deleteOffer($offer){
+        $app  = \Slim\Slim::getInstance();
+
+        $urlDeleteOffer = $app->urlFor('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]);
+        if($this->box->etat != 'fermé'){
+            return "<a href='$urlDeleteOffer' class='delete'><p>x</p></a>";
+        }
+        
     }
 
 }
