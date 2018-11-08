@@ -14,7 +14,6 @@ class OfferDetailledView extends View{
     }
 
     public function render(){
-
         $error = parent::error();
         $link = $this->getLink();
         $categorie = $this->offer->categorie()->first();
@@ -22,23 +21,27 @@ class OfferDetailledView extends View{
         $titre = $this->offer->titre;
         $prix = $this->offer->prix;
         $description = $this->offer->description;
-
         $boxes = '';
-
+        $form = '';
         if(isset($_SESSION['id_user'])){
             $boxes = Box::byUserId($_SESSION['id_user']);
-        };
-
-        $pres = '';
-        foreach ($boxes as $box) {
-            $pres .= <<<END
-                <option value='$box->id'>$box->titre</option>
+            $pres = '';
+            foreach ($boxes as $box) {
+                $pres .= <<<END
+                    <option value='$box->id'>$box->titre</option>
 END;
-        }
-
-        $html = "
-
-
+            }
+            $form = <<<END
+            <form method='POST' class='detailled_offer_top_add'>
+                <p>Ajouter à la box </p>
+                <select name='box_id'>
+                    $pres
+                </select>
+                <button class='button button_addOffer' type='submit'>Valider</button>
+            </form>
+END;
+        };
+        $html = <<<END
             <html>
                 $this->header
                 <body>
@@ -56,32 +59,18 @@ END;
                                         </div>
                                         <p class='price'>$prix €</p>
                                     </div>
-                                    <form method='POST' class='detailled_offer_top_add'>
-                                        <p>Ajouter à la box </p>
-                                        <select name='box_id'>
-                                            $pres
-                                        
-                                        </select>
-                                        <button class='button button_addOffer' type='submit'>Valider</button>
-                                    </form>
+                                    $form
                                 </div>
-
                             </div>
-
                             <div class='detailled_offer_description'> 
                                 $description
                             </div>
-
-                        </div>
-                        
+                        </div>      
                         $this->footer
-
                     </div>
                 </body>
-            </html>
-        
-        
-        ";
+            </html> 
+END;
 
         echo $html;
     }
