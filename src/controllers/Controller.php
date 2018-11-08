@@ -13,13 +13,11 @@ class Controller{
             'forgot' => $app->urlFor('forgotpass'),
             'register'=>  $app->urlFor('register'),
             'logout' => $app->urlFor('logout'),
+            'offers' => $app->urlFor('offers'),
             'settings' => $app->urlFor('profile.settings'),
             'createBox' => $app->urlFor('profile.createBox'),
             'box' => $app->urlFor('profile.box', compact('slug')),
             'home' => $app->urlFor('home'),
-            'offers' => $app->urlFor('offers')
-
-
         ];
 
         $this->twigParams['urls'] = $this->urls;

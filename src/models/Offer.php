@@ -2,12 +2,13 @@
 
 namespace mygiftbox\models;
 
-class Prestation extends \Illuminate\Database\Eloquent\Model {
+
+class Offer extends \Illuminate\Database\Eloquent\Model {
     protected $table = 'offers';
     public $timestamps = false;
 
-    public function categorie(){
-        return $this->belongsTo('mygiftbox\models\Categorie');
+    public function category(){
+        return $this->belongsTo('mygiftbox\models\Category');
     }
 
     public function boxes(){

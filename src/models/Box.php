@@ -11,7 +11,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     }
 
     public function prestations(){
-        return $this->belongsToMany('mygiftbox\models\Prestation');
+        return $this->belongsToMany('mygiftbox\models\Offer');
     }
 
     public static function byId($id) {

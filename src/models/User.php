@@ -31,8 +31,8 @@ class User extends \Illuminate\Database\Eloquent\Model{
         $user = new User();
         $user->email = $email;
         $user->password = $pass;
-        $user->nom = $nom;
-        $user->prenom = $prenom;
+        $user->name = $name;
+        $user->first_name = $first_name;
         $user->save();
         return $user->id;
     }
