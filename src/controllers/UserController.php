@@ -114,7 +114,7 @@ class UserController extends Controller{
     public function getLogout(){
         $app = \Slim\Slim::getInstance();
         session_destroy();
-        $app->redirect('home');
+        $app->redirect($app->urlFor('home'));
     }
 
     public function getForgotPassword(){
