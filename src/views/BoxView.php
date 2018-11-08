@@ -20,6 +20,7 @@ class BoxView extends View{
         $payer = $this->box->payer ? 'Payé' : 'Non payé';
         $etat = $this->box->etat;
         $error = parent::error();
+        $validateButton = $this->validateButton();
 
         $app = \Slim\Slim::getInstance();
 
@@ -76,7 +77,7 @@ END;
                             </div>
                             <div class='buttonLayout buttonLayout-center'>
                                 <a href='$urlOffers' class='button button_continueBox'>Continuer les achats</a>
-                                <a href='#' class='button button_validateBox'>Passer au paiement</a>
+                                $validateButton
                             </div>
                         </div>
                         $this->footer
@@ -87,4 +88,9 @@ END;
         echo $html;
     }
 
+    private function validateButton(){
+        if($this->box->prestations->count()>=2){
+            return "<a href='#' class='button button_validateBox'>Passer au paiement</a>";
+        }
+    }
 }
