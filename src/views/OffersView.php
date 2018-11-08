@@ -22,11 +22,11 @@ class OffersView extends View{
                         <div class='tri_categories'>
                             <p>Trier par catégories</p>
                             <i id='slide_arrow' class='fas fa-angle-down'></i>
-                            $error
                             <div id='cat_list' class='categories'>
                                 $listed_categories
                             </div>
                         </div>
+                        $error
                         <div class='offers'> 
                            $listed_offers
                         </div>

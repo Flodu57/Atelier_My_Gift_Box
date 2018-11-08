@@ -56,7 +56,6 @@ END;
                 <body>     
                     <div class='container'>
                         $this->menu
-                        $error
                         <div class='box'>
                             <div class='box_head'>
                                 <div>
@@ -70,6 +69,7 @@ END;
                                     <p>€</p>
                                 </div>
                             </div>  
+                            $error
 
                             <div class='box_grid'>
                                 $pres 
