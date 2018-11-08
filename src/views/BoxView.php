@@ -17,6 +17,8 @@ class BoxView extends View{
         $error = parent::error();
         $titre = $this->box->titre;
         $total = $this->box->prix_total;
+        $payer = $this->box->payer ? 'Payé' : 'Non payé';
+        $etat = $this->box->etat;
         $error = parent::error();
 
         $app = \Slim\Slim::getInstance();
@@ -57,7 +59,11 @@ END;
                         $error
                         <div class='box'>
                             <div class='box_head'>
-                                <h2>$titre</h2>
+                                <div>
+                                    <h2>$titre</h2>
+                                    <p>Etat : $etat</p>
+                                    <p>Payer : $payer</p>
+                                </div>
                                 <div class='box_head_total'>
                                     <p class='p_total'>Total </p>
                                     $total
