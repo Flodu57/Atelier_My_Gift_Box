@@ -65,7 +65,7 @@ END;
             $categorie = $offer->categorie->titre;
             $urlDelete = $app->urlFor('deleteOffer', ['id' => $offer->id]);
             $urlModify = $app->urlFor('modifyOffer', ['id' => $offer->id]);
-            $urlLock = $app->urlFor('lockOffer', ['id' => $offer->id]);  
+            $urlLock = $app->urlFor('lockOffer', ['id' => $offer->id]);
             if($offer->suspendue){
                 $lock = "<a href='$urlLock'><i class='fa fa-lock-open'></i></a>";
             } else {
@@ -92,7 +92,6 @@ END;
                     </div>
                 </div>
             </a>
-            
             </div>
 END;
         }
