@@ -22,11 +22,13 @@ class ProfileView extends View{
             $slug = Box::getSlug($box->titre);
             $urlBox = $app->urlFor('profile.box', compact('slug'));
             $urlDeleteBox = $app->urlFor('profile.deleteBox', compact('slug'));
+            $cagnotte = $box->url_cagnotte ? 'Cagnotte' : '';
 
             $pres .= <<<END
             <div class='boxItem'>
                 <a href="$urlBox">
                     <h1 class='label_titreBox'>$box->titre</h1>
+                    $cagnotte
                     <div class='box_price'>
                         <p class='label_prixBox'>$box->prix_total €</p>
                     </div>
