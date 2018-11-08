@@ -1,0 +1,24 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+
+<div class='container'>
+    {% include 'partials/menu.twig' %}
+    {% include 'partials/error.twig' %}
+    <form class='login' method='POST'> 
+        <p class='label label_email'>Email</p>
+        <input type='email' name='email' class='input input_email'>
+        <p class='label label_password'>Mot de passe</p>
+        <input type='password' name='password' class='input input_password'>
+        <div>
+            <a href='{{ urls['forgot'] }}' class='label label_passwordLost'>Mot de passe oublié ?</a>
+            <button type='submit' class='button button_login'>Connexion</button>
+        </div>
+    </form>
+    {% include 'partials/footer.twig' %}
+</div>
+    
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

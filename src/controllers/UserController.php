@@ -8,11 +8,24 @@ use mygiftbox\views\ForgotPasswordView;
 use mygiftbox\views\LoginView;
 use mygiftbox\views\RegisterView;
 
-class UserController{
+class UserController extends Controller{
 
     public function getLogin(){
-        $v = new LoginView();
-        $v->render();
+        $app = \Slim\Slim::getInstance();
+        
+        if(isset($_SESSION['slim.flash']['error'])){
+            $this->twigParams['error'] = $_SESSION['slim.flash']['error'];
+        }
+
+        if(isset($_SESSION['slim.flash']['success'])){
+            $this->twigParams['error'] = $_SESSION['slim.flash']['success'];
+        }
+
+        if(isset($_SESSION['id_user'])){
+            $this->twigParams['user_id'] = $_SESSION['id_user'];
+        }   
+        
+        $app->render('LoginView.twig', $this->twigParams);
     }
 
     public function postLogin(){

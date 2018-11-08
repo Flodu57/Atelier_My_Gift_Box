@@ -12,7 +12,19 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 
-$app = new \Slim\Slim();
+$app = new \Slim\Slim([
+    'debug' => true,
+    'templates.path' => 'src/views',
+    'assets.path' => 'assets'
+]);
+
+$app->view = new \Slim\Views\Twig();
+$app->view->setTemplatesDirectory("src/views");
+
+$view = $app->view();
+$view->parserOptions = ['debug' => true];
+$view->parserExtensions = [new \Slim\Views\TwigExtension()];
+ 
 
 $app->get("/", function() use ($app){
     $app->redirect('home');
