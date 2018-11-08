@@ -19,6 +19,20 @@ class User extends \Illuminate\Database\Eloquent\Model{
         return parent::where('id', '=', $id)->first();
     }
 
+    public static function current(){
+        if(isset($_SESSION['id_user'])){
+            return self::byId($_SESSION['id_user']);
+        }
+        return null;
+    }
+
+    public function isAdmin(){
+        if($this->account_level == 2){
+            return true;
+        }
+        return false;
+    }
+
     public static function exists($email) {
         if(parent::where('email','=',$email)->first()){
             return true;
