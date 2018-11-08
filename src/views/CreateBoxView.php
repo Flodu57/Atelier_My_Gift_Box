@@ -5,6 +5,7 @@ namespace mygiftbox\views;
 class CreateBoxView extends View{
 
     public function render(){
+        $link = $this->getLink();
         $error = parent::error();
         $html = <<<END
             <html>
@@ -25,7 +26,12 @@ class CreateBoxView extends View{
 
                                 <div class='form_group'>
                                     <p class='label label_date'>Date</p>
-                                    <input type='date' name='date' class='input input_date'>
+                                    <input type='date' name='date' class='input input_date' id='inputdate'>
+                                </div>
+
+                                <div class='form_group'>
+                                    <label class='label label_title'>Cagnotte</p>
+                                    <input type='checkbox' name='cagnotte' class='input'>
                                 </div>
                                 <button type='submit' class='button buttonCreateBox'>Créer</button>
                             </form>
@@ -33,6 +39,8 @@ class CreateBoxView extends View{
 
                         $this->footer
                     </div>
+                    <script src='$link/assets/scripts/jquery.js'></script>
+                    <script src='$link/assets/scripts/dateinput.js'></script>
                 </body>
             </html>  
 END;

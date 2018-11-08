@@ -14,20 +14,29 @@ class ProfileView extends View{
         $urlCreateBox = $app->urlFor('profile.createBox');
         $user  = User::byId($_SESSION['id_user']);
         $boxes = Box::byUserId($_SESSION['id_user']);
+        $error = parent::error();
 
         $pres = '';
         foreach($boxes as $box) {
 
             $slug = Box::getSlug($box->titre);
             $urlBox = $app->urlFor('profile.box', compact('slug'));
+            $urlDeleteBox = $app->urlFor('profile.deleteBox', compact('slug'));
+            $cagnotte = $box->url_cagnotte ? 'Cagnotte' : '';
 
             $pres .= <<<END
-            <a href="$urlBox">
-                <div class='boxItem'>
+            <div class='boxItem'>
+                <a href="$urlBox">
                     <h1 class='label_titreBox'>$box->titre</h1>
-                    <p class='label_prixBox'>$box->prix_total</p>
-                </div>
-            </a>
+                    $cagnotte
+                    <div class='box_price'>
+                        <p class='label_prixBox'>$box->prix_total €</p>
+                    </div>
+                </a>
+                <a href="$urlDeleteBox" class='delete'>
+                    <p>x</p>
+                </a>
+            </div>
 END;
         }
 
@@ -37,7 +46,6 @@ END;
                 $this->header
                 <body>
                     <div class='container'>
-                    ".parent::error()."
                         $this->menu
                         <div class='accountInformations'> 
                             <h1 class='title title_informations'>Mes informations</h1>
@@ -53,7 +61,7 @@ END;
                                 </div>
                             </div>
                         </div>
-
+                        $error
                         <div class='mybox'>
                             <h1 class='title title_informations'>Mes box</h1>
                             <a href='$urlCreateBox'>
@@ -63,8 +71,8 @@ END;
                         <div class='gridBox'>
                             $pres
                         </div>
+                        $this->footer
                     </div>
-                    $this->footer
                 </body>
             </html>
         

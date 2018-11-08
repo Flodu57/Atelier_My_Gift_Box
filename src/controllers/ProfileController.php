@@ -67,18 +67,24 @@ class ProfileController {
 
             if(!empty($title) && !empty($date)){
                 if(Box::exists($title)){
-                    $app->flash('error','Vous avez déjà une box avec ce titre');
+                    $app->flash('error','Vous avez déjà un coffret avec ce titre');
                     $app->redirect($app->urlFor('profile.createBox'));
                 }else{
                     $box = new Box();
-                    $box->user_id = $_SESSION['id_user'];
-                    $box->titre = $title;
-                    $box->slug = Box::getSlug($title);
+                    $box->user_id        = $_SESSION['id_user'];
+                    $box->titre          = $title;
+                    $box->slug           = Box::getSlug($title);
                     $box->date_ouverture = $date;
-                    $box->url = $token;
+                    $box->url            = $token;
+
+                    if(isset($_POST['cagnotte'])){
+                        $box->url_cagnotte     = bin2hex(random_bytes(5));
+                        $box->montant_cagnotte = 0;
+                    }
+
                     $box->save();
 
-                    $app->flash('success',"La box a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
+                    $app->flash('success',"Le coffret a bien été créé, vous pouvez désormais ajouter des prestations dedans ! ");
                     $app->redirect($app->urlFor('offers'));
                 }
             }else{
@@ -91,14 +97,60 @@ class ProfileController {
             $app->flash('error','Veuillez remplir tous les champs');
             $app->redirect($app->urlFor('profile.createBox'));
         }
-
-        
     }
 
     public function getBox($slug){
         $box = Box::bySlug($slug);
-
         $v = new BoxView($box);
         $v->render();
+    }
+
+    public function getDeleteBox($slug){
+        $app = \Slim\Slim::getInstance();
+
+        $box = Box::bySlug($slug);
+
+        if($box){
+            $box->prestations()->detach();
+            $box->delete();
+            $app->flash('success','Coffret supprimé avec succès.');
+        }else{
+            $app->flash('error','Une erreur s\'est produite !');
+        }
+        $app->redirect($app->urlFor('profile'));
+    }
+
+    public function getDeleteOffer($slug, $id){
+        $app = \Slim\Slim::getInstance();
+
+        $box = Box::bySlug($slug);
+
+        $prestation = $box->prestations()->where('id', '=', $id)->first();
+
+        if($box && $prestation){
+            $box->prix_total = $box->prix_total - $prestation->prix;
+            $box->save();
+            $box->prestations()->detach($id);
+            $app->flash('success','Prestation supprimée avec succès.');
+        }else{
+            $app->flash('error','Une erreur s\'est produite !');
+        }
+        $app->redirect($app->urlFor('profile.box', ['slug' => $slug]));
+    }
+
+    public function getCloseCagnotte($slug){
+        $box = Box::bySlug($slug);
+        $app = \Slim\Slim::getInstance();
+
+        if($box && $box->etat != 'fermé'){
+            $box->etat = 'fermé';
+            $box->save();
+            $app->flash('success', 'La cagnotte a été fermé');
+            $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));
+        }else{
+            $app->flash('error', 'Une erreur est survenue');
+            $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));
+        }
+
     }
 }

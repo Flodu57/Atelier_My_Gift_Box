@@ -26,6 +26,14 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return parent::where('slug', '=', $slug)->first();
     }
 
+    public static function byToken($token) {
+        return parent::where('url', '=', $token)->first();
+    }
+
+    public static function byTokenCagnotte($token) {
+        return parent::where('url_cagnotte', '=', $token)->first();
+    }
+
     public static function exists($title) {
         $user = User::byId($_SESSION['id_user']);
         if($user->boxes()->where('titre', '=', $title)->first())

@@ -9,7 +9,8 @@ class HomeView extends View {
         $id = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
         $urlCreateBox = $app->urlFor('profile.createBox', compact('id'));
         $link = $this->getLink();
-        $html = "
+        $html = <<<END
+        <!DOCTYPE html>
         <html>
             $this->header
             <body>
@@ -27,7 +28,7 @@ class HomeView extends View {
                 $this->footer
             </div>
         </html>
-        ";
+END;
         echo $html;
     }   
 }
