@@ -30,10 +30,10 @@ class Controller{
             $this->twigParams['user_level'] = 0;
         }
         if(isset($_SESSION['slim.flash']['success'])){
-            $this->twigParams['error'] = $_SESSION['slim.flash']['success'];
+            $this->twigParams['error'] = ['message' => $_SESSION['slim.flash']['success'], 'type' => array_keys($_SESSION['slim.flash'])[0]];
         }
         if(isset($_SESSION['slim.flash']['error'])){
-            $this->twigParams['error'] = $_SESSION['slim.flash']['error'];
+            $this->twigParams['error'] = ['message' => $_SESSION['slim.flash']['error'], 'type' => array_keys($_SESSION['slim.flash'])[0]];
         }   
     }
 
