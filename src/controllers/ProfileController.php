@@ -180,7 +180,7 @@ class ProfileController extends Controller{
                 'price' => $offer->price,
                 'image' => $offer->image,
                 'urlDeleteOffer' => $this->getRoute('profile.deleteOffer', ['slug' => $offer->boxes()->first()->slug,'id' => $offer->id]),
-                'urlDetailledOffer' => $this->getRoute('detailed.offer', ['categorie' => $cat->title, 'id' => $offer->id])
+                'urlDetailledOffer' => $this->getRoute('detailed.offer', ['category' => $cat->title, 'id' => $offer->id])
 
 
             ]);
