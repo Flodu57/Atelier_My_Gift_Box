@@ -120,10 +120,11 @@ class ProfileController extends Controller{
     }
 
     public function getBox($slug){
+        $app = \Slim\Slim::getInstance();
         $box = Box::bySlug($slug);
-
         $this->twigParams['box']['title'] = $box->title;
         $this->twigParams['box']['total'] = $box->price;
+        $this->twigParams['box']['paid'] = $box->paid;
         $this->twigParams['box']['status'] = $box->status;
         $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeCagnotte', ['slug' => $box->slug]);
 
@@ -132,8 +133,7 @@ class ProfileController extends Controller{
         if($box->jackpot_url){
             $total = $box->price;
             $jackpot_amount = $box->jackpot_amount;
-
-            if($box->status == 'fermé'){
+            if($box->status == 'closed'){
                 $this->twigParams['box']['payment'] = "La cagnotte est fermée et a totalisé : $jackpot_amount / $total €";
             }
 
@@ -141,16 +141,24 @@ class ProfileController extends Controller{
         }
         else{
             $p = $box->paid ? 'Payé' : 'Non payé';
-            $this->twigParams['box']['payment'] = "Payer : $p";
+            $with = $box->payment_method ? "avec $box->payment_method" : '';
+            $this->twigParams['box']['payment'] = "Payer : $p $with ";
         }
 
         if(!$box->jackpot_url && $box->prestations->count() >= 2 ) {
-            $urlPayment = $this->getRoute('profile.payment', ['slug' => $box->slug]);
             $this->twigParams['box']['paymentButton']['message'] = 'Passer au payement' ;
-            $this->twigParams['box']['paymentButton']['url'] = $urlPayment;
+            $this->twigParams['box']['paymentButton']['amount'] = $box->price ;
+            $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->slug]);
+
         } else{
-            if($box->jackpot_amount >= $box->prix_total && $box->status != 'fermé' && $box->prestations->count() >= 2){
+            $this->twigParams['box']['paymentButton']['type'] = "cagnotte";
+            $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.cagnotte', ['token_cagnotte' => $box->slug]);
+            $this->twigParams['box']['paymentButton']['canClose'] = 0;
+
+            if($box->jackpot_amount >= $box->price && $box->status != 'closed' && $box->prestations->count() >= 2){
                 $urlClose = $this->getRoute('profile.closeCagnotte', ['slug' => $box->slug]);
+
+                $this->twigParams['box']['paymentButton']['canClose'] = 1;
                 $this->twigParams['box']['paymentButton']['message'] = 'Fermer la cagnotte' ;
                 $this->twigParams['box']['paymentButton']['url'] = $urlClose;
             }
@@ -217,8 +225,9 @@ class ProfileController extends Controller{
         $box = Box::bySlug($slug);
         $app = \Slim\Slim::getInstance();
 
-        if($box && $box->etat != 'fermé'){
-            $box->etat = 'fermé';
+        if($box && $box->status != 'closed'){
+            $box->status = 'closed';
+            $box->paid = 1;
             $box->save();
             $app->flash('success', 'La cagnotte a été fermé');
             $app->redirect($app->urlFor('profile.box', ['slug' => $box->slug]));

@@ -12,13 +12,18 @@
                     <p>Etat : {{ box.status }}</p>
                     <p>{{ box.payment }}</p>
                 </div>
+                {% if box.status == 'closed' and box.paid %}
+                    <div>
+                        <h2>Lien à partager</h2>
+                        <a href='{{ box.url }}'>{{ box.url }}</a>
+                    </div>
+                {% endif %}
                 <div class='box_head_total'>
                     <p class='p_total'>Total </p>
                     {{ box.total }}
                     <p>€</p>
                 </div>
             </div>  
-             {% include 'partials/error.twig' %}
 
             <div class='box_grid'>
              {% for offer in offers %}
@@ -28,7 +33,7 @@
 
                 <div class='containerBox'>
                     <a href='{{ offer.urlDetailledOffer }}' class='offer'>
-                        <img src='{{ siteUrl('assets/img/prestations/' ~ offer.image)}}'>
+                        <img src='{{ siteUrl('assets/img/offers/' ~ offer.image)}}'>
                         <div class='offer_bottom'>
                             <h2 class='label label_title'>{{ offer.title }}</h2>
                             <div class='offer_bottom_infos'>
@@ -37,7 +42,7 @@
                             </div>
                         </div>
                     </a>
-                        {% if box.status != 'fermé' %}
+                        {% if box.status != 'closed' %}
                             <a href='{{ offer.urlDeleteOffer }}' class='delete'><p>x</p></a>
                         {% endif %}
                         
@@ -47,8 +52,33 @@
         
             </div>
             <div class='buttonLayout buttonLayout-center'>
+                {% if box.status != 'closed' %}
                 <a href='{{ urls['offers'] }}' class='button button_continueBox'>Continuer les achats</a>
-                <a href='{{ box.paymentButton.url}}' class='button button_validateBox'>{{ box.paymentButton.message }}</a>
+                
+                    {% if box.paymentButton.type %}
+                        {% if box.paymentButton.canClose %}
+                        
+                            <a href='{{ box.paymentButton.url}}' class='button button_validateBox'>{{ box.paymentButton.message }}</a>
+                        {% endif %}
+                        
+                    {% else %}
+                        <form method="POST">
+                            <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                                data-amount="{{ box.paymentButton.amount }}"
+                                data-name="Stripe.com"
+                                data-description="Example charge"
+                                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                data-locale="auto"
+                                data-zip-code="true">
+                            </script>
+                        </form>
+                    {% endif %}
+                {% endif %}
+
+                
+                
                 
             </div>
         </div>
