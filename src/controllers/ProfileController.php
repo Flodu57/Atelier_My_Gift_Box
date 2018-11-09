@@ -210,7 +210,7 @@ class ProfileController extends Controller{
         $box = Box::bySlug($slug);
 
         if($box){
-            $box->prestations()->detach();
+            $box->offers()->detach();
             $box->delete();
             $app->flash('success','Coffret supprimé avec succès.');
         }else{
