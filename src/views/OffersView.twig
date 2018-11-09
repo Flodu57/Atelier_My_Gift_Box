@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    {% if user_level == 2 %}
-        <button class="admin admin-create" onclick="$link/create_offer">Ajouter une prestation</button>
-    {% endif %}
+{% if user_level == 2 %}
+    <a href='{{ urls.createOffer }}'><button class="admin admin-create">Ajouter une prestation</button></a>
+{% endif %}
     <div class='menu_categories'>
         <p>Trier par catégories</p>
         <i id='slide_arrow' class='fas fa-angle-down'></i>
@@ -16,25 +16,25 @@
         </div>
     </div>
     <div class='offers'> 
-       {% for offer in offers %}
-            <div class="offer">
-            <a href='{{ offer.urls.main}}' >
-                <img src='{{ siteUrl('/assets/img/offers/' ~ offer.img) }}'>
-                <div class='offer_bottom'>
-                    <h2>{{offer.title}}</h2>
-                    <div class='offer_bottom_infos'>
-                        <p>{{offer.categ}}</p>
-                        <p>{{offer.price}} €</p>
-                        {% if user_level == 2 %}
-                            <a href='{{offer.urls.delete}}'><i class='fa fa-trash'></i></a>
-                            <a href='{{offer.urls.lock}}'><i class='fa fa-{{offer.on_hold == true ? 'lock-open' : 'unlock-alt'}}'></i></a>
-                            <a href='{{offer.urls.modify}}'><i class='fa fa-cog'></i></a>
-                        {% endif %}
-                    </div>
+    {% for offer in offers %}
+        <div class="offer">
+        <a href='{{ offer.urls.main}}' >
+            <img src='{{ siteUrl('/assets/img/offers/' ~ offer.img) }}'>
+            <div class='offer_bottom'>
+                <h2>{{offer.title}}</h2>
+                <div class='offer_bottom_infos'>
+                    <p>{{offer.categ}}</p>
+                    <p>{{offer.price}} €</p>
+                    {% if user_level == 2 %}
+                        <a href='{{offer.urls.delete}}'><i class='fa fa-trash'></i></a>
+                        <a href='{{offer.urls.lock}}'><i class='fa fa-{{offer.on_hold == true ? 'lock-open' : 'unlock-alt'}}'></i></a>
+                        <a href='{{offer.urls.modify}}'><i class='fa fa-cog'></i></a>
+                    {% endif %}
                 </div>
-            </a>
             </div>
-       {% endfor %}
+        </a>
+        </div>
+    {% endfor %}
     </div>
 
 {% endblock %}
