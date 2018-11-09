@@ -13,12 +13,28 @@
         background-color: lightgray;
     }
     .textVisitor{
-        width: 95%;
+        width: 100%;
         min-height: 300px;
         padding: 10px;
         font-family: 'Montserrat';
         font-size: 16px;
         resize: vertical;
+    }
+    
+    button{
+        margin-right: 100px;
+    }
+}
+
+//FUNDING
+.participate{
+    h3, input, button{
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    input{
+        font-size: 1em;
+        padding: 5px 5px 5px 5px;
     }
 }
 
@@ -37,6 +53,7 @@
         }
 
         .textVisitor{
+            width: 95%;
             border:1px inset lightgray;
             margin-right: 10px;
             margin-left: 10px;
