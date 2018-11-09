@@ -17,6 +17,7 @@
     </div>
     <div class='offers'> 
     {% for offer in offers %}
+    {% if (user_level == 2 and offer.on_hold) or not offer.on_hold %}
         <div class="offer">
         <a href='{{ offer.urls.main}}' >
             <img src='{{ siteUrl('/assets/img/offers/' ~ offer.img) }}'>
@@ -34,6 +35,7 @@
             </div>
         </a>
         </div>
+    {% endif %}
     {% endfor %}
     </div>
 

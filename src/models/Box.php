@@ -18,6 +18,8 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return parent::where('id', '=', $id)->first();
     }
 
+    
+
     public static function byUserId($user_id) {
         return parent::where('user_id', '=', $user_id)->get();
     }
