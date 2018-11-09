@@ -1,6 +1,5 @@
-function showHideMenuMobile(menu){
+function showHideMenuMobile(){
     $("#sideMenu").toggleClass("open");
-    console.log(menu);
 };
 
 function closeMenu() {
