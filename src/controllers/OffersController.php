@@ -60,7 +60,7 @@ class OffersController extends Controller {
 
         if(!$offer->boxes()->where('id', '=', $boxId)->first()){
             if($box){
-                $box->prestations()->attach($offer);
+                $box->offers()->attach($offer);
                 $box->price = $box->price + $offer->price;
                 $box->save();
 
