@@ -17,7 +17,7 @@
                         <a class='button button_addOffer' href='{{ url }}' >Créer un coffret</a>
                     </div>
                 {% else %}
-                    <form method='POST' class='detailled_offer_top_add'>  
+                    <form method='POST' class='detailed_offer_top_add'>  
                         <p>Ajouter à la box </p>
                         <select name='box_id'>
                             {% for box in unpaidBoxes %}
@@ -30,7 +30,7 @@
             {% endif %}
         </div>
     </div>
-    <div class='detailled_offer_description'> 
+    <div class='detailed_offer_description'> 
         {{ offer.description }}
     </div>
 </div> 
