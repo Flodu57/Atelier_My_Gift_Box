@@ -11,16 +11,22 @@ use mygiftbox\models\Category;
 
 class OffersController extends Controller {
 
-    public function getOffers($category_name = 'all'){
+    public function getOffers($sort, $category_name = 'all'){
         $app = \Slim\Slim::getInstance();
         $categories = [];
         foreach(Category::all() as $category){
             array_push($categories, ['title' => $category->title, 'url' => $app->urlFor('offers.category', ['category' => $category->title])]);
         } 
         if($category_name == 'all'){
-            $offers_pull = Offer::all();
+            if($sort == 0)
+                $offers_pull = Offer::orderBy('price', 'ASC')->get();
+            else
+                $offers_pull = Offer::orderBy('price', 'DESC')->get();
         } else {
-            $offers_pull = Category::byName($category_name)->offers()->get();
+            if($sort == 0)
+                $offers_pull = Category::byName($category_name)->offers()->orderBy('price', 'ASC')->get();
+            else
+                $offers_pull = Category::byName($category_name)->offers()->orderBy('price', 'DESC')->get();
         }
         $offers = [];
         foreach($offers_pull as $offer){
@@ -78,5 +84,4 @@ class OffersController extends Controller {
             $app->redirect($app->urlFor('detailed.offer', ['categorie' => $offer->category->title, 'id' => $offer->id]));
         }
     }
-
 }
