@@ -7,24 +7,6 @@
             flex-direction: column;
             margin: 0;
             margin-left:10px;
-    
-            input{
-                width: 300px;
-                padding: 10px 10px;
-                margin-top: 10px;
-                font-size: 0.8em;
-            }
-    
-            button{
-                margin-top: 10px;
-                width: 150px;
-                background-color: green;
-                border: none;
-                color: white;
-                cursor: pointer;
-                padding: 10px 0;
-                font-size: 1em;
-            }
         }
     }
 
@@ -34,12 +16,5 @@
                 background-color: red;
             }
         }
-    }
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    input{
-        border:1px inset lightgray;
     }
 }
