@@ -56,3 +56,47 @@
         background-color:$button-hover-color;
     }
 }
+
+//FORGOT PASSWORD
+.forgotPassword{
+    flex-grow: 1;
+    h2{
+        text-align: center;
+        background-color:lightgray;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .forgot{
+        .label{
+            &_email{
+                margin-left: 10px;
+                margin-bottom: 5px;
+            }
+        }
+        input{
+            width: 95%;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom:10px;
+        }
+
+        button{
+            margin-left:50vw;
+        }
+    }
+}
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .input{
+        border:1px inset lightgray;
+    }
+
+    .forgotPassword{
+        .forgot{
+            button{
+                margin-left:35%;
+            }
+        }
+    }
+}

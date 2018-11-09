@@ -38,3 +38,97 @@
     img{
     }
 }
+
+.menuMobileSide{
+    display: none;
+}
+
+.menuMobile{
+    display: none;
+}
+
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .menu{
+        display: none;
+    }
+
+    .menuMobileSide{
+        display: block;
+    }
+
+    .menuMobile{
+        display: flex;
+        padding: 0 10px;
+
+        .containerMenuMobile{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .burger{
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .label_menuMobile{
+            font-size: 1.4em;
+            color:$primary-color;
+        }
+
+        .logoMenu{
+            width: auto;
+            height: 85px;
+        }
+
+        .bar1, .bar2, .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: $primary-color;
+            margin: 6px 0;
+        }
+    }
+
+    .menuMobileSide {
+    height: 100%; 
+    position: fixed;
+    width: 250px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:$primary-color; 
+    padding-top: 15px;
+    transition: 0.5s;
+    transform: translateX(-100%);
+
+        &.open{
+            transform: translateX(0);
+
+            a{
+                display: block;
+            }
+        }
+    
+        a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 1em;
+        color: white;
+        display: none;
+        transition: 1s;
+        margin-top: 10px;
+        font-size: 1.2em;
+        }
+    
+        .closeButton {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        }
+    }
+}

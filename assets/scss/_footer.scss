@@ -4,6 +4,10 @@ footer{
     flex-direction: column;
     padding-bottom: 10px;
 
+    .footerConditions{
+        display: flex;
+        flex-direction: row;
+    }
     p{
         margin-top : 5px;
         margin-bottom : 0;

@@ -16,3 +16,28 @@
 
     {% endif %}
 </div>
+
+<div id="sideMenu" class="menuMobileSide">
+  <a href="javascript:void(0)" class="closeButton" onclick="closeMenu()">&times;</a>
+  <a href='{{ urls['home'] }}' class="navMenu">Accueil</a>
+  <a href='{{ urls['offers'] }}' class="navMenu">Prestations</a>
+  {% if user_id %}
+        <a href='{{ urls['profile'] }}' class="navMenu">Mon compte</a>
+        <a href='{{ urls['logout'] }}' class="navMenu">Déconnexion</a>
+        {% else %}
+        <a href='{{ urls['login'] }}' class="navMenu">Connexion</a>
+        <a href='{{ urls['register'] }}' class="navMenu">Inscription</a>
+    {% endif %}
+</div>
+
+<div class='menuMobile'>
+    <div class="containerMenuMobile">
+        <div class="burger" onclick="showHideMenuMobile()">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <h1 class="label_menuMobile">MyGiftBox</h1>
+        <img class="logoMenu" src='{{ siteUrl('assets/img/logo.png')}}'>
+    </div>
+</div>

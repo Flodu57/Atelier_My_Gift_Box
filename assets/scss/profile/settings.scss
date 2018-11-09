@@ -42,5 +42,11 @@
             }
         }
     }
+}
 
+//RESPONSIVE
+@media(max-width: 450px){
+    input{
+        border:1px inset lightgray;
+    }
 }
