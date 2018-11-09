@@ -10,7 +10,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return $this->belongsTo('mygiftbox\models\User');
     }
 
-    public function prestations(){
+    public function offers(){
         return $this->belongsToMany('mygiftbox\models\Offer');
     }
 

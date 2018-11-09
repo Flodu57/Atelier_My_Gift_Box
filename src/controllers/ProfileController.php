@@ -131,7 +131,7 @@ class ProfileController extends Controller{
         $this->twigParams['box']['status'] = $box->status;
         $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeFunding', ['slug' => $box->slug]);
 
-        $offers = $box->prestations()->get();
+        $offers = $box->offers()->get();
 
         if($box->jackpot_url){
             $total = $box->price;
@@ -148,7 +148,7 @@ class ProfileController extends Controller{
             $this->twigParams['box']['payment'] = "Payer : $p $with ";
         }
 
-        if(!$box->jackpot_url && $box->prestations->count() >= 2 ) {
+        if(!$box->jackpot_url && $box->offers->count() >= 2 ) {
             $this->twigParams['box']['paymentButton']['message'] = 'Passer au payement' ;
             $this->twigParams['box']['paymentButton']['amount'] = $box->price ;
             $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->url]);

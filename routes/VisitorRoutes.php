@@ -22,6 +22,11 @@ $app->get('/:token', 'CheckOpeningDate', function($token){
     $c->getBoxVisitor($token);
 })->name('visitor.token');
 
+$app->post('/:token', 'CheckOpeningDate', function($token){
+    $c = new VisitorController();
+    $c->postThanks($token);
+});
+
 $app->get('/:token_funding/funding', function($token_funding){
     $c = new VisitorController();
     $c->getFunding($token_funding);
