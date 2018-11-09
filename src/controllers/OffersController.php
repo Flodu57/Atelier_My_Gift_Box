@@ -52,27 +52,27 @@ class OffersController extends Controller {
         $app->render('DetailedOfferView.twig', $this->twigParams);
     }
 
-    public function postAddOfferToBox($offer){
+    public function postAddOfferToBox($id){
         $app = \Slim\Slim::getInstance();
         $boxId = $_POST['box_id'];
-
+        $offer = Offer::byId($id);
         $box = Box::byId($boxId);
 
         if(!$offer->boxes()->where('id', '=', $boxId)->first()){
             if($box){
                 $box->prestations()->attach($offer);
-                $box->prix_total = $box->prix_total + $offer->prix;
+                $box->price = $box->price + $offer->price;
                 $box->save();
 
-                $app->flash('success', "Prestation bien ajoutée à la box $box->titre !");
-                $app->redirect($app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]));
+                $app->flash('success', "Prestation bien ajoutée à la box $box->title !");
+                $app->redirect($app->urlFor('detailed.offer', ['categorie' => $offer->category->title, 'id' => $offer->id]));
             }else{
                 $app->flash('error', "Une erreur est survenue !");
-                $app->redirect($app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]));
+                $app->redirect($app->urlFor('detailed.offer', ['categorie' => $offer->category->title, 'id' => $offer->id]));
             }
         }else{
             $app->flash('error', "Cette prestation est déjà présente dans ce coffret !");
-            $app->redirect($app->urlFor('offers.detailled', ['categorie' => $offer->categorie->titre, 'id' => $offer->id]));
+            $app->redirect($app->urlFor('detailed.offer', ['categorie' => $offer->category->title, 'id' => $offer->id]));
         }
     }
 

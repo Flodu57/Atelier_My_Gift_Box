@@ -6,8 +6,6 @@
         justify-content: space-between;
         background-color: rgb(196, 196, 196);
         padding: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
 
         &.visitor{
             flex-direction: column;
@@ -30,13 +28,30 @@
     
     &_grid{
         display: grid;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top:1%;
         grid-template-columns: repeat(4, 1fr);
+        margin-bottom: 30px;
         grid-column-gap: 20px;
         grid-row-gap: 15px;
     }
+
+    .titleMsg{
+
+        font-size: 1.7em;
+        margin-bottom: 5px;
+    }
+    
+
+    form{
+        textarea{
+            width: 100%;
+            min-height: 200px;
+            resize: vertical;
+            padding: 10px;
+            font-family: 'Montserrat';
+            font-size: 1.2em;
+        }
+    }
+
 
     .buttonLayout{
         margin-top:2%;

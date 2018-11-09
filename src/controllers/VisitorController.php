@@ -6,6 +6,7 @@ use mygiftbox\views\VisitorBoxView;
 use mygiftbox\views\VisitorWaitView;
 use mygiftbox\views\VisitorFundingView;
 use mygiftbox\models\Box;
+use mygiftbox\models\User;
 
 class VisitorController extends Controller{
 
@@ -14,31 +15,53 @@ class VisitorController extends Controller{
         $user  = User::byId($_SESSION['id_user']);
         
         $box = Box::byToken($token);
-        $offers = Box::prestations();
+        $offers = $box->offers()->get();
         $reformatOffers = [];
 
         foreach($offers as $offer){
             array_push($reformatOffers, [
                 'title' => $offer->title,
-                'category_id' => $offer->category_id
+                'category' => $offer->category->title,
+                'image' => $offer->image
             ]);
         }
 
-        $this->twigParams['userFirstName']  = $user->first_name;
-        $this->twigParams['userName']  = $user->name;;
-        $this->twigParams['boxTitle']  = $box->title;
-        $this->twigParams['boxAmount']  = $box->jackpot_amount;
-        $this->twigParams['amount']  = $box->price;
-        $this->twigParams['message']  = $box->message;
+        $this->twigParams['user']['first_name']  = $user->first_name;
+        $this->twigParams['user']['name']  = $user->name;;
+        $this->twigParams['box']['title']  = $box->title;
+        $this->twigParams['box']['jackpot_amount']  = $box->jackpot_amount;
+        $this->twigParams['box']['price']  = $box->price;
+        $this->twigParams['box']['message']  = $box->message;
         $this->twigParams['offers']  = $reformatOffers;
 
         $app->render('VisitorBoxView.twig', $this->twigParams);
     }
 
-    public function getWait($token){
+    public function postThanks($token){
+    $app = \Slim\Slim::getInstance(); 
+        
         $box = Box::byToken($token);
-        $v = new VisitorWaitView($box);
-        $v->render();
+
+        if($box){
+            $message = trim(filter_var($_POST['message_return'],FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES));
+            $box->message_return = $message;
+            $box->save();
+
+            $app->flash('success', 'Vous avez remercier le créateur de ce coffret');
+            $app->redirect($app->urlFor('visitor.token', compact('token')));
+        }
+    }
+
+    public function getWait($token){
+        $app = \Slim\Slim::getInstance(); 
+
+        $box = Box::byToken($token);
+        $date = new \DateTime($box->opening_date);
+        $date_o = $date->format('Y-m-d H:i:s');
+        $this->twigParams['date'] = $date_o;
+        $this->twigParams['urlBox'] = $this->getRoute('visitor.token', ['token' => $box->url]);
+     
+        $app->render('VisitorWaitView.twig', $this->twigParams);
     }
 
     public function getFunding($token){

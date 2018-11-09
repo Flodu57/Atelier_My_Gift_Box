@@ -126,10 +126,12 @@ class ProfileController extends Controller{
         $this->twigParams['box']['title'] = $box->title;
         $this->twigParams['box']['total'] = $box->price;
         $this->twigParams['box']['paid'] = $box->paid;
+        $this->twigParams['box']['message'] = $box->message;
+        $this->twigParams['box']['message_return'] = $box->message_return;
         $this->twigParams['box']['status'] = $box->status;
         $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeFunding', ['slug' => $box->slug]);
 
-        $offers = $box->prestations()->get();
+        $offers = $box->offers()->get();
 
         if($box->jackpot_url){
             $total = $box->price;
@@ -146,10 +148,10 @@ class ProfileController extends Controller{
             $this->twigParams['box']['payment'] = "Payer : $p $with ";
         }
 
-        if(!$box->jackpot_url && $box->prestations->count() >= 2 ) {
+        if(!$box->jackpot_url && $box->offers->count() >= 2 ) {
             $this->twigParams['box']['paymentButton']['message'] = 'Passer au payement' ;
             $this->twigParams['box']['paymentButton']['amount'] = $box->price ;
-            $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->slug]);
+            $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->url]);
 
         } else{
             $this->twigParams['box']['paymentButton']['type'] = "funding";
@@ -187,6 +189,17 @@ class ProfileController extends Controller{
 
         $app = \Slim\Slim::getInstance();
         $app->render('BoxView.twig', $this->twigParams);
+    }
+
+    public function putBox($slug){
+        $app = \Slim\Slim::getInstance();
+        $box = Box::bySlug($slug);
+        $message = trim(filter_var($_POST['message'],FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES));
+        $box->message = $message;
+        $box->save();
+
+        $app->flash('success', 'Votre message a été ajouté au coffret avec succès');
+        $app->redirect($app->urlFor('profile.box', compact('slug')));
     }
 
     public function getDeleteBox($slug){

@@ -19,6 +19,5 @@ $app->get("/offers/:category/:id", function($category, $id) {
 
 $app->post("/offers/:categorie/:id", function($categorie, $id) {
     $c = new OffersController;
-    $offer = Prestation::byId($id);
-    $c->postAddOfferToBox($offer);
+    $c->postAddOfferToBox($id);
 });
