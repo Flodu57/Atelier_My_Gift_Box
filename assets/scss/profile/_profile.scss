@@ -22,6 +22,10 @@
                 margin-left: 1%;
                 font-size: 1em;
                 margin-top: 0;
+
+                &_mail{
+                    margin-left: 10%;
+                }
             }
         }
 
@@ -32,25 +36,32 @@
             height: 50%;
             align-items: center;
 
-            .imageSettings{
-                width: 5%;
-                height: auto;
-            }
-
             .label_settings{
                 margin-left: 1%;
                 margin-top: 0;
-                margin-right: 5%;
+                margin-right: 5vw;
                 text-decoration: none;
                 color:black;
             }
         }
     }
 
+    .imageSettings{
+        width: 5%;
+        height: auto;
+    }
+
     h1{
         font-size: 1.4em;
         margin: 10px 5px 5px 1%;
     }
+}
+
+.containerProfile{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    flex-grow: 1;
 }
 
 .mybox{
@@ -131,6 +142,29 @@
             transform: translateY(-40%) translateX(40%);
             z-index: 890;
             background-color: red;
+        }
+    }
+}
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .accountInformations{
+        width: 100vw;
+
+        .accountSettings{
+            .imageSettings{
+                width: 10%;
+                height: auto;
+            }
+        }
+
+        .accountLabel{
+            font-size: 0.8em;
+        }
+
+        .label_settings{
+            font-size: 0.8em;
+            margin-right: 0;
         }
     }
 }
