@@ -1,15 +1,30 @@
 .box{
     flex-grow: 1;
+
     &_head{
-        margin-bottom: 2%;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         background-color: rgb(196, 196, 196);
-        padding: 10px;
+        padding: 10px 30px;
 
         &.visitor{
             flex-direction: column;
             align-items: center;
+        }
+
+        &_title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &_link{
+            margin: 10px 0;
+
+            .bold{
+                margin-bottom: 3px;
+            }
         }
     
         &_total{
@@ -24,16 +39,42 @@
     
     &_grid{
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        margin-bottom: 30px;
+        grid-template-columns: repeat(2, 1fr);           
         grid-column-gap: 20px;
         grid-row-gap: 15px;
-        margin-left: 10px;
-        margin-right: 10px;
+        padding: 0 30px;
+        margin-top: 20px;
 
         .containerBox{
             position: relative;
             display: flex;
+
+            .offer{
+                display: flex;
+                flex-direction: column;
+                border:2px solid black;
+                text-decoration: none;
+                color:black;
+                img{
+                    width: 100%;
+                }
+            
+                &_bottom{
+                    display: flex;
+                    flex-grow: 1;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    padding: 5px;
+            
+                    &_infos{
+                        display: flex;
+                        flex-direction: column;
+                        p:last-of-type{
+                            align-self: flex-end;
+                        }
+                    }
+                }
+            }
         }
 
         .delete{
@@ -42,7 +83,6 @@
             font-size: 1em;
             top: 0;
             right: 0;
-            border: 2px solid rgb(120, 0, 0);
             border-radius: 50%;
             height: 30px;
             width: 30px;
@@ -51,59 +91,10 @@
             align-items: center;
             color: white;
             font-weight: bolder;
-            transform: translateY(-40%) translateX(40%);
+            transform: translateY(-50%) translateX(50%);
             z-index: 0;
             background-color: red;
         }
-    }
-
-    .titleMsg{
-
-        font-size: 1.7em;
-        margin-bottom: 5px;
-    }
-    
-
-    form{
-        textarea{
-            width: 100%;
-            min-height: 200px;
-            resize: vertical;
-            padding: 10px;
-            font-family: 'Montserrat';
-            font-size: 1.2em;
-        }
-    }
-
-
-    
+    }  
 }
 
-.offer{
-    display: flex;
-    flex-direction: column;
-    border:2px solid black;
-    text-decoration: none;
-    color:black;
-    img{
-        width: 100%;
-    }
-
-    &_bottom{
-        display: flex;
-        flex-grow: 1;
-        justify-content: flex-end;
-        flex-direction: column;
-    }
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    .box{
-        &_grid{
-            grid-template-columns: repeat(2, 1fr);    
-            margin-left: 10%;
-            margin-right: 10%;
-        }
-    }
-}
