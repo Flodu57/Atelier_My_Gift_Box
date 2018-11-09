@@ -76,6 +76,10 @@
     }
 }
 
+.containerProfile{
+    flex-grow: 1;
+}
+
 .gridBox{
     display: grid;
     margin-left: 10%;
@@ -84,7 +88,6 @@
     grid-column-gap: 10px;
     grid-row-gap: 15px;
     grid-template-columns: repeat(4,1fr);
-    flex-grow: 1;
 
     a{
         text-decoration: none;
