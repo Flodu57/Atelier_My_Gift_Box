@@ -85,3 +85,15 @@
         margin-left: 13px;
     }
 }
+
+.offers_sort {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .button_sort {
+        margin-left: 10px;
+    }
+}

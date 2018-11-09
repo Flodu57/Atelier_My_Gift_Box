@@ -4,12 +4,12 @@ use mygiftbox\controllers\OffersController;
 
 $app->get("/offers", function(){
     $c = new OffersController;
-    $c->getOffers();
+    $c->getOffers(0);
 })->name('offers');
 
 $app->get("/offers/:category", function($category){
     $c = new OffersController;
-    $c->getOffers($category);
+    $c->getOffers(0, $category);
 })->name('offers.category');
 
 $app->get("/offers/:category/:id", function($category, $id) {
@@ -17,7 +17,17 @@ $app->get("/offers/:category/:id", function($category, $id) {
     $c->getDetailedOffer($id);
 })->name('detailed.offer');
 
-$app->post("/offers/:categorie/:id", function($categorie, $id) {
+$app->post("/offers/:category/:id", function($category, $id) {
     $c = new OffersController;
     $c->postAddOfferToBox($id);
+});
+
+$app->post("/offers", function() {
+    $c = new OffersController;
+    $c->getOffers(filter_var($_POST['sort'], FILTER_SANITIZE_NUMBER_INT));
+});
+
+$app->post("/offers/:category", function($category) {
+    $c = new OffersController;
+    $c->getOffers(filter_var($_POST['sort'], FILTER_SANITIZE_NUMBER_INT), $category);
 });
