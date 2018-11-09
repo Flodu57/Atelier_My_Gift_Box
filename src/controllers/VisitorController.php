@@ -28,6 +28,7 @@ class VisitorController {
         $this->twigParams['userName']  = $user->name;;
         $this->twigParams['boxTitle']  = $box->title;
         $this->twigParams['boxAmount']  = $box->jackpot_amount;
+        $this->twigParams['amount']  = $box->price;
         $this->twigParams['message']  = $box->message;
         $this->twigParams['offers']  = $reformatOffers;
 
