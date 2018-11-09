@@ -70,5 +70,9 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return $text;
     }
 
+    public static function boxesForCurrentUser(){
+        return User::current()->boxes();
+    }
+
 
 }
