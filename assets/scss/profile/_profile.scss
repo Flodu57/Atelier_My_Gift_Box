@@ -17,16 +17,6 @@
         .accountLabel{
             display: flex;
             width: 75%;
-            .label{
-                margin-right: 10%;
-                margin-left: 1%;
-                font-size: 1em;
-                margin-top: 0;
-
-                &_mail{
-                    margin-left: 10%;
-                }
-            }
         }
 
         .accountSettings{
@@ -35,14 +25,6 @@
             width: 25%;
             height: 50%;
             align-items: center;
-
-            .label_settings{
-                margin-left: 1%;
-                margin-top: 0;
-                margin-right: 5vw;
-                text-decoration: none;
-                color:black;
-            }
         }
     }
 
@@ -110,20 +92,7 @@
         color:black;
         border: 2px solid black;
 
-        .label_titreBox{
-            margin-top: 10px;
-            font-size: 1.4em;
-            margin-left:5%;
-            overflow: hidden;
-        }
-
-        .label_prixBox{
-            font-size: 1em;
-            margin-left: auto;
-            margin-right: 30%;
-            margin-top:50px;
-            margin-bottom: 2%;
-        }
+        
 
         .box_price{
             display: flex;
@@ -164,11 +133,6 @@
 
         .accountLabel{
             font-size: 0.8em;
-        }
-
-        .label_settings{
-            font-size: 0.8em;
-            margin-right: 0;
         }
     }
 

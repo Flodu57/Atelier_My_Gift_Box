@@ -1,14 +1,6 @@
 .home{
     flex-grow:1;
-    .label{
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-        &_welcome{
-            font-size: 1.5em;
-            margin-bottom: 2vh;
-        }
-    }
+    
 
     .banner{
         height: 200px;
@@ -25,11 +17,7 @@
 //RESPONSIVE
 @media(max-width: 450px){
     .home{
-        .label{
-            &_welcome{
-                text-align: center;
-            }
-        }
+        
     }
 
     

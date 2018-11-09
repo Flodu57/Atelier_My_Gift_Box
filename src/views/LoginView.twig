@@ -3,10 +3,12 @@
 {% block content %}
 
     <form class='login' method='POST'> 
-        <p class='label label_email'>Email</p>
+        <label for='email' class='label'>Email</label>
         <input type='email' name='email' class='input input_email'>
-        <p class='label label_password'>Mot de passe</p>
+
+        <label for='password' class='label'>Mot de passe</label>
         <input type='password' name='password' class='input input_password'>
+        
         <div class='login_buttons'>
             <a href='{{ urls['forgot'] }}' class='label label_passwordLost'>Mot de passe oublié ?</a>
             <button type='submit' class='button button--green'>Connexion</button>
