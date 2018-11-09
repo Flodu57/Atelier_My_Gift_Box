@@ -25,14 +25,6 @@
         color: $primary-color;
         padding: 50px 100px;
     }
-
-    .buttonLayout{
-        margin-top: 50px;
-
-        a{
-            padding: 10px 14px;
-        }
-    }
 }
 
 //RESPONSIVE
@@ -50,8 +42,5 @@
         &_date{
             width: 100%;
         }
-    }
-    .buttonLayout{
-        margin-left: 30%;
     }
 }

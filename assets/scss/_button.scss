@@ -1,0 +1,58 @@
+.button{
+    text-decoration: none;
+    font-size: 1.4em;
+    padding: 10px 14px;
+    text-align: center;
+
+    @media(max-width: 450px){
+        padding: 10px 7px;
+        font-size: 1.2em;
+    }
+
+    &--green{
+        background-color: green;
+    }
+    &_createBox{
+    }
+
+    &_addOffer{
+    }
+
+    &_sort {
+    }
+
+    &_continueBox{
+    }
+
+    &_validateBox{
+        background-color:green;
+    }
+
+    &_login{
+        font-size: 1.1em;
+    }
+
+    &_register{
+        justify-content: flex-end;
+        font-size: 1.1em;
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    &:hover{
+        background-color:$button-hover-color;
+    }
+}
+
+.buttonLayout{
+    margin-top:2%;
+    display: flex;
+
+    &-right{
+        justify-content: flex-end;
+    }
+
+    &-center{
+        justify-content: center;
+    }
+}

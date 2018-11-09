@@ -14,7 +14,7 @@
             {% if user_id %}
                 {% if unpaidBoxes is empty %}
                     <div class='buttonLayout'>
-                        <a class='button button_addOffer' href='{{ url }}' >Créer un coffret</a>
+                        <a class='button button--green' href='{{ url }}' >Créer un coffret</a>
                     </div>
                 {% else %}
                     <form method='POST' class='detailed_offer_top_add'>  
@@ -24,13 +24,11 @@
                                     <option value='{{ box.id }}'>{{ box.title }}</option>
                             {% endfor %}
                         </select>
-                        <button class='button button_addOffer' type='submit'>Valider</button>
+                        <button class='button button--green' type='submit'>Valider</button>
                     </form>
                 {% endif %}
             {% else %}
-                <div class='buttonLayout'>
-                    <a class='button button_addOffer' href='{{ urls.login }}' >Connectez vous pour commencez votre box !</a>
-                </div>
+                <a class='button button--green' href='{{ urls.login }}' >Connectez vous pour commencez!</a>
             {% endif %}
         </div>
     </div>

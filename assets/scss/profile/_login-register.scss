@@ -30,33 +30,6 @@
     width: 100%;
 }
 
-.button{
-    padding:6px 6px 6px 6px;
-	background:$primary-color;
-	color:#fff;
-	border-radius:2px;
-    border:none;
-    outline: none;
-    cursor: pointer;
-    transition: 0.5s;
-    text-decoration: none;
-
-    &_login{
-        font-size: 1.1em;
-    }
-
-    &_register{
-        justify-content: flex-end;
-        font-size: 1.1em;
-        margin-left: auto;
-        margin-right: 0;
-    }
-
-    &:hover{
-        background-color:$button-hover-color;
-    }
-}
-
 //FORGOT PASSWORD
 .forgotPassword{
     flex-grow: 1;

@@ -80,31 +80,7 @@
     }
 
 
-    .buttonLayout{
-        margin-top:2%;
-        display: flex;
-
-        &-right{
-            justify-content: flex-end;
-        }
-
-        &-center{
-            justify-content: center;
-        }
-
-        .button{
-            padding: 10px 10px 10px 10px;
-            font-size: 1.2em;
-            
-            &_continueBox{
-                margin-right: 20px;
-            }
-
-            &_validateBox{
-                background-color:green;
-            }
-        }
-    }
+    
 }
 
 .offer{
