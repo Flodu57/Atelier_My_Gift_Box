@@ -49,6 +49,8 @@ class OffersController extends Controller {
         $offer = Offer::byId($offer_id);
         $this->twigParams['offer'] = $offer;
         $this->twigParams['boxes'] = $boxes;
+        $this->twigParams['unpaidBoxes'] = Box::unpaidBoxes();
+        $this->twigParams['url'] = $app->urlFor('profile.createBox');
         $app->render('DetailedOfferView.twig', $this->twigParams);
     }
 
@@ -60,7 +62,7 @@ class OffersController extends Controller {
 
         if(!$offer->boxes()->where('id', '=', $boxId)->first()){
             if($box){
-                $box->prestations()->attach($offer);
+                $box->offers()->attach($offer);
                 $box->price = $box->price + $offer->price;
                 $box->save();
 
