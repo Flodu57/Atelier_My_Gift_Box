@@ -1,12 +1,9 @@
 .login, .register{
-    margin:0;
-    width: 35vh;
-    margin-left: auto;
-    margin-right: auto;
-
+    padding: 0 30px;
     flex-grow: 1;
-    padding-top: 20vh;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     .input{
         padding: 4px 4px 4px 4px;
