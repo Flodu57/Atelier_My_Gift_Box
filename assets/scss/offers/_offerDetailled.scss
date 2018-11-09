@@ -85,9 +85,17 @@
 
         &_top_add{
             select{
-
+                margin-top:10px;
                 border:1px inset lightgray;
                 background-color: white;
+            }
+
+            button{
+                margin-top: 10px;
+            }
+
+            p{
+                margin-top: 10px;
             }
         }
 
