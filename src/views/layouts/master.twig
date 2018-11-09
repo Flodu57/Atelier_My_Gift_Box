@@ -16,6 +16,9 @@
     {% block content %}{% endblock %}
     {% include 'partials/footer.twig' %}
 </div>
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+        <script src='{{ siteUrl('/assets/scripts/jquery.js')}}'></script>
+        <script src='{{ siteUrl('/assets/scripts/menuMobile.js')}}'></script>
+    {% endblock %}
 </body>
 </html>
