@@ -30,7 +30,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return parent::where('url', '=', $token)->first();
     }
 
-    public static function byTokenCFunding($token) {
+    public static function byTokenFunding($token) {
         return parent::where('jackpot_url', '=', $token)->first();
     }
 
@@ -68,6 +68,14 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         }
 
         return $text;
+    }
+
+    public static function boxesForCurrentUser(){
+        $boxes = '';
+        if(User::current()){
+            $boxes = User::current()->boxes();
+        }
+        return $boxes;
     }
 
 

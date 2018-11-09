@@ -43,9 +43,12 @@ class OffersController extends Controller {
         return $v->render();
     }
 
-    public function getDetailedOffer($offer){
+    public function getDetailedOffer($offer_id){
         $app = \Slim\Slim::getInstance();
+        $boxes = Box::boxesForCurrentUser();
+        $offer = Offer::byId($offer_id);
         $this->twigParams['offer'] = $offer;
+        $this->twigParams['boxes'] = $boxes;
         $app->render('DetailedOffer.twig', $this->twigParams);
     }
 

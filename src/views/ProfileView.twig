@@ -32,7 +32,13 @@
                         <p>Cagnotte</p>
                     {% endif %}
                     <div class='box_price'>
+                    {% if box.jackpot_amount %}
+                        <p class='label_prixBox'>{{ box.jackpot_amount }}/{{ box.price }} €</p>
+                    {% else %}
                         <p class='label_prixBox'>{{ box.price }} €</p>
+
+                    {% endif %}
+                    
                     </div>
                 </a>
                 <a href="{{ box.urlDeleteBox }}" class='delete'>

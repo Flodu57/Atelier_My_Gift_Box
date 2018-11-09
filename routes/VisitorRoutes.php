@@ -22,12 +22,12 @@ $app->get('/:token', 'CheckOpeningDate', function($token){
     $c->getBoxVisitor($token);
 })->name('visitor.token');
 
-$app->get('/:token_funding/cagnotte', function($token_funding){
+$app->get('/:token_funding/funding', function($token_funding){
     $c = new VisitorController();
     $c->getFunding($token_funding);
 })->name('visitor.funding');
 
-$app->post('/:token_funding/cagnotte', function($token_funding){
+$app->post('/:token_funding/funding', function($token_funding){
     $c = new VisitorController();
     $c->postFunding($token_funding);
 });
