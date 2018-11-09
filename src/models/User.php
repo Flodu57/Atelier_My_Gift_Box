@@ -26,6 +26,10 @@ class User extends \Illuminate\Database\Eloquent\Model{
         return null;
     }
 
+    public static function unpaidBoxes() {
+        return self::current()->boxes()->where('paid', '=', false)->get();
+    }
+
     public function isAdmin(){
         if($this->account_level == 2){
             return true;

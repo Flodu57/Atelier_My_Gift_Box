@@ -18,9 +18,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return parent::where('id', '=', $id)->first();
     }
 
-    public static function unpaidBoxes() {
-        return parent::where('paid', '=', 0)->get();
-    }
+    
 
     public static function byUserId($user_id) {
         return parent::where('user_id', '=', $user_id)->get();

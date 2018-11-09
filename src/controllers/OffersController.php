@@ -5,6 +5,7 @@ namespace mygiftbox\controllers;
 use mygiftbox\views\OffersView;
 use mygiftbox\views\OfferDetailedView;
 use mygiftbox\models\Box;
+use mygiftbox\models\User;
 use mygiftbox\models\Offer;
 use mygiftbox\models\Category;
 
@@ -49,7 +50,7 @@ class OffersController extends Controller {
         $offer = Offer::byId($offer_id);
         $this->twigParams['offer'] = $offer;
         $this->twigParams['boxes'] = $boxes;
-        $this->twigParams['unpaidBoxes'] = Box::unpaidBoxes();
+        $this->twigParams['unpaidBoxes'] = User::unpaidBoxes();
         $this->twigParams['url'] = $app->urlFor('profile.createBox');
         $app->render('DetailedOfferView.twig', $this->twigParams);
     }
