@@ -1,7 +1,6 @@
 @import 'variables';
 @import 'reset';
 @import 'profile/settings';
-@import 'profile/login-register';
 @import 'profile/profile';
 @import 'profile/createBox';
 @import 'profile/box';
@@ -10,6 +9,8 @@
 @import 'label';
 @import 'title';
 @import 'users/forgot_password';
+@import 'users/login';
+@import 'users/register';
 @import 'offers/offers';
 @import 'offers/offerDetailled';
 @import 'home/home';
