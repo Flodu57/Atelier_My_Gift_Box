@@ -71,9 +71,10 @@ class AdminController extends Controller {
                  'title' => $categ->title]);
         }
         $o = Offer::byId($id);
-        $offer = ['title' => '', 'description'=>'', 'price' => 0];
         if($o){
             $offer = ['title' => $o->title, 'description'=>$o->description, 'price'=>$o->price];
+        } else {
+            $offer = ['title' => '', 'description'=>'', 'price' => 0];
         }
         $this->twigParams['offer'] = $offer;
         $this->twigParams['categories'] = $categories;

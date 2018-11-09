@@ -9,7 +9,7 @@ $app->get("/offers", function(){
 
 $app->get("/offers/:category", function($category){
     $c = new OffersController;
-    $c->getOffersByCategory($category);
+    $c->getOffers($category);
 })->name('offers.category');
 
 $app->get("/offers/:category/:id", function($category, $id) {
