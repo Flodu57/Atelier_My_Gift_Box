@@ -79,7 +79,7 @@ class VisitorController extends Controller{
         $this->twigParams['box']['user'] = $box->user;
         
         $formatOffers = [];
-        $offers = $box->prestations()->get();
+        $offers = $box->offers()->get();
         foreach ($offers as $offer) {
             array_push($formatOffers, [
                 'title' => $offer->title,
