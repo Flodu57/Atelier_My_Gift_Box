@@ -71,14 +71,4 @@ class Box extends \Illuminate\Database\Eloquent\Model {
 
         return $text;
     }
-
-    public static function boxesForCurrentUser(){
-        $boxes = '';
-        if(User::current()){
-            $boxes = User::current()->boxes()->get();
-        }
-        return $boxes;
-    }
-
-
 }

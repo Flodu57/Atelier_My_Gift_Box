@@ -17,7 +17,7 @@ $app->get("/offers/:category/:id", function($category, $id) {
     $c->getDetailedOffer($id);
 })->name('detailed.offer');
 
-$app->post("/offers/:categorie/:id", function($categorie, $id) {
+$app->post("/offers/:category/:id", function($category, $id) {
     $c = new OffersController;
     $c->postAddOfferToBox($id);
 });
@@ -25,4 +25,9 @@ $app->post("/offers/:categorie/:id", function($categorie, $id) {
 $app->post("/offers", function() {
     $c = new OffersController;
     $c->getOffers(filter_var($_POST['sort'], FILTER_SANITIZE_NUMBER_INT));
+});
+
+$app->post("/offers/:category", function($category) {
+    $c = new OffersController;
+    $c->getOffers(filter_var($_POST['sort'], FILTER_SANITIZE_NUMBER_INT), $category);
 });

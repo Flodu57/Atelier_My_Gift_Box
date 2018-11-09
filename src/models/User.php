@@ -26,8 +26,20 @@ class User extends \Illuminate\Database\Eloquent\Model{
         return null;
     }
 
-    public static function unpaidBoxes() {
-        return self::current()->boxes()->where('paid', '=', false)->get();
+    public static function unpaidBoxesForCurrentUser() {
+        $boxes = '';
+        if(User::current()){
+            $boxes = self::current()->boxes()->where('paid', '=', false)->get();
+        }
+        return $boxes;
+    }
+
+    public static function boxesForCurrentUser(){
+        $boxes = '';
+        if(User::current()){
+            $boxes = self::current()->boxes()->get();
+        }
+        return $boxes;
     }
 
     public function isAdmin(){
