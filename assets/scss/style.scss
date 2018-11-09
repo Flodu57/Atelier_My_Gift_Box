@@ -1,23 +1,10 @@
-@import 'variables';
-@import 'reset';
-@import 'profile/settings';
-@import 'profile/profile';
-@import 'profile/createBox';
-@import 'profile/box';
-@import 'menu';
-@import 'button';
-@import 'label';
-@import 'title';
-@import 'users/forgot_password';
-@import 'users/login';
-@import 'users/register';
-@import 'offers/offers';
-@import 'offers/offerDetailled';
-@import 'home/home';
-@import 'visitors/box';
-@import 'visitors/wait';
-@import 'errors';
-@import 'footer';
+@import 'global';
+@import 'home';
+@import 'offers';
+@import 'profiles';
+@import 'users';
+@import 'visitors';
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 //Style général
