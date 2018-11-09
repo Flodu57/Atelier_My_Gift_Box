@@ -128,6 +128,7 @@ class ProfileController extends Controller{
         $this->twigParams['box']['paid'] = $box->paid;
         $this->twigParams['box']['message'] = $box->message;
         $this->twigParams['box']['message_return'] = $box->message_return;
+        $this->twigParams['box']['jackpot_url'] = $box->jackpot_url;
         $this->twigParams['box']['status'] = $box->status;
         $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeFunding', ['slug' => $box->slug]);
 
@@ -156,6 +157,7 @@ class ProfileController extends Controller{
         } else{
             $this->twigParams['box']['paymentButton']['type'] = "funding";
             $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.funding', ['token_funding' => $box->jackpot_url]);
+            $this->twigParams['box']['urlReceiver'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->url]);
             $this->twigParams['box']['paymentButton']['canClose'] = 0;
 
             if($box->jackpot_amount >= $box->price && $box->status != 'closed' && $box->prestations->count() >= 2){
