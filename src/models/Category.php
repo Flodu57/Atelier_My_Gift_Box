@@ -12,6 +12,10 @@ class Category extends \Illuminate\Database\Eloquent\Model {
 
     public static function byName($name){
         return parent::where('title','=', $name)->first();
-    }   
+    }
+
+    public static function byId($id){
+        return parent::where('id', '=', $id)->first();
+    }
 
 }

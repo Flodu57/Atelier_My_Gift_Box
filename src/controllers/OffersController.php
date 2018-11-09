@@ -10,14 +10,19 @@ use mygiftbox\models\Category;
 
 class OffersController extends Controller {
 
-    public function getOffers(){
+    public function getOffers($category_name = 'all'){
         $app = \Slim\Slim::getInstance();
-        $offers = [];
         $categories = [];
         foreach(Category::all() as $category){
             array_push($categories, ['title' => $category->title, 'url' => $app->urlFor('offers.category', ['category' => $category->title])]);
+        } 
+        if($category_name == 'all'){
+            $offers_pull = Offer::all();
+        } else {
+            $offers_pull = Category::byName($category_name)->offers()->get();
         }
-        foreach(Offer::all() as $offer){
+        $offers = [];
+        foreach($offers_pull as $offer){
             array_push($offers,
                 ['title' => $offer->title,
                  'img' => $offer->image,
@@ -34,13 +39,8 @@ class OffersController extends Controller {
         }
         $this->twigParams['categories'] = $categories;
         $this->twigParams['offers'] = $offers;
-        $this->twigParams['sorting_category'] = 'all';
+        $this->twigParams['sorting_category'] = $category_name;
         $app->render('OffersView.twig', $this->twigParams);
-    }
-
-    public function getOffersByCategory($category){
-        $v = new OffersView($category);
-        return $v->render();
     }
 
     public function getDetailedOffer($offer_id){
