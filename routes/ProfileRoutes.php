@@ -64,5 +64,9 @@ $app->group('/profile','checkProfile', function() use ($app){
         $c = new ProfileController();
         $c->getDeleteOffer($slug, $id);
     })->name('profile.deleteOffer');
+
+    $app->get("/:slug/payment", function($slug){
+        var_dump('pa');
+    })->name('profile.payment');
 });
 

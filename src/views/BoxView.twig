@@ -48,7 +48,8 @@
             </div>
             <div class='buttonLayout buttonLayout-center'>
                 <a href='{{ urls['offers'] }}' class='button button_continueBox'>Continuer les achats</a>
-                {{ box.paymentButton }}
+                <a href='{{ box.paymentButton.url}}' class='button button_validateBox'>{{ box.paymentButton.message }}</a>
+                
             </div>
         </div>
     </div>  

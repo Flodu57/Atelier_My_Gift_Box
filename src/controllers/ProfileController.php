@@ -144,11 +144,16 @@ class ProfileController extends Controller{
             $this->twigParams['box']['payment'] = "Payer : $p";
         }
 
-        if(!$box->jackpot_url && $box->prestations->count() >= 2 )          
-            $this->twigParams['box']['paymentButton'] = "<a href='#' class='button button_validateBox'>Passer au paiement</a>";
-        else{
-            if($box->jackpot_amount >= $box->prix_total && $box->status != 'fermé' && $box->prestations->count() >= 2)
-            $this->twigParams['box']['paymentButton']=  "<a href='$urlClose' class='button button_validateBox'>Fermer la cagnotte</a>";
+        if(!$box->jackpot_url && $box->prestations->count() >= 2 ) {
+            $urlPayment = $this->getRoute('profile.payment', ['slug' => $box->slug]);
+            $this->twigParams['box']['paymentButton']['message'] = 'Passer au payement' ;
+            $this->twigParams['box']['paymentButton']['url'] = $urlPayment;
+        } else{
+            if($box->jackpot_amount >= $box->prix_total && $box->status != 'fermé' && $box->prestations->count() >= 2){
+                $urlClose = $this->getRoute('profile.closeCagnotte', ['slug' => $box->slug]);
+                $this->twigParams['box']['paymentButton']['message'] = 'Fermer la cagnotte' ;
+                $this->twigParams['box']['paymentButton']['url'] = $urlClose;
+            }
         }       
 
         $formatOffer = [];
