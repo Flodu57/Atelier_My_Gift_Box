@@ -9,13 +9,21 @@
             <div class='box_head'>
                 <div>
                     <h2>{{ box.title }}</h2>
-                    <p>Etat : {{ box.status }}</p>
                     <p>{{ box.payment }}</p>
                 </div>
                 {% if box.status == 'closed' and box.paid %}
                     <div>
-                        <h2>Lien à partager</h2>
-                        <a href='{{ box.url }}'>{{ box.url }}</a>
+                        {% if box.jackpot_url %}
+                            <h2>Lien à partager avec les participants</h2>                            
+                            <a href='{{ box.url }}'>{{ box.url }}</a>
+
+                            <h2>Lien à partager avec le destinataire du coffret</h2>
+                            <a href='{{ box.urlReceiver }}'>{{ box.urlReceiver }}</a>
+
+                        {% else %}
+                            <h2>Lien à partager</h2>
+                            <a href='{{ box.url }}'>{{ box.url }}</a>
+                        {% endif %}
                     </div>
                 {% endif %}
                 <div class='box_head_total'>
