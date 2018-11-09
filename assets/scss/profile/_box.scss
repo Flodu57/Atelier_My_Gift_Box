@@ -36,6 +36,31 @@
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: 20px;
         grid-row-gap: 15px;
+
+        .containerBox{
+            position: relative;
+            display: flex;
+        }
+
+        .delete{
+            text-decoration: none;
+            position: absolute;
+            font-size: 1em;
+            top: 0;
+            right: 0;
+            border: 2px solid rgb(120, 0, 0);
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bolder;
+            transform: translateY(-40%) translateX(40%);
+            z-index: 890;
+            background-color: red;
+        }
     }
 
     .buttonLayout{
@@ -61,33 +86,6 @@
             &_validateBox{
                 background-color:green;
             }
-        }
-    }
-
-    &_grid{
-        .containerBox{
-            position: relative;
-            display: flex;
-        }
-
-        .delete{
-            text-decoration: none;
-            position: absolute;
-            font-size: 1em;
-            top: 0;
-            right: 0;
-            border: 2px solid rgb(120, 0, 0);
-            border-radius: 50%;
-            height: 30px;
-            width: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bolder;
-            transform: translateY(-40%) translateX(40%);
-            z-index: 890;
-            background-color: red;
         }
     }
 }

@@ -58,3 +58,25 @@
         }
     }
 }
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .menu_categories{
+        .cat_list{
+            margin-top:10px;
+            margin-bottom: 10px;
+            a{
+                display: inline-block;
+                margin-left: auto;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .offers{
+        box-sizing: border-box;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100vw;
+        grid-column-gap: 0;
+    }
+}
