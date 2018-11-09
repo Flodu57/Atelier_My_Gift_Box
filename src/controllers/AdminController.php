@@ -70,7 +70,12 @@ class AdminController extends Controller {
                 ['id' => $categ->id,
                  'title' => $categ->title]);
         }
-        $this->twigParams['offer_id'] = $id;
+        $o = Offer::byId($id);
+        $offer = ['title' => '', 'description'=>'', 'price' => 0];
+        if($o){
+            $offer = ['title' => $o->title, 'description'=>$o->description, 'price'=>$o->price];
+        }
+        $this->twigParams['offer'] = $offer;
         $this->twigParams['categories'] = $categories;
         $this->twigParams['submit'] = $app->urlFor('createModifyOffer.post', ['id' => 0]);
         $app->render('OfferManagingView.twig', $this->twigParams);

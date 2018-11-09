@@ -4,11 +4,11 @@
 
     <form method="post" enctype="multipart/form-data">
         <p class='label'>Titre</p>
-        <input type='text' name='title' class='input'>
+        <input type='text' name='title' class='input' value='{{ offer.title }}'>
         <p class='label'>Description</p>
-        <textarea name='description' placeholder=''></textarea>
+        <textarea name='description' placeholder=''>{{ offer.description }}</textarea>
         <p class='label'>Prix</p>
-        <input type='number' min="0" value="0" name='price' class='input'>
+        <input type='number' min="0" value="{{ offer.price }}" name='price' class='input'>
         <select name='category'>   
         {% for category in categories %}
             <option value='{{category.id}}'>{{ category.title }}</option>
