@@ -1,6 +1,6 @@
 {% if error %}
     <div class='errors'>
-        <p class='error danger'>{{ error }}</p>
+        <p class='error {{ error.type == 'success' ? 'success' : 'danger' }}'>{{ error.message }}</p>
     </div>
 {% endif %}
 
