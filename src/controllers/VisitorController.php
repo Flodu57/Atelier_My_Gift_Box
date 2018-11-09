@@ -71,7 +71,7 @@ class VisitorController extends Controller{
 
         // $urlOffers = $app->urlFor('offers');
 
-        $app->render('VisitorCagnotteView.twig', $this->twigParams);
+        $app->render('VisitorFundingView.twig', $this->twigParams);
     }
 
     public function postFunding($token){
