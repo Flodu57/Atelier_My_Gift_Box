@@ -15,6 +15,11 @@
             {% endfor %}
         </div>
     </div>
+    <form method='POST' class='offers_sort'>
+        <label>Croissant<input type='radio' name='sort' value='0' checked></label>
+        <label>Décroissant<input type='radio' name='sort' value='1'></label>
+        <input type='submit' value='Trier'>
+    </form>
     <div class='offers'> 
     {% for offer in offers %}
     {% if (user_level == 2 and offer.on_hold) or not offer.on_hold %}
