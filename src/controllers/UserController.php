@@ -46,8 +46,8 @@ class UserController extends Controller{
     }
 
     public function getRegister(){
-        $v = new RegisterView();
-        $v->render();
+        $app = \Slim\Slim::getInstance(); 
+        $app->render('RegisterView.twig', $this->twigParams);
     }
 
     public function postRegister(){

@@ -1,4 +1,13 @@
 RewriteEngine On
+DirectoryIndex index.php
+
+## RewriteBase indispensable sur webetu :
+# RewriteBase /www/username0/mywishlist
+
+RewriteRule ^src(/.*|)$ - [NC,F]
+RewriteRule ^vendor(/.*|)$ - [NC,F]
+RewriteRule ^routes(/.*|)$ - [NC,F]
+
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

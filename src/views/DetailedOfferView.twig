@@ -16,7 +16,9 @@
                 <form method='POST' class='detailled_offer_top_add'>
                     <p>Ajouter à la box </p>
                     <select name='box_id'>
-                        
+                        {% for box in boxes %}
+                            <option value='{{ boxes.id }}'>{{ boxes.titre }}</option>
+                        {% endfor %}
                     </select>
                     <button class='button button_addOffer' type='submit'>Valider</button>
                 </form>
