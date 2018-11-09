@@ -1,6 +1,7 @@
 <?php
 
 use mygiftbox\models\User;
+use mygiftbox\models\Box;
 use mygiftbox\controllers\ProfileController;
 
 function checkProfile($route){
@@ -50,10 +51,26 @@ $app->group('/profile','checkProfile', function() use ($app){
         $c->getBox($slug);
     })->name('profile.box');
 
-    $app->get("/:slug/closeCagnotte", function($slug){
+    $app->post("/:slug", function($slug){
+        $app = \Slim\Slim::getInstance();
+
+        $box = Box::bySlug($slug);
+
+        if($box){
+            $box->paid = 1;
+            $box->status = 'closed';
+            $box->payment_method = 'stripe';
+            $box->save();
+        }
+
+        $app->flash('success', 'Votre payement a été fait avec succés !');
+        $app->redirect($app->urlFor('profile'));
+    });
+
+    $app->get("/:slug/closeFunding", function($slug){
         $c = new ProfileController();
-        $c->getCloseCagnotte($slug);
-    })->name('profile.closeCagnotte');
+        $c->getCloseFunding($slug);
+    })->name('profile.closeFunding');
 
     $app->get("/deletebox/:slug", function($slug){
         $c = new ProfileController();

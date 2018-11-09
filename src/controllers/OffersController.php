@@ -25,9 +25,9 @@ class OffersController extends Controller {
                  'price' => $offer->price,
                  'on_hold' => $offer->on_hold,
                  'urls' => [
-                        'main' => $app->urlFor('detailed.offer', ['category' => $offer->category->title, 'id' => $offer->id]),
+                        'main' => $app->urlFor('detailed.offer', ['category' => $offer->category()->first()->title, 'id' => $offer->id]),
                         'delete' => $app->urlFor('deleteOffer', ['id' => $offer->id]),
-                        'modify' => $app->urlFor('modifyOffer', ['id' => $offer->id]),
+                        'modify' => $app->urlFor('createModifyOffer', ['id' => $offer->id]),
                         'lock' => $app->urlFor('lockOffer', ['id' => $offer->id])
                         ],
                 ]);
@@ -43,10 +43,13 @@ class OffersController extends Controller {
         return $v->render();
     }
 
-    public function getDetailedOffer($offer){
+    public function getDetailedOffer($offer_id){
         $app = \Slim\Slim::getInstance();
+        $boxes = Box::boxesForCurrentUser();
+        $offer = Offer::byId($offer_id);
         $this->twigParams['offer'] = $offer;
-        $app->render('DetailedOffer.twig', $this->twigParams);
+        $this->twigParams['boxes'] = $boxes;
+        $app->render('DetailedOfferView.twig', $this->twigParams);
     }
 
     public function postAddOfferToBox($offer){

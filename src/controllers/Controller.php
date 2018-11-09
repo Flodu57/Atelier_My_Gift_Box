@@ -19,7 +19,8 @@ class Controller{
             'createBox' => $app->urlFor('profile.createBox'),
             'box' => $app->urlFor('profile.box', compact('slug')),
             'home' => $app->urlFor('home'),
-            'offer' => $app->urlFor('detailed.offer')
+            'offer' => $app->urlFor('detailed.offer'),
+            'createOffer' => $app->urlFor('createModifyOffer', ['id' => 0])
         ];
         $this->twigParams['urls'] = $this->urls;
         if(isset($_SESSION['id_user'])){
@@ -30,10 +31,10 @@ class Controller{
             $this->twigParams['user_level'] = 0;
         }
         if(isset($_SESSION['slim.flash']['success'])){
-            $this->twigParams['error'] = $_SESSION['slim.flash']['success'];
+            $this->twigParams['error'] = ['message' => $_SESSION['slim.flash']['success'], 'type' => array_keys($_SESSION['slim.flash'])[0]];
         }
         if(isset($_SESSION['slim.flash']['error'])){
-            $this->twigParams['error'] = $_SESSION['slim.flash']['error'];
+            $this->twigParams['error'] = ['message' => $_SESSION['slim.flash']['error'], 'type' => array_keys($_SESSION['slim.flash'])[0]];
         }   
     }
 

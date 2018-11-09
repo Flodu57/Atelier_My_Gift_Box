@@ -1,6 +1,5 @@
 {% extends "layouts/master.twig" %}
 {% block content %}
-
 <div class='detailled_offer'>  
     <div class='detailled_offer_top'>  
         <img src='{{ siteUrl('assets/img/offers/' ~ offer.image  )}}'>
@@ -16,7 +15,9 @@
                 <form method='POST' class='detailled_offer_top_add'>
                     <p>Ajouter à la box </p>
                     <select name='box_id'>
-                        
+                        {% for box in boxes %}
+                            <option value='{{ box.id }}'>{{ box.title }}</option>
+                        {% endfor %}
                     </select>
                     <button class='button button_addOffer' type='submit'>Valider</button>
                 </form>

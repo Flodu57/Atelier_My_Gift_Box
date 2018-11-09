@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `email`, `name`, `first_name`, `password`, `account_level`) VALUES
-(1, 'atelier_mygiftbox@outlook.com', 'admin', 'admin', '$2y$10$hNoKt.t8BCImVwm/3G8H5OamOcD3RrGkLa3n3lfrmGp8af5HFLHOi', 2);
+(1, 'atelier_mygiftbox@outlook.fr', 'admin', 'admin', '$2y$10$hNoKt.t8BCImVwm/3G8H5OamOcD3RrGkLa3n3lfrmGp8af5HFLHOi', 2);
 
 -- CATEGORIES
 DROP TABLE IF EXISTS `categories`;

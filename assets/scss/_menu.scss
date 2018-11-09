@@ -2,13 +2,29 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
+
+    .menu_content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1600px;
+
+        a{
+            padding: 20px;
+        }
+    }
+
+
+    
 
     a{  
         transition: 0.5s;
         padding-bottom: 5px;
         padding-top: 5px;
-        border-bottom: 2px solid $primary-color;
-        border-top: 2px solid transparent;
+        // border-bottom: 2px solid $primary-color;
+        // border-top: 2px solid transparent;
         font-size: 1.2em;
         text-decoration: none;
         color:black;
@@ -20,7 +36,6 @@
     }
 
     img{
-        width:10%
     }
 }
 
