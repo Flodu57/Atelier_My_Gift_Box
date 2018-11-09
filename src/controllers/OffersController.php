@@ -15,13 +15,13 @@ class OffersController extends Controller {
         $categories = [];
         foreach(Category::all() as $category){
             array_push($categories, ['title' => $category->title, 'url' => $app->urlFor('offers.category', ['category' => $category->title])]);
-        }
-        $offers = [];
+        } 
         if($category_name == 'all'){
             $offers_pull = Offer::all();
         } else {
             $offers_pull = Category::byName($category_name)->offers()->get();
         }
+        $offers = [];
         foreach($offers_pull as $offer){
             array_push($offers,
                 ['title' => $offer->title,
@@ -39,7 +39,7 @@ class OffersController extends Controller {
         }
         $this->twigParams['categories'] = $categories;
         $this->twigParams['offers'] = $offers;
-        $this->twigParams['sorting_category'] = 'all';
+        $this->twigParams['sorting_category'] = $category_name;
         $app->render('OffersView.twig', $this->twigParams);
     }
 

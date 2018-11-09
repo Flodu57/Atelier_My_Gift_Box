@@ -19,6 +19,10 @@ class Offer extends \Illuminate\Database\Eloquent\Model {
         return parent::where('id', '=', $id)->first();
     }
 
+    public static function availables(){
+        return parent::where('on_hold','=',false)->get();
+    }
+
     public static function addNew($title, $description, $price, $img, $category_id){
         $app = \Slim\Slim::getInstance();
         $offer = new Offer();
