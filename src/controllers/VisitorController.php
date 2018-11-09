@@ -6,6 +6,7 @@ use mygiftbox\views\VisitorBoxView;
 use mygiftbox\views\VisitorWaitView;
 use mygiftbox\views\VisitorFundingView;
 use mygiftbox\models\Box;
+use mygiftbox\models\User;
 
 class VisitorController extends Controller{
 

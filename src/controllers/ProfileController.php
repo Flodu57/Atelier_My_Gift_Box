@@ -126,6 +126,8 @@ class ProfileController extends Controller{
         $this->twigParams['box']['title'] = $box->title;
         $this->twigParams['box']['total'] = $box->price;
         $this->twigParams['box']['paid'] = $box->paid;
+        $this->twigParams['box']['message'] = $box->message;
+        $this->twigParams['box']['message_return'] = $box->message_return;
         $this->twigParams['box']['status'] = $box->status;
         $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeFunding', ['slug' => $box->slug]);
 
@@ -187,6 +189,17 @@ class ProfileController extends Controller{
 
         $app = \Slim\Slim::getInstance();
         $app->render('BoxView.twig', $this->twigParams);
+    }
+
+    public function putBox($slug){
+        $app = \Slim\Slim::getInstance();
+        $box = Box::bySlug($slug);
+        $message = trim(filter_var($_POST['message'],FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES));
+        $box->message = $message;
+        $box->save();
+
+        $app->flash('success', 'Votre message a été ajouté au coffret avec succès');
+        $app->redirect($app->urlFor('profile.box', compact('slug')));
     }
 
     public function getDeleteBox($slug){

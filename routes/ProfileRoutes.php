@@ -51,6 +51,11 @@ $app->group('/profile','checkProfile', function() use ($app){
         $c->getBox($slug);
     })->name('profile.box');
 
+    $app->put("/:slug", function($slug){
+        $c = new ProfileController();
+        $c->putBox($slug);
+    });
+
     $app->post("/:slug", function($slug){
         $app = \Slim\Slim::getInstance();
 

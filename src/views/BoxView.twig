@@ -51,15 +51,30 @@
 
         
             </div>
-            <form method='POST'>
-                <h1>Ajouter un message a votre coffret</h1>
-                <input type='hidden' name='_METHOD' value='PUT'>
-                <textarea name='message' placeholder='Votre message'></textarea>
-                <div class="buttonLayout buttonLayout-right">
-                    <button class='button button_validateBox' type='submit'>Sauvegarder</button>
-                </div>
+                {% if box.message %}
+                    {% if box.paid == 0 %}
                 
-            </form>
+                    <form method='POST'>
+                        <h1 class='titleMsg'>Ajouter un message a votre coffret</h1>
+                        <input type='hidden' name='_METHOD' value='PUT'>
+                            <textarea name='message' placeholder='Votre message'>{{ box.message ? box.message : ''}}</textarea>
+                        <div class="buttonLayout buttonLayout-right">
+                            <button class='button button_validateBox' type='submit'>Sauvegarder</button>
+                        </div>
+                        
+                    </form>
+                    {% else %}
+                        <h1 class='titleMsg'>Message attaché au coffret</h1>
+                        <p>{{box.message}}</p>
+
+                        {% if box.message_return %}
+                            <h1 class='titleMsg'>Message de remerciement</h1>
+                            <p>{{box.message_return}}</p>
+                        {% endif %}
+
+                    {% endif %}
+                {% endif %}
+                
             <div class='buttonLayout buttonLayout-center'>
                 {% if box.status != 'closed' %}
                 <a href='{{ urls['offers'] }}' class='button button_continueBox'>Continuer les achats</a>

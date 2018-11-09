@@ -34,11 +34,14 @@
         grid-row-gap: 15px;
     }
 
+    .titleMsg{
+
+        font-size: 1.7em;
+        margin-bottom: 5px;
+    }
+    
+
     form{
-        h1{
-            font-size: 1.7em;
-            margin-bottom: 5px;
-        }
         textarea{
             width: 100%;
             min-height: 200px;
