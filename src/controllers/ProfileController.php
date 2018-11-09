@@ -224,12 +224,12 @@ class ProfileController extends Controller{
 
         $box = Box::bySlug($slug);
 
-        $prestation = $box->prestations()->where('id', '=', $id)->first();
+        $offer = $box->offers()->where('id', '=', $id)->first();
 
-        if($box && $prestation){
-            $box->prix_total = $box->prix_total - $prestation->prix;
+        if($box && $offer){
+            $box->price = $box->price - $offer->price;
             $box->save();
-            $box->prestations()->detach($id);
+            $box->offers()->detach($id);
             $app->flash('success','Prestation supprimée avec succès.');
         }else{
             $app->flash('error','Une erreur s\'est produite !');
