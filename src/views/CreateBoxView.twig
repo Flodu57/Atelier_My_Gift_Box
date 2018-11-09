@@ -3,24 +3,26 @@
 {% block content %}
 
 <div class='create_box'>
-    <h1>Créer une box</h1>
+    <h1 class='title title_1 title--bg'>Créer une box</h1>
 
     <form class='create_box_form' method='POST'>
         <div class='form_group'>
             <label for='title' class='label'>Titre</label>
-            <input type='text' name='title' class='input input_title'>
+            <input type='text' name='title' class='input'>
         </div>
 
         <div class='form_group'>
             <label for='date' class='label'>Date</label>
-            <input type='date' name='date' class='input input_date' id='inputdate'>
+            <input type='date' name='date' class='input' id='inputdate'>
         </div>
 
         <div class='form_group'>
-            <label for='funding' class='label'>Cagnotte</p>
-            <input type='checkbox' name='funding' class='input'>
+            <label for='funding' class='label'>Cagnotte</label>
+            <input type='checkbox' name='funding'>
         </div>
-        <button type='submit' class='button buttonCreateBox'>Créer</button>
+        <div class='buttonLayout buttonLayout--right'>
+            <button type='submit' class='button button--green'>Créer</button>
+        </div>
     </form>
 </div>
 

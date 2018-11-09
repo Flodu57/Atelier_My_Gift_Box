@@ -2,6 +2,11 @@
     margin-top: 10px;
 
     input{
+
+        &[type=checkbox]{
+            width: auto;
+        }
+
         width: 100%;
         padding: 10px 14px;
         margin-top: 10px;

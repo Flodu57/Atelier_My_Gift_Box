@@ -1,22 +1,13 @@
 .create_box{
     flex-grow: 1;
-    margin-top: 50px;
-
+    display: flex;
+    flex-direction: column;
     
-
     &_form{
-        margin-top: 30px;
+        padding: 0 30px ;
         display: flex;
-    }
-
-    
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    .create_box{
-        &_form{
-            flex-direction: column;
-        }
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: center;
     }
 }
