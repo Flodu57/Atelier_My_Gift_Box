@@ -4,7 +4,7 @@ namespace mygiftbox\controllers;
 
 use mygiftbox\views\VisitorBoxView;
 use mygiftbox\views\VisitorWaitView;
-use mygiftbox\views\VisitorCagnotteView;
+use mygiftbox\views\VisitorFundingView;
 use mygiftbox\models\Box;
 
 class VisitorController extends Controller{
@@ -41,9 +41,14 @@ class VisitorController extends Controller{
         $v->render();
     }
 
-    public function getCagnotte($token){
+    public function getFunding($token){
         $app = \Slim\Slim::getInstance();
-        $box = Box::byTokenCagnotte($token);
+        $box = Box::byTokenFunding($token);
+
+        if(!$box){
+            $app->redirect($app->urlFor('home'));
+        }
+
         $this->twigParams['box']['title'] = $box->title;
         $this->twigParams['box']['total'] = $box->price;
         $this->twigParams['box']['jackpot_amount'] = $box->jackpot_amount;
@@ -66,11 +71,11 @@ class VisitorController extends Controller{
 
         // $urlOffers = $app->urlFor('offers');
 
-        $app->render('VisitorCagnotteView.twig', $this->twigParams);
+        $app->render('VisitorFundingView.twig', $this->twigParams);
     }
 
-    public function postCagnotte($token){
-        $box = Box::byTokenCagnotte($token);
+    public function postFunding($token){
+        $box = Box::byTokenFunding($token);
         $app = \Slim\Slim::getInstance();
 
         if($box && $box->jackpot_url){
@@ -82,15 +87,15 @@ class VisitorController extends Controller{
                 $box->jackpot_amount = $box->jackpot_amount + intval($_POST['amount']);
                 $box->save();
                 $app->flash('success', "Merci de votre participation !");
-                $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));
+                $app->redirect($app->urlFor('visitor.funding', ['token_funding' => $token]));
                 
             }else{
                 $app->flash('error', "Une erreur est survenue");
-                $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));
+                $app->redirect($app->urlFor('visitor.funding', ['token_funding' => $token]));
             }
         }else{
             $app->flash('error', "Une erreur est survenue");
-                $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));
+                $app->redirect($app->urlFor('visitor.funding', ['token_funding' => $token]));
         }
     }
 
