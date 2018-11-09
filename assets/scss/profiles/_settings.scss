@@ -1,20 +1,12 @@
 .settings{
-
+    flex-grow: 1;
     &_password, &_delete{
         margin-bottom: 30px;
         form{
             display: flex;
             flex-direction: column;
             margin: 0;
-            margin-left:10px;
-        }
-    }
-
-    &_delete{
-        form{
-            button{
-                background-color: red;
-            }
+            padding: 0 30px;
         }
     }
 }
