@@ -118,8 +118,9 @@ class UserController extends Controller{
     }
 
     public function getForgotPassword(){
-        $v = new ForgotPasswordView();
-        $v->render();
+        $app = \Slim\Slim::getInstance(); 
+        
+        $app->render('ForgotPassword.twig', $this->twigParams);
     }
 
     public function postForgotPassword(){
