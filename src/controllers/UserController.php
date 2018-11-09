@@ -53,40 +53,40 @@ class UserController extends Controller{
     public function postRegister(){
         $app = \Slim\Slim::getInstance();
         if (isset($_POST['password']) && isset($_POST['password_confirm']) && isset($_POST['email']) && isset($_POST['lastname']) && isset($_POST['firstname'])) {
-            $nom = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-            $prenom = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
+            $last_name = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+            $first_name = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $hash = password_hash($password, PASSWORD_BCRYPT);
-                if (password_verify(filter_var($_POST['password_confirm'], FILTER_SANITIZE_STRING), $hash)) {
-                    if(!User::exists($email)){
-                        $mailer = new ServerMailer($app);
-                        $options = [0 => password_hash($hash, PASSWORD_BCRYPT)];
-                        if($mailer->sendMail($email, $options, 'register')){
-                            User::addNew($email, $hash, $nom, $prenom);
-                            $app->flash('success', "Vous vous êtes inscrit avec succès. Veuillez consulter vôtre boîte mail pour valider vôtre compte");
-                            $app->redirect($app->urlFor('login'));
-                        } else {
-                            $app->flash('error',"L'adresse email fournie est invalide");
-                            $app->redirect('register');
+                if(strlen($password) >= 8){
+                    $hash = password_hash($password, PASSWORD_BCRYPT);
+                    if (password_verify(filter_var($_POST['password_confirm'], FILTER_SANITIZE_STRING), $hash)) {
+                        if(!User::exists($email)){
+                            $mailer = new ServerMailer($app);
+                            $options = [0 => password_hash($hash, PASSWORD_BCRYPT)];
+                            if($mailer->sendMail($email, $options, 'register')){
+                                User::addNew($email, $hash, $last_name, $first_name);
+                                $app->flash('success', "Vous vous êtes inscrit avec succès. Veuillez consulter vôtre boîte mail pour valider vôtre compte");
+                                $app->redirect($app->urlFor('login'));
+                            } else {
+                                $app->flash('error',"L'adresse email fournie est invalide");
+                            }
+                        }else{
+                            $app->flash('error', "L'utilisateur existe déjà");
                         }
-                    }else{
-                        $app->flash('error', "L'utilisateur existe déjà");
-                        $app->redirect('register');
+                    } else {
+                        $app->flash('error', 'Les mots de passes ne sont pas identiques');
                     }
                 } else {
-                    $app->flash('error', 'Les mots de passes ne sont pas identiques');
-                    $app->redirect('register');
+                    $app->flash('error', "Veuillez saisir un mot de passe d'au moins 8 caractères.");
                 }
             } else {
                 $app->flash('error', 'Veuillez entrer une adresse email valide');
-                $app->redirect('register');
             }
         } else {
             $app->flash('error', 'Veuillez remplir tous les champs');
-            $app->redirect('register');
         }
+        $app->redirect('register');
     }
 
     public function getRegisterMailCheck(){

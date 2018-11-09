@@ -2,12 +2,10 @@
 
 {% block content %}
 <div class='container'>
-    {% include 'partials/menu.twig' %}
-    {% include 'partials/error.twig' %}
 
     <div class='settings'>
         <div class='settings_password'>
-            <h1>Changer son mot de passe</h1>
+            <h1>Changer votre mot de passe</h1>
 
             <form method='POST'>
                 <input placeholder='Mot de passe actuel' type='password' name='password'>
@@ -17,7 +15,7 @@
         </div>
 
         <div class='settings_delete'>
-            <h1>Supprimer son compte</h1>
+            <h1>Supprimer votre compte</h1>
 
             <form method='post'>
                 <input placeholder='Mot de passe actuel' type='password' name='password'>

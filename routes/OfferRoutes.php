@@ -9,7 +9,7 @@ $app->get("/offers", function(){
 
 $app->get("/offers/:category", function($category){
     $c = new OffersController;
-    $c->getOffersByCategory($category);
+    $c->getOffers($category);
 })->name('offers.category');
 
 $app->get("/offers/:category/:id", function($category, $id) {
@@ -19,6 +19,5 @@ $app->get("/offers/:category/:id", function($category, $id) {
 
 $app->post("/offers/:categorie/:id", function($categorie, $id) {
     $c = new OffersController;
-    $offer = Prestation::byId($id);
-    $c->postAddOfferToBox($offer);
+    $c->postAddOfferToBox($id);
 });

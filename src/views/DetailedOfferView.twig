@@ -12,15 +12,21 @@
                 <p class='price'>{{ offer.price }} €</p>
             </div>
             {% if user_id %}
-                <form method='POST' class='detailled_offer_top_add'>
-                    <p>Ajouter à la box </p>
-                    <select name='box_id'>
-                        {% for box in boxes %}
-                            <option value='{{ box.id }}'>{{ box.title }}</option>
-                        {% endfor %}
-                    </select>
-                    <button class='button button_addOffer' type='submit'>Valider</button>
-                </form>
+                {% if unpaidBoxes is empty %}
+                    <div class='buttonLayout'>
+                        <a class='button button_addOffer' href='{{ url }}' >Créer un coffret</a>
+                    </div>
+                {% else %}
+                    <form method='POST' class='detailled_offer_top_add'>  
+                        <p>Ajouter à la box </p>
+                        <select name='box_id'>
+                            {% for box in unpaidBoxes %}
+                                    <option value='{{ box.id }}'>{{ box.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class='button button_addOffer' type='submit'>Valider</button>
+                    </form>
+                {% endif %}
             {% endif %}
         </div>
     </div>

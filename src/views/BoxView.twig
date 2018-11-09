@@ -7,13 +7,21 @@
             <div class='box_head'>
                 <div>
                     <h2>{{ box.title }}</h2>
-                    <p>Etat : {{ box.status }}</p>
                     <p>{{ box.payment }}</p>
                 </div>
                 {% if box.status == 'closed' and box.paid %}
                     <div>
-                        <h2>Lien à partager</h2>
-                        <a href='{{ box.url }}'>{{ box.url }}</a>
+                        {% if box.jackpot_url %}
+                            <h2>Lien à partager avec les participants</h2>                            
+                            <a href='{{ box.url }}'>{{ box.url }}</a>
+
+                            <h2>Lien à partager avec le destinataire du coffret</h2>
+                            <a href='{{ box.urlReceiver }}'>{{ box.urlReceiver }}</a>
+
+                        {% else %}
+                            <h2>Lien à partager</h2>
+                            <a href='{{ box.url }}'>{{ box.url }}</a>
+                        {% endif %}
                     </div>
                 {% endif %}
                 <div class='box_head_total'>
@@ -49,6 +57,30 @@
 
         
             </div>
+                {% if box.message %}
+                    {% if box.paid == 0 %}
+                
+                    <form method='POST'>
+                        <h1 class='titleMsg'>Ajouter un message a votre coffret</h1>
+                        <input type='hidden' name='_METHOD' value='PUT'>
+                            <textarea name='message' placeholder='Votre message'>{{ box.message ? box.message : ''}}</textarea>
+                        <div class="buttonLayout buttonLayout-right">
+                            <button class='button button_validateBox' type='submit'>Sauvegarder</button>
+                        </div>
+                        
+                    </form>
+                    {% else %}
+                        <h1 class='titleMsg'>Message attaché au coffret</h1>
+                        <p>{{box.message}}</p>
+
+                        {% if box.message_return %}
+                            <h1 class='titleMsg'>Message de remerciement</h1>
+                            <p>{{box.message_return}}</p>
+                        {% endif %}
+
+                    {% endif %}
+                {% endif %}
+                
             <div class='buttonLayout buttonLayout-center'>
                 {% if box.status != 'closed' %}
                 <a href='{{ urls['offers'] }}' class='button button_continueBox'>Continuer les achats</a>

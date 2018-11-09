@@ -11,8 +11,8 @@ function CheckOpeningDate($route){
     if(!$box)
         $app->redirect($app->urlFor('home'));
     
-    $date_ouverture = new DateTime($box->date_ouverture);
-    if($date_ouverture > new DateTime('now')){
+    $opening_date = new DateTime($box->opening_date);
+    if($opening_date > new DateTime('now')){
         $app->redirect($app->urlFor('visitor.wait', compact('token')));
     }
 }
@@ -21,6 +21,11 @@ $app->get('/:token', 'CheckOpeningDate', function($token){
     $c = new VisitorController();
     $c->getBoxVisitor($token);
 })->name('visitor.token');
+
+$app->post('/:token', 'CheckOpeningDate', function($token){
+    $c = new VisitorController();
+    $c->postThanks($token);
+});
 
 $app->get('/:token_funding/funding', function($token_funding){
     $c = new VisitorController();
