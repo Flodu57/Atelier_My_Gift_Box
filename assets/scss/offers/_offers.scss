@@ -78,8 +78,10 @@
 
     .offers{
         box-sizing: border-box;
-        grid-template-columns: repeat(2, 1fr);
-        width: 100vw;
-        grid-column-gap: 0;
+        grid-template-columns: repeat(2, 50%);
+        grid-column-gap: 15px;
+        width: 90%;
+        margin-right: 10px;
+        margin-left: 13px;
     }
 }

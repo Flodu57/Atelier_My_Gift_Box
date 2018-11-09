@@ -133,3 +133,14 @@
         }
     }
 }
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .box{
+        &_grid{
+            grid-template-columns: repeat(2, 1fr);    
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+    }
+}
