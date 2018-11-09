@@ -2,36 +2,43 @@
 //ACCOUNT
 .accountInformations{
     background-color:rgb(196, 196, 196);
-    height: 10vh;
-    width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    padding: 10px 0;
 
-    .accountInformations{
+    .accountInformation{
         display: flex;
-        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 30px;
 
-        .accountLabel{
+        .account{
             display: flex;
-            width: 75%;
+            flex-direction: column;
+
+            &_id{
+                display: flex;
+                justify-content: space-between;
+            }
         }
 
         .accountSettings{
             display: flex;
             justify-content: flex-end;
-            width: 25%;
-            height: 50%;
             align-items: center;
+
+            .imageSettings{
+                width: 30px;
+                height: auto;
+            }
+
+            a span{
+                display: none;
+            }
         }
     }
 
-    .imageSettings{
-        width: 5%;
-        height: auto;
-    }
+    
 }
 
 .containerProfile{
@@ -42,10 +49,9 @@
 }
 
 .mybox{
-    margin-top: 2%;
-    margin-left: 10%;
-    align-items: center;
     display: flex;
+    align-items: center;
+    padding: 15px 30px;
 
     .imageMybox{
         margin-top: 10px;
@@ -55,8 +61,8 @@
     }
      
     .fa-plus{
-        color: $primary-color;
-        margin-top:50%;
+        color: white;
+        margin-right: 5px;
     }
 }
 
@@ -66,12 +72,11 @@
 
 .gridBox{
     display: grid;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 1%;
+    padding: 0 30px;
     grid-column-gap: 10px;
     grid-row-gap: 15px;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: 1fr;
+    
 
     a{
         text-decoration: none;
@@ -80,21 +85,17 @@
 
     .boxItem{
         position: relative;
-        color:black;
-        border: 2px solid black;
+        color:$secondary-color;
+        border: 1px solid $secondary-color;
+        padding: 10px;
+        margin-top: 6px;
 
-        
-
-        .box_price{
-            display: flex;
-        }
 
         .delete{
             position: absolute;
             font-size: 1em;
             top: 0;
             right: 0;
-            border: 2px solid rgb(120, 0, 0);
             border-radius: 50%;
             height: 30px;
             width: 30px;
@@ -103,31 +104,9 @@
             align-items: center;
             color: white;
             font-weight: bolder;
-            transform: translateY(-40%) translateX(40%);
-            z-index: 890;
+            transform: translateY(-50%) translateX(50%);
+            z-index: 2;
             background-color: red;
         }
-    }
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    .accountInformations{
-        width: 100vw;
-
-        .accountSettings{
-            .imageSettings{
-                width: 10%;
-                height: auto;
-            }
-        }
-
-        .accountLabel{
-            font-size: 0.8em;
-        }
-    }
-
-    .gridBox{
-        grid-template-columns: repeat(2, 50%);
     }
 }

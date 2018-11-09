@@ -4,23 +4,27 @@
 
 <div class='containerProfile'>
     <div class='accountInformations'> 
-        <h1 class='title title_informations'>Mes informations</h1>
-        <div class='accountInformations'>
-            <div class='accountLabel'>
-                <p class='label label_firstname'>{{ user.first_name }}</p>
-                <p class='label label_lastname'>{{ user.name }}</p>
-                <p class='label label_mail'>{{ user.email }}</p>
+        <h1 class='title title_1'>Mes informations</h1>
+        <div class='accountInformation'>
+            <div class='account'>
+                <div class='account_id'>
+                    <p>{{ user.first_name }}</p>
+                    <p>{{ user.name }}</p>
+                </div>
+                <p>{{ user.email }}</p>
             </div>
             <div class='accountSettings'>
-                <img src='{{ siteUrl('assets/img/settings.svg')}}' class='imageSettings'>
-                <a href='{{ urls['settings'] }}' class='label label_settings'>Paramètres</a>
+                <a href='{{ urls['settings'] }}' class=''>
+                    <i class='fa fa-cog fa-2x'></i>
+                    <span>Paramètres</span>
+                </a>
             </div>
         </div>
     </div>
     <div class='mybox'>
-        <h1 class='title title_informations'>Mes box</h1>
-        <a href='{{ urls['createBox'] }}'>
-            <i class='fas fa-plus'></i>
+        <h2 class='title title_2'>Mes box</h2>
+        <a class='button button--green' href='{{ urls['createBox'] }}'>
+            <i class='fas fa-plus'></i>Ajouter
         </a>
     </div>
     <div class='gridBox'>
@@ -32,13 +36,12 @@
                         <p>Cagnotte</p>
                     {% endif %}
                     <div class='box_price'>
-                    {% if box.jackpot_amount %}
-                        <p class='label_prixBox'>{{ box.jackpot_amount }}/{{ box.price }} €</p>
-                    {% else %}
-                        <p class='label_prixBox'>{{ box.price }} €</p>
+                        {% if box.jackpot_amount %}
+                            <p>{{ box.jackpot_amount }}/{{ box.price }} €</p>
+                        {% else %}
+                            <p>{{ box.price }} €</p>
 
-                    {% endif %}
-                    
+                        {% endif %}
                     </div>
                 </a>
                 <a href="{{ box.urlDeleteBox }}" class='delete'>
