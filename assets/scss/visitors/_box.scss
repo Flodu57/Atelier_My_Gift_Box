@@ -3,22 +3,47 @@
     h3{
         font-size: 1.9em;
         margin-bottom: 20px;
-    }
-
-    
+    }   
 }
 
 .form_thank{
     h3{
         font-size: 1.9em;
         margin-bottom: 20px;
+        background-color: lightgray;
     }
-    textarea{
-        width: 100%;
+    .textVisitor{
+        width: 95%;
         min-height: 300px;
         padding: 10px;
         font-family: 'Montserrat';
         font-size: 16px;
         resize: vertical;
+    }
+}
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .thanks{
+        h3{
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+    }
+
+    .form_thank{
+        h3{
+            text-align: center;
+        }
+
+        .textVisitor{
+            border:1px inset lightgray;
+            margin-right: 10px;
+            margin-left: 10px;
+            min-height: 200px;
+        }
+    }
+    button{
+        margin-right: 10px;
     }
 }

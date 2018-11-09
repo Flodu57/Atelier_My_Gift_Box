@@ -34,3 +34,24 @@
         }
     }
 }
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .couldown_title{
+        height: 50%;
+        font-size: 1.6em;
+        width: 100%;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .countdown{
+        display: inline;
+        &_date{
+            width: 100%;
+        }
+    }
+    .buttonLayout{
+        margin-left: 30%;
+    }
+}
