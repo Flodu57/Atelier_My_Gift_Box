@@ -36,9 +36,21 @@ class VisitorController extends Controller{
     }
 
     public function getWait($token){
+        $app = \Slim\Slim::getInstance(); 
+
         $box = Box::byToken($token);
-        $v = new VisitorWaitView($box);
-        $v->render();
+
+
+
+        $date = new \DateTime($box->opening_date);
+        $date_o = $date->format('Y-m-d H:i:s');
+        $this->twigParams['date'] = $date_o;
+        $this->twigParams['urlBox'] = $this->getRoute('visitor.token', ['token' => $box->url]);
+        
+
+
+
+        $app->render('VisitorWaitView.twig', $this->twigParams);
     }
 
     public function getFunding($token){

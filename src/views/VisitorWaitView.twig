@@ -1,0 +1,18 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+
+<input type='hidden' id='date' name="date_ouverture" value="{{date}}">
+    <div class='countdown'>
+        <h1 class='couldown_title'>Temps restant avant l'ouverture de votre coffret</h1>
+        <div id='countdown' class='countdown_date'></div>
+        <div class='buttonLayout'>
+            <a href="{{urlBox}}" id='openBox' class='button'>Ouvrir mon coffret</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src='{{ siteUrl('assets/scripts/countdown.js')}}'></script>
+{% endblock %}
