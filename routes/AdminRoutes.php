@@ -19,10 +19,10 @@ $app->get("/lock_offer/:id", function($id){
 
 $app->get("/create_modify_offer/:id", function($id){
     $c = new AdminController();
-    $c->getModifyOrCreateOffer($id);
+    $c->getCreateOrModifyOffer($id);
 })->name('createModifyOffer');
 
 $app->post("/create_modify_offer/:id", function($id){
     $c = new AdminController();
-    $c->postModifyOrCreateOffer($id);
+    $c->postCreateOrModifyOffer($id);
 })->name('createModifyOffer.post');

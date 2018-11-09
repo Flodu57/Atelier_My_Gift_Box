@@ -4,15 +4,17 @@
 
     <form method="post" action="">
         <p class='label'>Titre</p>
-        <input type='text' name='titre' class='input'>
+        <input type='text' name='title' class='input'>
         <p class='label'>Description</p>
         <textarea name='description' placeholder=''></textarea>
-        <input type='text' name='titre' class='input'>
         <p class='label'>Prix</p>
         <input type='number' min="0" value="0" name='price' class='input'>
+        <select name='category_id'>   
         {% for category in categories %}
-            <input type="radio" name="category" value="{{ category.id }}"> category.title
+            <option value='{{category.id}}'>{{ category.title }}</option>
         {% endfor %}
+        </select>
+        <button type="submit">Valider</button>
     </form>
 
 {% endblock %}
