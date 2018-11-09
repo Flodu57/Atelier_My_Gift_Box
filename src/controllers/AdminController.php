@@ -4,6 +4,7 @@ namespace mygiftbox\controllers;
 
 use mygiftbox\models\Offer;
 use mygiftbox\models\User;
+use mygiftbox\models\Category;
 
 class AdminController extends Controller {
 
@@ -29,7 +30,7 @@ class AdminController extends Controller {
         if(User::current()->isAdmin()){
             $offer = Offer::byId($id);
             if($offer){
-                //REDIRECT TO MODIFY PAGE
+                $app->redirect($app->urlFor('createModifyOffer', ['id' => $id]));
             } else {
                 $app->flash('error', "Une erreur s'est produite.");
             }
@@ -61,17 +62,27 @@ class AdminController extends Controller {
         $app->redirect($app->urlFor('offers'));
     }
 
-    public function getCreateOrModifyOffer($id = null){
-        
+    public function getCreateOrModifyOffer($id){
+        $app = \Slim\Slim::getInstance();
+        $categories = [];
+        foreach(Category::all() as $categ){
+            array_push($categories,
+                ['id' => $categ->id,
+                 'title' => $categ->title]);
+        }
+        $this->twigParams['offer_id'] = $id;
+        $this->twigParams['categories'] = $categories;
+        $this->twigParams['submit'] = $app->urlFor('createModifyOffer.post', ['id' => 0]);
+        $app->render('OfferManagingView.twig', $this->twigParams);
     }
 
-    public function postCreateOrModifyOffer($id = null){
+    public function postCreateOrModifyOffer($id){
         $app = \Slim\Slim::getInstance();
         if(User::current()->isAdmin()){
             $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
             $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
             $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_INT);
-            if($id === null){
+            if($id == 0){
                 Offer::addNew($title, $description, $price, $img, $_POST['category']);
                 $app->flash('success', "La prestation a bien été ajoutée.");
             } else {
