@@ -30,7 +30,7 @@ class Box extends \Illuminate\Database\Eloquent\Model {
         return parent::where('url', '=', $token)->first();
     }
 
-    public static function byTokenCagnotte($token) {
+    public static function byTokenCFunding($token) {
         return parent::where('jackpot_url', '=', $token)->first();
     }
 

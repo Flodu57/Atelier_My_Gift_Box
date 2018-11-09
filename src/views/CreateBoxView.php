@@ -31,7 +31,7 @@ class CreateBoxView extends View{
 
                                 <div class='form_group'>
                                     <label class='label label_title'>Cagnotte</p>
-                                    <input type='checkbox' name='cagnotte' class='input'>
+                                    <input type='checkbox' name='funding' class='input'>
                                 </div>
                                 <button type='submit' class='button buttonCreateBox'>Créer</button>
                             </form>

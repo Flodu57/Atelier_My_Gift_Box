@@ -97,7 +97,7 @@ class ProfileController extends Controller{
                     $box->url            = $token;
                     $box->status          = 'En cours';
 
-                    if(isset($_POST['cagnotte'])){
+                    if(isset($_POST['funding'])){
                         $box->jackpot_url     = bin2hex(random_bytes(5));
                         $box->jackpot_amount  = 0;
                     }
@@ -125,7 +125,7 @@ class ProfileController extends Controller{
         $this->twigParams['box']['title'] = $box->title;
         $this->twigParams['box']['total'] = $box->price;
         $this->twigParams['box']['status'] = $box->status;
-        $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeCagnotte', ['slug' => $box->slug]);
+        $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeFunding', ['slug' => $box->slug]);
 
         $offers = $box->prestations()->get();
 

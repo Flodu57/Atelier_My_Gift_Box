@@ -4,7 +4,7 @@ namespace mygiftbox\controllers;
 
 use mygiftbox\views\VisitorBoxView;
 use mygiftbox\views\VisitorWaitView;
-use mygiftbox\views\VisitorCagnotteView;
+use mygiftbox\views\VisitorFundingView;
 use mygiftbox\models\Box;
 
 class VisitorController {
@@ -41,14 +41,14 @@ class VisitorController {
         $v->render();
     }
 
-    public function getCagnotte($token){
-        $box = Box::byTokenCagnotte($token);
-        $v = new VisitorCagnotteView($box);
+    public function getFunding($token){
+        $box = Box::byTokenFunding($token);
+        $v = new VisitorFundingView($box);
         $v->render();
     }
 
-    public function postCagnotte($token){
-        $box = Box::byTokenCagnotte($token);
+    public function postFunding($token){
+        $box = Box::byTokenFunding($token);
         $app = \Slim\Slim::getInstance();
 
         if($box && $box->url_cagnotte){
@@ -62,11 +62,11 @@ class VisitorController {
                 
             }else{
                 $app->flash('error', "Une erreur est survenue");
-                $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));
+                $app->redirect($app->urlFor('visitor.funding', ['token_funding' => $token]));
             }
         }else{
             $app->flash('error', "Une erreur est survenue");
-                $app->redirect($app->urlFor('visitor.cagnotte', ['token_cagnotte' => $token]));
+                $app->redirect($app->urlFor('visitor.funding', ['token_funding' => $token]));
         }
     }
 

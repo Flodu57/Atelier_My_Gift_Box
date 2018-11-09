@@ -3,7 +3,7 @@
 namespace mygiftbox\views;
 
 
-class VisitorCagnotteView extends View{
+class VisitorFundingView extends View{
 
     private $box;
 
