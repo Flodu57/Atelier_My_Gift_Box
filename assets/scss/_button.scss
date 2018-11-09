@@ -1,8 +1,9 @@
 .button{
-    text-decoration: none;
     font-size: 1.4em;
     padding: 10px 14px;
     text-align: center;
+    border-radius: 4px;
+    border: none;
 
     @media(max-width: 450px){
         padding: 10px 7px;
@@ -11,7 +12,14 @@
 
     &--green{
         background-color: green;
+        color: white;
     }
+
+    &--blue{
+        background-color: $primary-color;
+        color: white;
+    }
+
     &_createBox{
     }
 
@@ -48,11 +56,15 @@
     margin-top:2%;
     display: flex;
 
-    &-right{
+    &--right{
         justify-content: flex-end;
     }
 
-    &-center{
+    &--center{
         justify-content: center;
+    }
+
+    &--home{
+        margin: 30px 0;
     }
 }

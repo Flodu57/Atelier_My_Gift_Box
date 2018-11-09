@@ -6,11 +6,7 @@
 
     flex-grow: 1;
     padding-top: 20vh;
-    div{
-        display: flex;
-        margin-top: 10px;
-        justify-content: space-between;
-    }
+    
 
     .input{
         padding: 4px 4px 4px 4px;
@@ -18,9 +14,16 @@
     }
 }
 
+.login{
+    &_buttons{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+    }
+}
+
 .label{
-    margin-bottom: 0;
-    margin-top:10px;
     &_passwordLost, &_alreadyRegister{
         font-size:0.8em;
     }
@@ -51,10 +54,6 @@
             margin-left: 10px;
             margin-right: 10px;
             margin-bottom:10px;
-        }
-
-        button{
-            margin-left:50vw;
         }
     }
 }
