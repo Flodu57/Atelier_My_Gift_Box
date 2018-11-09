@@ -2,19 +2,20 @@
 
 {% block content %}
 
-    <form method="post" action="">
+    <form method="post" enctype="multipart/form-data">
         <p class='label'>Titre</p>
         <input type='text' name='title' class='input'>
         <p class='label'>Description</p>
         <textarea name='description' placeholder=''></textarea>
         <p class='label'>Prix</p>
         <input type='number' min="0" value="0" name='price' class='input'>
-        <select name='category_id'>   
+        <select name='category'>   
         {% for category in categories %}
             <option value='{{category.id}}'>{{ category.title }}</option>
         {% endfor %}
         </select>
-        <button type="submit">Valider</button>
+        <input type="file" name="image" value="100000">
+        <input type="submit">Valider</button>
     </form>
 
 {% endblock %}

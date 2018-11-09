@@ -82,16 +82,17 @@ class AdminController extends Controller {
             $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
             $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
             $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_INT);
+            $category_id = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
             if($id == 0){
-                Offer::addNew($title, $description, $price, $img, $_POST['category']);
-                $app->flash('success', "La prestation a bien été ajoutée.");
+                Offer::addNew($title, $description, $price, $_FILES['image'], $category_id);
             } else {
-                Offer::modify($id, $title, $description, $price, $img, $_POST['category']);
-                $app->flash('success', "La prestation a bien été modifiée.");
-            }
+                Offer::modify($id, $title, $description, $price, $_FILES['image'], $category_id);
+            }   
         } else {
             $app->flash('error', "Vous ne disposez pas des droits administrateurs.");
         }
         $app->redirect($app->urlFor('offers'));
     }
+
+    
 }
