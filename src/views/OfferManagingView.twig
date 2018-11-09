@@ -1,0 +1,18 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+
+    <form method="post" action="">
+        <p class='label'>Titre</p>
+        <input type='text' name='titre' class='input'>
+        <p class='label'>Description</p>
+        <textarea name='description' placeholder=''></textarea>
+        <input type='text' name='titre' class='input'>
+        <p class='label'>Prix</p>
+        <input type='number' min="0" value="0" name='price' class='input'>
+        {% for category in categories %}
+            <input type="radio" name="category" value="{{ category.id }}"> category.title
+        {% endfor %}
+    </form>
+
+{% endblock %}
