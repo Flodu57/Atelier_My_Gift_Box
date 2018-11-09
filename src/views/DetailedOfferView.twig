@@ -27,6 +27,10 @@
                         <button class='button button_addOffer' type='submit'>Valider</button>
                     </form>
                 {% endif %}
+            {% else %}
+                <div class='buttonLayout'>
+                    <a class='button button_addOffer' href='{{ urls.login }}' >Connectez vous pour commencez votre box !</a>
+                </div>
             {% endif %}
         </div>
     </div>

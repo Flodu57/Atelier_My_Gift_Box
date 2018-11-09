@@ -46,17 +46,18 @@ class OffersController extends Controller {
         }
         $this->twigParams['categories'] = $categories;
         $this->twigParams['offers'] = $offers;
+        $this->twigParams['sorting_order'] = $sort;
         $this->twigParams['sorting_category'] = $category_name;
         $app->render('OffersView.twig', $this->twigParams);
     }
 
     public function getDetailedOffer($offer_id){
         $app = \Slim\Slim::getInstance();
-        $boxes = Box::boxesForCurrentUser();
+        $boxes = User::boxesForCurrentUser();
         $offer = Offer::byId($offer_id);
         $this->twigParams['offer'] = $offer;
         $this->twigParams['boxes'] = $boxes;
-        $this->twigParams['unpaidBoxes'] = User::unpaidBoxes();
+        $this->twigParams['unpaidBoxes'] = User::unpaidBoxesForCurrentUser();
         $this->twigParams['url'] = $app->urlFor('profile.createBox');
         $app->render('DetailedOfferView.twig', $this->twigParams);
     }
