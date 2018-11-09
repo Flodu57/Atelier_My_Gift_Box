@@ -29,3 +29,20 @@
     margin-left: auto;
     margin-bottom: 130px;
 }
+
+//RESPONSIVE
+@media(max-width: 450px){
+    .home{
+        .label{
+            &_welcome{
+                margin-left: 30%;
+            }
+        }
+    }
+
+    .button{
+        &_createBox{
+            margin-bottom: 15%
+        }
+    }
+}
