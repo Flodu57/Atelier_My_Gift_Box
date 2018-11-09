@@ -11,7 +11,6 @@ $db->addConnection(parse_ini_file('src/conf/config.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
 
-
 $app = new \Slim\Slim([
     'debug' => true,
     'templates.path' => 'src/views',
