@@ -58,6 +58,7 @@ class ProfileController extends Controller{
             array_push($reformatBox, [
                 'title' => $box->title,
                 'jackpot_url' => $box->jackpot_url,
+                'jackpot_amount' => $box->jackpot_amount,
                 'price' => $box->price,
                 'urlBox' => $this->getRoute('profile.box', compact('slug')),
                 'urlDeleteBox' => $this->getRoute('profile.deleteBox', compact('slug'))
