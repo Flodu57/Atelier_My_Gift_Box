@@ -1,0 +1,15 @@
+.settings{
+    flex-grow: 1;
+    &_password, &_delete{
+        margin-bottom: 30px;
+        form{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0 30px;
+            @include laptop{
+                align-items: center;
+            }
+        }
+    }
+}

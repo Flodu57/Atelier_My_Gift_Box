@@ -1,0 +1,23 @@
+.form_group{
+    margin-top: 10px;
+
+    input,select{
+
+        &[type=checkbox]{
+            width: auto;
+        }
+
+        width: 100%;
+        padding: 10px 14px;
+        margin-top: 10px;
+        font-size:1em;
+        border: 1px solid $secondary-color;
+    }
+
+}
+textarea{
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid $secondary-color;
+    resize: vertical;
+}

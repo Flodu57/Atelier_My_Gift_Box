@@ -1,11 +1,20 @@
-.detailled_offer{
+.detailed_offer{
     flex-grow: 1;
     margin-top: 60px;
-    padding-left: 10px;
+
+    @media(max-width: 450px){
+        display: flex;
+        flex-direction: column;
+    }
     
     &_top{
         height: 300px;
         display: flex;
+        @media(max-width: 450px){
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
         
         img{
             height: 100%;
@@ -14,21 +23,26 @@
 
         .wrap{
             flex-grow: 1;
-            padding: 0 100px;
             display: flex;
             flex-direction: column;
+            padding: 0 30px;    
             justify-content: space-around;
         }
 
         &_infos{
             display: flex;
             justify-content: space-between;
-            h2{
-                font-size: 1.9em;
+            flex-direction: column;
+
+            .titles{
+                .bold{
+                    font-size: 1.2em;
+                }
             }
 
             p{
                 margin-top: 3px;
+                align-self: flex-end;
             }
 
             .price{
@@ -43,64 +57,28 @@
 
             p{
                 margin-right: 10px;
+
+                @media(max-width: 450px){
+                    margin-top:10px;
+                }
             }
 
             select{
                 font-size: 1em;
                 margin-right: 10px;
                 padding: 10px;
+
+                @media(max-width: 450px){
+                    margin-top:10px;
+                    border:1px inset lightgray;
+                    background-color: white;
+                }
             }
 
-            .button_addOffer{
-                font-size:1.2em;
-                padding: 10px 14px;
-                background-color: green;
-            }
         }
     }
 
     &_description{
-        margin-top: 60px;
-    }
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    .detailled_offer{
-        width:100vw;
-        &_top{
-            flex-direction: column;
-            display: block;
-            img{
-                width:100%;
-            }
-
-            .wrap{
-                padding: 0;
-                margin-right: 10px;
-                margin-left: 10px;
-
-            }
-        }
-
-        &_top_add{
-            select{
-                margin-top:10px;
-                border:1px inset lightgray;
-                background-color: white;
-            }
-
-            button{
-                margin-top: 10px;
-            }
-
-            p{
-                margin-top: 10px;
-            }
-        }
-
-        &_description{
-            margin-top: 150px;
-        }
+        margin-bottom: 50px;
     }
 }

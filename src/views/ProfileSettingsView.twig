@@ -1,33 +1,39 @@
 {% extends "layouts/master.twig" %}
 
 {% block content %}
-<div class='container'>
+<div class='settings'>
+    <div class='settings_password'>
+        <h2 class='title title_2 title--bg'>Changer votre mot de passe</h2>
 
-    <div class='settings'>
-        <div class='settings_password'>
-            <h1>Changer votre mot de passe</h1>
-
-            <form method='POST'>
+        <form method='POST'>
+            <div class='form_group'>
                 <input placeholder='Mot de passe actuel' type='password' name='password'>
+            </div>
+            <div class='form_group'>
                 <input placeholder='Nouveau mot de passe' type='password' name='new_password'>
-                <button type='submit'>Sauvegarder</button>
-            </form>
-        </div>
-
-        <div class='settings_delete'>
-            <h1>Supprimer votre compte</h1>
-
-            <form method='post'>
-                <input placeholder='Mot de passe actuel' type='password' name='password'>
-                <input type='hidden' name='_METHOD' value='delete'/>
-                <button type='submit'>Supprimer</button>
-            </form>
-        </div>
-
-        
+            </div>
+            <div class='buttonLayout buttonLayout--right'>
+                <button class='button button--green' type='submit'>Sauvegarder</button>
+            </div>
+        </form>
     </div>
 
-    
+    <div class='settings_delete'>
+        <h2 class='title title_2 title--bg'>Supprimer votre compte</h2>
+
+        <form method='post'>
+            <div class='form_group'>
+                <input placeholder='Mot de passe actuel' type='password' name='password'>
+            </div>
+
+            <input type='hidden' name='_METHOD' value='delete'/>
+
+            <div class='buttonLayout buttonLayout--right'>
+                <button class='button button--red' type='submit'>Supprimer</button>
+            </div>
+
+        </form>
+    </div>
 </div>
 {% endblock %}
 

@@ -1,0 +1,128 @@
+.box{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    &_head{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: rgb(196, 196, 196);
+        padding: 10px 30px;
+
+        &.visitor{
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &_title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &_link{
+            margin: 10px 0;
+
+            &_contributors a{
+                font-size: 0.9em;
+            }
+
+            &_receiver{
+                margin-top: 20px;
+                a{
+                    font-size: 0.9em;
+                }
+            }
+
+            .bold{
+                margin-bottom: 3px;
+            }
+        }
+    
+        &_total{
+            display: flex;
+            font-size: 1.5em;
+
+            .p_total{
+                margin-right: 10px;
+            }
+        }
+    }
+    
+    &_grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);           
+        grid-column-gap: 20px;
+        grid-row-gap: 15px;
+        padding: 0 30px;
+        margin-top: 20px;
+        flex: 1;
+
+        @include laptop{
+            grid-template-columns: repeat(4, 1fr);           
+            padding: 0;
+        }
+
+        .containerBox{
+            position: relative;
+            display: flex;
+
+            .offer{
+                display: flex;
+                flex-direction: column;
+                border:2px solid black;
+                text-decoration: none;
+                color:black;
+
+                @include laptop{
+                    width: 100%;
+                }
+
+                img{
+                    width: 100%;
+                }
+            
+                &_bottom{
+                    display: flex;
+                    flex-grow: 1;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    padding: 5px;
+            
+                    &_infos{
+                        display: flex;
+                        flex-direction: column;
+                        p:last-of-type{
+                            align-self: flex-end;
+                        }
+                    }
+                }
+            }
+        }
+
+        .delete{
+            text-decoration: none;
+            position: absolute;
+            font-size: 1em;
+            top: 0;
+            right: 0;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bolder;
+            transform: translateY(-50%) translateX(50%);
+            z-index: 0;
+            background-color: red;
+        }
+    }  
+
+    .buttonLayout{
+        margin: 20px 0;
+    }
+}
+

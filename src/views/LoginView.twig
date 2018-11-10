@@ -1,16 +1,24 @@
 {% extends "layouts/master.twig" %}
 
 {% block content %}
+    <h1 class='title title_1 title--bg'>Se connecter</h1>
+<div class='login'>
 
-    <form class='login' method='POST'> 
-        <p class='label label_email'>Email</p>
-        <input type='email' name='email' class='input input_email'>
-        <p class='label label_password'>Mot de passe</p>
-        <input type='password' name='password' class='input input_password'>
-        <div>
-            <a href='{{ urls['forgot'] }}' class='label label_passwordLost'>Mot de passe oublié ?</a>
-            <button type='submit' class='button button_login'>Connexion</button>
+    <form class='login_form' method='POST'> 
+        <div class='form_group'>
+            <label for='email' class='label'>Email</label>
+            <input type='email' name='email'>
+        </div>
+
+        <div class='form_group'>
+            <label for='password' class='label'>Mot de passe</label>
+            <input type='password' name='password'>
+        </div>
+        
+        <div class='login_buttons'>
+            <a href='{{ urls['forgot'] }}' class='label'>Mot de passe oublié ?</a>
+            <button type='submit' class='button button--green'>Connexion</button>
         </div>
     </form>
-
+</div>
 {% endblock %}

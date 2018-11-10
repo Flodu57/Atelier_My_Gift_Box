@@ -6,7 +6,7 @@
         <div class='wrap'>
             <div class='detailed_offer_top_infos'>
                 <div class='titles'>
-                    <h2>{{ offer.title }}</h2>
+                    <p class='bold'>{{ offer.title }}</p>
                     <p>{{ offer.category.title }}</p>
                 </div>
                 <p class='price'>{{ offer.price }} €</p>
@@ -14,7 +14,7 @@
             {% if user_id %}
                 {% if unpaidBoxes is empty %}
                     <div class='buttonLayout'>
-                        <a class='button button_addOffer' href='{{ url }}' >Créer un coffret</a>
+                        <a class='button button--green' href='{{ url }}' >Créer un coffret</a>
                     </div>
                 {% else %}
                     <form method='POST' class='detailed_offer_top_add'>  
@@ -24,18 +24,18 @@
                                     <option value='{{ box.id }}'>{{ box.title }}</option>
                             {% endfor %}
                         </select>
-                        <button class='button button_addOffer' type='submit'>Valider</button>
+                        <button class='button button--green' type='submit'>Valider</button>
                     </form>
                 {% endif %}
             {% else %}
-                <div class='buttonLayout'>
-                    <a class='button button_addOffer' href='{{ urls.login }}' >Connectez vous pour commencez votre box !</a>
-                </div>
+            <div class='buttonLayout buttonLayout--right'>
+                <a class='button button--green' href='{{ urls.login }}' >Connectez vous pour commencez!</a>
+            </div>
             {% endif %}
+            <div class='detailed_offer_description'> 
+                {{ offer.description }}
+            </div>
         </div>
-    </div>
-    <div class='detailed_offer_description'> 
-        {{ offer.description }}
     </div>
 </div> 
 

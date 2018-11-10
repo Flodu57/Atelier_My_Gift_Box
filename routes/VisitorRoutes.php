@@ -17,17 +17,17 @@ function CheckOpeningDate($route){
     }
 }
 
-$app->get('/:token', 'CheckOpeningDate', function($token){
+$app->get('/:token','CheckOpeningDate', function($token){
     $c = new VisitorController();
     $c->getBoxVisitor($token);
 })->name('visitor.token');
 
-$app->post('/:token', 'CheckOpeningDate', function($token){
+$app->post('/:token', function($token){
     $c = new VisitorController();
     $c->postThanks($token);
 });
 
-$app->get('/:token_funding/funding', function($token_funding){
+$app->get('/:token_funding/funding','CheckOpeningDate', function($token_funding){
     $c = new VisitorController();
     $c->getFunding($token_funding);
 })->name('visitor.funding');

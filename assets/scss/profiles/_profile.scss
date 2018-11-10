@@ -1,0 +1,137 @@
+
+//ACCOUNT
+.accountInformations{
+    background-color:rgb(196, 196, 196);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+
+    .accountInformation{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 30px;
+
+        .account{
+            display: flex;
+            flex-direction: column;
+
+            &_id{
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .accountSettings{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            
+
+            .imageSettings{
+                width: 30px;
+                height: auto;
+            }
+
+            a{
+                @include laptop{
+                    display: flex;
+                    align-items: center;
+                }
+                span{
+                    display: none;
+    
+                    @include laptop{
+                        display: block;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
+
+.containerProfile{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    flex-grow: 1;
+}
+
+.mybox{
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    @include laptop{
+        padding-right: 0;
+        padding-left: 0;
+    }
+     
+    .fa-plus{
+        color: white;
+        margin-right: 5px;
+    }
+}
+
+.containerProfile{
+    flex-grow: 1;
+}
+
+.gridBox{
+    display: grid;
+    padding: 0 30px;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    grid-template-columns: 1fr;
+
+    @include laptop{
+        padding: 0;
+        grid-template-columns: repeat(4,1fr);
+
+    }
+    
+
+    a{
+        text-decoration: none;
+        color:black;
+
+        @include laptop{
+            display: flex;
+            flex-direction: column;
+            .box_price{
+                align-self: flex-end;
+            }
+    
+        }
+    }
+
+    .boxItem{
+        position: relative;
+        color:$secondary-color;
+        border: 1px solid $secondary-color;
+        padding: 10px;
+        margin-top: 6px;
+
+
+        .delete{
+            position: absolute;
+            font-size: 1em;
+            top: 0;
+            right: 0;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bolder;
+            transform: translateY(-50%) translateX(50%);
+            z-index: 2;
+            background-color: red;
+        }
+    }
+}

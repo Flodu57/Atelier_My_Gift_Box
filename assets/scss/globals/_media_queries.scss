@@ -1,0 +1,5 @@
+@mixin laptop {
+    @media(min-width: 450px){
+        @content;
+    }
+}

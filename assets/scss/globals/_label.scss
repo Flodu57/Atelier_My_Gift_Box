@@ -1,0 +1,44 @@
+.label{
+
+    &_welcome{
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    &_menuMobile{
+        font-size: 1.4em;
+        color:$primary-color;
+    }
+
+    &_title{
+        font-size:1.2em;
+    }
+
+    &_price{
+        text-align: right;
+    }
+
+    &_passwordLost, &_alreadyRegister{
+        font-size:0.8em;
+    }
+
+    &_mail{
+    }
+
+    &_email{
+    }
+
+    &_settings{
+        text-decoration: none;
+        color:black;
+    }
+
+    &_titreBox{
+        font-size: 1.4em;
+        overflow: hidden;
+    }
+
+    &_prixBox{
+        font-size: 1em;
+    }
+}

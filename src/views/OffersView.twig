@@ -17,9 +17,11 @@
     </div>
     <form method='POST' class='offers_sort'>
         <p>Afficher par prix :</p>
-        <label><input type='radio' name='sort' value='0' {{sorting_order == 0 ? 'checked' : ''}}>Croissant</label>
-        <label><input type='radio' name='sort' value='1' {{sorting_order == 1 ? 'checked' : ''}}>Décroissant</label>
-        <button type='submit' class='button button_sort'>Trier</button>
+        <div class='offers_sort_inputs'>
+            <label for='sort'><input type='radio' name='sort' value='0' {{sorting_order == 0 ? 'checked' : ''}}>Croissant</label>
+            <label for='sort'><input type='radio' name='sort' value='1' {{sorting_order == 1 ? 'checked' : ''}}>Décroissant</label>
+            <button type='submit' class='button button--green'>Trier</button>
+        </div>
     </form>
     <div class='offers'> 
     {% for offer in offers %}

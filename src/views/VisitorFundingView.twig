@@ -7,7 +7,7 @@
         <h2>{{ box.title }}</h2>
         {{box.user.name}}
         {{box.user.first_name}}
-        <p>Cagnotte : {{ box.jackpot_amount }}/{{ box.total }} €</p>
+        <p>Cagnotte : {{ box.jackpot_amount }}/{{ box.price }} €</p>
     </div>  
     <p>{{ box.message }}</p>
 
@@ -26,13 +26,19 @@
         </div> 
     {% endfor %}
     </div>
-    <form class='participate' method='POST'>
-        <h3>Participer à la cagnotte</h3>
-        <input type='number' min='0' value='0' name='amount'>
-        <div class='buttonLayout'>
-            <button class='button' type='submit'>Participer</button>
-        </div>
-    </form>
+    {% if not box.paid %}
+    
+        <form class='participate' method='POST'>
+            <div class='form_group'>
+                <label for='amount' class='label'>Participer à la cagnotte</label>
+                <input type='number' min='0' value='0' name='amount'>
+            </div>
+            <div class='buttonLayout buttonLayout--right'>
+                <button class='button button--green' type='submit'>Participer</button>
+            </div>
+        </form>
+    {% endif %}
+    
 </div>
     
 {% endblock %}

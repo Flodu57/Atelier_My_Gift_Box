@@ -2,112 +2,118 @@
 
 {% block content %}
 
-    <div class='containerProfile'>
-        <div class='box'>
-            <div class='box_head'>
-                <div>
-                    <h2>{{ box.title }}</h2>
-                    <p>{{ box.payment }}</p>
-                </div>
-                {% if box.status == 'closed' and box.paid %}
-                    <div>
-                        {% if box.jackpot_url %}
-                            <h2>Lien à partager avec les participants</h2>                            
-                            <a href='{{ box.url }}'>{{ box.url }}</a>
-
-                            <h2>Lien à partager avec le destinataire du coffret</h2>
-                            <a href='{{ box.urlReceiver }}'>{{ box.urlReceiver }}</a>
-
-                        {% else %}
-                            <h2>Lien à partager</h2>
-                            <a href='{{ box.url }}'>{{ box.url }}</a>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class='box_head_total'>
-                    <p class='p_total'>Total </p>
-                    {{ box.total }}
-                    <p>€</p>
-                </div>
-            </div>  
-
-            <div class='box_grid'>
-             {% for offer in offers %}
-                <div class='containerBox'>
-                    <a href='{{ offer.urlDetailledOffer }}' class='offer'>
-                        <img src='{{ siteUrl('assets/img/offers/' ~ offer.image)}}'>
-                        <div class='offer_bottom'>
-                            <h2 class='label label_title'>{{ offer.title }}</h2>
-                            <div class='offer_bottom_infos'>
-                                <p class='label label_category'>{{ offer.category }}</p>
-                                <p class='label label_price'>{{ offer.price }} €</p>
-                            </div>
-                        </div>
-                    </a>
-                {% if box.status != 'closed' %}
-                    <a href='{{ offer.urlDeleteOffer }}' class='delete'><p>x</p></a>
-                {% endif %}    
-                </div>
-             {% endfor %}
-
-        
+<div class='box'>
+    <div class='box_head'>
+        <div class='box_head_title'>
+            <h2 class='title title_2'>{{ box.title }}</h2>
+            <p>{{ box.payment }}</p>
+        </div>
+            <div class='box_head_link'>
+            
+            {% if box.jackpot_url %}
+            <div class='box_head_link_contributors'>
+                <p class='bold'>Lien à partager avec les participants</p>                            
+                <a href='{{ box.url }}'>{{ box.url }}</a>
             </div>
-                {% if box.message %}
-                    {% if box.paid == 0 %}
-                
-                    <form method='POST'>
-                        <h1 class='titleMsg'>Ajouter un message a votre coffret</h1>
-                        <input type='hidden' name='_METHOD' value='PUT'>
-                            <textarea name='message' placeholder='Votre message'>{{ box.message ? box.message : ''}}</textarea>
-                        <div class="buttonLayout buttonLayout-right">
-                            <button class='button button_validateBox' type='submit'>Sauvegarder</button>
-                        </div>
-                        
-                    </form>
-                    {% else %}
-                        <h1 class='titleMsg'>Message attaché au coffret</h1>
-                        <p>{{box.message}}</p>
-
-                        {% if box.message_return %}
-                            <h1 class='titleMsg'>Message de remerciement</h1>
-                            <p>{{box.message_return}}</p>
-                        {% endif %}
-
-                    {% endif %}
+            {% endif %}
+            
+            {% if box.status == 'closed' and box.paid %}
+                {% if box.jackpot_url %}
+                <div class='box_head_link_receiver'>
+                    <p class='bold'>Lien pour le destinataire du coffret</p>
+                    <a href='{{ box.urlReceiver }}'>{{ box.urlReceiver }}</a>
+                </div>
+                {% else %}
+                <div class='box_head_link'>
+                    <p class='bold'>Lien à partager</p>
+                    <a href='{{ box.url }}'>{{ box.url }}</a>
+                </div>
                 {% endif %}
-                
-            <div class='buttonLayout buttonLayout-center'>
-                {% if box.status != 'closed' %}
-                <a href='{{ urls['offers'] }}' class='button button_continueBox'>Continuer les achats</a>
-                
-                    {% if box.paymentButton.type %}
-                        {% if box.paymentButton.canClose %}
-                        
-                            <a href='{{ box.paymentButton.url}}' class='button button_validateBox'>{{ box.paymentButton.message }}</a>
-                        {% endif %}
-                        
-                    {% else %}
-                        <form method="POST">
-                            <script
-                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
-                                data-amount="{{ box.paymentButton.amount }}"
-                                data-name="Stripe.com"
-                                data-description="Example charge"
-                                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                data-locale="auto"
-                                data-zip-code="true">
-                            </script>
-                        </form>
-                    {% endif %}
-                {% endif %}
-
-                
-                
-                
+            {% endif %}
             </div>
+        <div class='box_head_total'>
+        {% if not box.jackpot_url %}
+            <p class='p_total'>Total </p>
+            {{ box.total }}
+            <p>€</p>
+        {% endif %}
         </div>
     </div>  
+
+    <div class='box_grid'>
+        {% for offer in offers %}
+        <div class='containerBox'>
+            <a href='{{ offer.urlDetailledOffer }}' class='offer'>
+                <img src='{{ siteUrl('assets/img/offers/' ~ offer.image)}}'>
+                <div class='offer_bottom'>
+                    <p class='bold'>{{ offer.title }}</h2>
+                    <div class='offer_bottom_infos'>
+                        <p>{{ offer.category }}</p>
+                        <p>{{ offer.price }} €</p>
+                    </div>
+                </div>
+            </a>
+        {% if box.status != 'closed' %}
+            <a href='{{ offer.urlDeleteOffer }}' class='delete'><p>x</p></a>
+        {% endif %}    
+        </div>
+        {% endfor %}
+
+
+    </div>
+            {% if box.paid == 0 %}
+        
+            <form method='POST'>
+                <h1 class='title title_1 title--bg'>Ajouter un message a votre coffret</h1>
+                <input type='hidden' name='_METHOD' value='PUT'>
+                <textarea name='message' placeholder='Votre message'>{{ box.message ? box.message : ''}}</textarea>
+                <div class="buttonLayout buttonLayout--right">
+                    <button class='button button--green' type='submit'>Sauvegarder</button>
+                </div>
+                
+            </form>
+            {% else %}
+                <h1 class='title title_1 title--bg'>Message attaché au coffret</h1>
+                <p>{{box.message}}</p>
+
+                {% if box.message_return %}
+                    <h1 class='title title_1 title--bg'>Message de remerciement</h1>
+                    <p>{{box.message_return}}</p>
+                {% endif %}
+
+            {% endif %}
+        
+    <div class='buttonLayout buttonLayout--center'>
+        {% if box.status != 'closed' %}
+        <a href='{{ urls['offers'] }}' class='button button--blue'>Continuer les achats</a>
+        
+            {% if box.paymentButton.type %}
+                {% if box.paymentButton.canClose %}
+                
+                    <a href='{{ box.paymentButton.url}}' class='button button--green'>{{ box.paymentButton.message }}</a>
+                {% endif %}
+                
+            {% else %}
+                {% if box.offers_count >= 2 %}
+                
+                    <form method="POST">
+                        <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                            data-amount="{{ box.paymentButton.amount * 100 }}"
+                            data-name="MyGiftBox"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto"
+                            data-currency='EUR'
+                            data-zip-code="true">
+                        </script>
+                    </form>
+                {% endif %}
+                           
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}

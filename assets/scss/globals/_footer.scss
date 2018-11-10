@@ -1,0 +1,35 @@
+footer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+
+   
+
+    .footerConditions{
+        display: flex;
+        flex-direction: row;
+
+        @media(max-width: 450px){
+            flex-direction: column-reverse;
+            text-align: center;
+            width: 100%;
+        }
+    }
+    p{
+        margin-top : 5px;
+        margin-bottom : 0;
+        font-size:0.8em;
+        border-right: 1px solid black;
+        padding: 0 5px;
+        &:last-of-type{
+            border: none;
+        }
+
+        @media(max-width: 450px){
+            border: none;
+        }
+
+        
+    }
+}

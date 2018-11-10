@@ -1,17 +1,14 @@
 .thanks{
-    margin-top: 40px;
-    h3{
-        font-size: 1.9em;
-        margin-bottom: 20px;
-    }   
+    margin-top: 40px;  
+
+    p{
+        padding: 10px 20px;
+    }
 }
 
 .form_thank{
-    h3{
-        font-size: 1.9em;
-        margin-bottom: 20px;
-        background-color: lightgray;
-    }
+    padding: 0 30px;
+    margin-top: 20px;
     .textVisitor{
         width: 100%;
         min-height: 300px;
@@ -20,47 +17,9 @@
         font-size: 16px;
         resize: vertical;
     }
-    
-    button{
-        margin-right: 100px;
-    }
 }
 
 //FUNDING
 .participate{
-    h3, input, button{
-        margin-left: 10px;
-        margin-top: 10px;
-    }
-    input{
-        font-size: 1em;
-        padding: 5px 5px 5px 5px;
-    }
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    .thanks{
-        h3{
-            margin-left: 25px;
-            margin-right: 25px;
-        }
-    }
-
-    .form_thank{
-        h3{
-            text-align: center;
-        }
-
-        .textVisitor{
-            width: 95%;
-            border:1px inset lightgray;
-            margin-right: 10px;
-            margin-left: 10px;
-            min-height: 200px;
-        }
-    }
-    button{
-        margin-right: 10px;
-    }
+    padding: 0 30px;
 }

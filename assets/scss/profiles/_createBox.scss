@@ -1,0 +1,28 @@
+.create_box{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    @include laptop{
+        align-items: center;
+    }
+
+    .title{
+        @include laptop{
+            width: 100%;
+        }
+    }
+    
+    &_form{
+        padding: 0 30px ;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: center;
+
+        @include laptop{
+            padding: 0;
+            width: 600px;
+        }
+    }
+}

@@ -83,7 +83,7 @@ class ProfileController extends Controller{
         if(isset($_POST['title']) && isset($_POST['title'])){
             $title = filter_var($_POST['title'],FILTER_SANITIZE_STRING);
             $date  = filter_var($_POST['date'],FILTER_SANITIZE_STRING);
-            $token = bin2hex(random_bytes(12));
+            $token = bin2hex(random_bytes(6));
 
             if(!empty($title) && !empty($date)){
                 if(Box::exists($title)){
@@ -129,6 +129,7 @@ class ProfileController extends Controller{
         $this->twigParams['box']['message'] = $box->message;
         $this->twigParams['box']['message_return'] = $box->message_return;
         $this->twigParams['box']['jackpot_url'] = $box->jackpot_url;
+        $this->twigParams['box']['offers_count'] = $box->offers->count();
         $this->twigParams['box']['status'] = $box->status;
         $this->twigParams['box']['urlClose'] = $this->getRoute('profile.closeFunding', ['slug' => $box->slug]);
 
@@ -149,10 +150,12 @@ class ProfileController extends Controller{
             $this->twigParams['box']['payment'] = "Payer : $p $with ";
         }
 
-        if(!$box->jackpot_url && $offers->count() >= 2 ) {
-            $this->twigParams['box']['paymentButton']['message'] = 'Passer au payement' ;
-            $this->twigParams['box']['paymentButton']['amount'] = $box->price ;
-            $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->url]);
+        if(!$box->jackpot_url) {
+            if($offers->count() >= 2){
+                $this->twigParams['box']['paymentButton']['message'] = 'Passer au payement' ;
+                $this->twigParams['box']['paymentButton']['amount'] = $box->price ;
+                $this->twigParams['box']['url'] = $app->request()->getUrl().$this->getRoute('visitor.token', ['token' => $box->url]);
+            }
 
         } else{
             $this->twigParams['box']['paymentButton']['type'] = "funding";
