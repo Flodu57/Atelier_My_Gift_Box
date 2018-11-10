@@ -147,7 +147,7 @@ class ProfileController extends Controller{
         else{
             $p = $box->paid ? 'Payé' : 'Non payé';
             $with = $box->payment_method ? "avec $box->payment_method" : '';
-            $this->twigParams['box']['payment'] = "Payer : $p $with ";
+            $this->twigParams['box']['payment'] = "Status : $p $with ";
         }
 
         if(!$box->jackpot_url) {
