@@ -5,17 +5,20 @@
     {% if user_id %}
     
         <a href='{{ urls['profile'] }}'>Mon compte</a>
-        <a href='{{ urls['logout'] }}'>Déconnexion</a>
+        <div class='menu_logout'>
+            <p>{{ user_name }}</p>
+            <a href='{{ urls['logout'] }}'>Déconnexion</a>
+        </div>
 
     {% else %}
-        
 
     <a href='{{ urls['login'] }}'>Connexion</a>
     <a href='{{ urls['register'] }}'>Inscription</a>
 
-
     {% endif %}
 </div>
+
+
 
 <div id="sideMenu" class="menuMobileSide">
   <a href="javascript:void(0)" class="closeButton" onclick="closeMenu()">&times;</a>
@@ -24,6 +27,7 @@
   {% if user_id %}
         <a href='{{ urls['profile'] }}' class="navMenu">Mon compte</a>
         <a href='{{ urls['logout'] }}' class="navMenu">Déconnexion</a>
+        <p>{{ user_name }}</p>
         {% else %}
         <a href='{{ urls['login'] }}' class="navMenu">Connexion</a>
         <a href='{{ urls['register'] }}' class="navMenu">Inscription</a>
