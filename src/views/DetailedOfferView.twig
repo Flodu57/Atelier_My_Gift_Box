@@ -6,7 +6,7 @@
         <div class='wrap'>
             <div class='detailed_offer_top_infos'>
                 <div class='titles'>
-                    <h2>{{ offer.title }}</h2>
+                    <p class='bold'>{{ offer.title }}</p>
                     <p>{{ offer.category.title }}</p>
                 </div>
                 <p class='price'>{{ offer.price }} €</p>
@@ -32,10 +32,10 @@
                 <a class='button button--green' href='{{ urls.login }}' >Connectez vous pour commencez!</a>
             </div>
             {% endif %}
+            <div class='detailed_offer_description'> 
+                {{ offer.description }}
+            </div>
         </div>
-    </div>
-    <div class='detailed_offer_description'> 
-        {{ offer.description }}
     </div>
 </div> 
 

@@ -1,7 +1,6 @@
 .detailed_offer{
     flex-grow: 1;
     margin-top: 60px;
-    padding: 0 10px;
 
     @media(max-width: 450px){
         display: flex;
@@ -24,31 +23,26 @@
 
         .wrap{
             flex-grow: 1;
-            padding: 0 100px;
             display: flex;
             flex-direction: column;
+            padding: 0 30px;    
             justify-content: space-around;
-
-            @media(max-width: 450px){
-                padding: 0;
-            }
         }
 
         &_infos{
             display: flex;
             justify-content: space-between;
+            flex-direction: column;
 
-            @media(max-width: 450px){
-                padding: 0;
-                flex-direction: column;
+            .titles{
+                .bold{
+                    font-size: 1.2em;
+                }
             }
 
             p{
                 margin-top: 3px;
-
-                @media(max-width: 450px){
-                    align-self: flex-end;
-                }
+                align-self: flex-end;
             }
 
             .price{
@@ -85,10 +79,6 @@
     }
 
     &_description{
-        margin-top: 60px;
-        @media(max-width: 450px){
-            margin-top: 0;
-            margin-bottom: 50px;
-        }
+        margin-bottom: 50px;
     }
 }
