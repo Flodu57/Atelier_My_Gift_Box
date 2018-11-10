@@ -119,7 +119,8 @@
     &_inputs{
         @media(max-width: 450px){
             display: flex;
-            justify-content: center;
+            width: 100%;
+            justify-content: space-between;
             margin-top: 10px;
         }
     }
