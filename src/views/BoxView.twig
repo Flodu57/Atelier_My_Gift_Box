@@ -86,24 +86,24 @@
                 {% endif %}
                 
             {% else %}
-                <form method="POST">
-                    <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
-                        data-amount="{{ box.paymentButton.amount }}"
-                        data-name="Stripe.com"
-                        data-description="Example charge"
-                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                        data-locale="auto"
-                        data-zip-code="true">
-                    </script>
-                </form>
+                {% if box.offers_count >= 2 %}
+                
+                    <form method="POST">
+                        <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                            data-amount="{{ box.paymentButton.amount * 100 }}"
+                            data-name="MyGiftBox"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto"
+                            data-currency='EUR'
+                            data-zip-code="true">
+                        </script>
+                    </form>
+                {% endif %}
+                           
             {% endif %}
         {% endif %}
-
-        
-        
-        
     </div>
 </div>
 {% endblock %}
