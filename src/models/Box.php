@@ -25,7 +25,11 @@ class Box extends \Illuminate\Database\Eloquent\Model {
     }
 
     public static function bySlug($slug) {
-        return parent::where('slug', '=', $slug)->first();
+        $user = User::current();
+        if($user){
+            return parent::where('slug', '=', $slug)->where('user_id','=',$user->id)->first();
+        }
+        return false;
     }
 
     public static function byToken($token) {
