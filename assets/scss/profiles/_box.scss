@@ -24,6 +24,17 @@
         &_link{
             margin: 10px 0;
 
+            &_contributors a{
+                font-size: 0.9em;
+            }
+
+            &_receiver{
+                margin-top: 20px;
+                a{
+                    font-size: 0.9em;
+                }
+            }
+
             .bold{
                 margin-bottom: 3px;
             }
@@ -48,6 +59,11 @@
         margin-top: 20px;
         flex: 1;
 
+        @include laptop{
+            grid-template-columns: repeat(4, 1fr);           
+            padding: 0;
+        }
+
         .containerBox{
             position: relative;
             display: flex;
@@ -58,6 +74,11 @@
                 border:2px solid black;
                 text-decoration: none;
                 color:black;
+
+                @include laptop{
+                    width: 100%;
+                }
+
                 img{
                     width: 100%;
                 }

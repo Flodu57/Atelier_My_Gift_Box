@@ -38,7 +38,7 @@ class VisitorController extends Controller{
     }
 
     public function postThanks($token){
-    $app = \Slim\Slim::getInstance(); 
+        $app = \Slim\Slim::getInstance(); 
         
         $box = Box::byToken($token);
 
@@ -72,11 +72,7 @@ class VisitorController extends Controller{
             $app->redirect($app->urlFor('home'));
         }
 
-        $this->twigParams['box']['title'] = $box->title;
-        $this->twigParams['box']['total'] = $box->price;
-        $this->twigParams['box']['jackpot_amount'] = $box->jackpot_amount;
-        $this->twigParams['box']['message'] = $box->message;
-        $this->twigParams['box']['user'] = $box->user;
+        $this->twigParams['box'] = $box;
         
         $formatOffers = [];
         $offers = $box->offers()->get();

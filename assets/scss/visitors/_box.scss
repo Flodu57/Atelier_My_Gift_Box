@@ -1,8 +1,14 @@
 .thanks{
     margin-top: 40px;  
+
+    p{
+        padding: 10px 20px;
+    }
 }
 
 .form_thank{
+    padding: 0 30px;
+    margin-top: 20px;
     .textVisitor{
         width: 100%;
         min-height: 300px;
@@ -11,30 +17,9 @@
         font-size: 16px;
         resize: vertical;
     }
-    
-    button{
-        margin-right: 100px;
-    }
 }
 
 //FUNDING
 .participate{
-    button{
-        margin-left: 10px;
-        margin-top: 10px;
-    }
-}
-
-//RESPONSIVE
-@media(max-width: 450px){
-    .form_thank{
-
-        .textVisitor{
-            width: 95%;
-            border:1px inset lightgray;
-            margin-right: 10px;
-            margin-left: 10px;
-            min-height: 200px;
-        }
-    }
+    padding: 0 30px;
 }

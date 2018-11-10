@@ -5,6 +5,10 @@
     flex-direction: column;
     justify-content: center;
 
+    @include laptop{
+        align-items: center;
+    }
+
     &_buttons{
         display: flex;
         justify-content: space-between;

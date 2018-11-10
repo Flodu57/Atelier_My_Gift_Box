@@ -17,12 +17,12 @@ function CheckOpeningDate($route){
     }
 }
 
-$app->get('/:token', 'CheckOpeningDate', function($token){
+$app->get('/:token', function($token){
     $c = new VisitorController();
     $c->getBoxVisitor($token);
 })->name('visitor.token');
 
-$app->post('/:token', 'CheckOpeningDate', function($token){
+$app->post('/:token', function($token){
     $c = new VisitorController();
     $c->postThanks($token);
 });

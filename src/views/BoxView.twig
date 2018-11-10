@@ -8,25 +8,35 @@
             <h2 class='title title_2'>{{ box.title }}</h2>
             <p>{{ box.payment }}</p>
         </div>
-        {% if box.status == 'closed' and box.paid %}
             <div class='box_head_link'>
+            
+            {% if box.jackpot_url %}
+            <div class='box_head_link_contributors'>
+                <p class='bold'>Lien à partager avec les participants</p>                            
+                <a href='{{ box.url }}'>{{ box.url }}</a>
+            </div>
+            {% endif %}
+            
+            {% if box.status == 'closed' and box.paid %}
                 {% if box.jackpot_url %}
-                    <p class='bold'>Lien à partager avec les participants</p>                            
-                    <a href='{{ box.url }}'>{{ box.url }}</a>
-
-                    <p class='bold'>Lien à partager avec le destinataire du coffret</p>
+                <div class='box_head_link_receiver'>
+                    <p class='bold'>Lien pour le destinataire du coffret</p>
                     <a href='{{ box.urlReceiver }}'>{{ box.urlReceiver }}</a>
-
+                </div>
                 {% else %}
+                <div class='box_head_link'>
                     <p class='bold'>Lien à partager</p>
                     <a href='{{ box.url }}'>{{ box.url }}</a>
+                </div>
                 {% endif %}
+            {% endif %}
             </div>
-        {% endif %}
         <div class='box_head_total'>
+        {% if not box.jackpot_url %}
             <p class='p_total'>Total </p>
             {{ box.total }}
             <p>€</p>
+        {% endif %}
         </div>
     </div>  
 
@@ -51,7 +61,6 @@
 
 
     </div>
-        {% if box.message %}
             {% if box.paid == 0 %}
         
             <form method='POST'>
@@ -73,7 +82,6 @@
                 {% endif %}
 
             {% endif %}
-        {% endif %}
         
     <div class='buttonLayout buttonLayout--center'>
         {% if box.status != 'closed' %}

@@ -1,8 +1,9 @@
 {% extends "layouts/master.twig" %}
 
 {% block content %}
-    <h1 class='title title_1 title--bg'>S'inscrire</h1>
-    <form class='register' method='POST'> 
+<h1 class='title title_1 title--bg'>S'inscrire</h1>
+<div class='register'>
+    <form class='register_form' method='POST'> 
 
         <div class='form_group'>
             <label for='lastname' class='label'>Nom</label>
@@ -34,7 +35,7 @@
         </div>
     
     </form>
-    
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -27,13 +27,26 @@
             justify-content: flex-end;
             align-items: center;
 
+            
+
             .imageSettings{
                 width: 30px;
                 height: auto;
             }
 
-            a span{
-                display: none;
+            a{
+                @include laptop{
+                    display: flex;
+                    align-items: center;
+                }
+                span{
+                    display: none;
+    
+                    @include laptop{
+                        display: block;
+                        margin-left: 10px;
+                    }
+                }
             }
         }
     }
@@ -52,12 +65,9 @@
     display: flex;
     align-items: center;
     padding: 15px 30px;
-
-    .imageMybox{
-        margin-top: 10px;
-        margin-left:1%;
-        width: 3%;
-        height: auto;
+    @include laptop{
+        padding-right: 0;
+        padding-left: 0;
     }
      
     .fa-plus{
@@ -76,11 +86,26 @@
     grid-column-gap: 10px;
     grid-row-gap: 15px;
     grid-template-columns: 1fr;
+
+    @include laptop{
+        padding: 0;
+        grid-template-columns: repeat(4,1fr);
+
+    }
     
 
     a{
         text-decoration: none;
         color:black;
+
+        @include laptop{
+            display: flex;
+            flex-direction: column;
+            .box_price{
+                align-self: flex-end;
+            }
+    
+        }
     }
 
     .boxItem{
