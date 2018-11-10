@@ -25,6 +25,7 @@ class Controller{
         $this->twigParams['urls'] = $this->urls;
         if(isset($_SESSION['id_user'])){
             $this->twigParams['user_level'] = User::byId($_SESSION['id_user'])->account_level;
+            $this->twigParams['user_name'] = User::current()->name .' '. User::current()->first_name;
             $this->twigParams['user_id'] = $_SESSION['id_user'];
             $this->twigParams['urls']['profile'] = $app->urlFor('profile');
         } else {
@@ -35,7 +36,7 @@ class Controller{
         }
         if(isset($_SESSION['slim.flash']['error'])){
             $this->twigParams['error'] = ['message' => $_SESSION['slim.flash']['error'], 'type' => array_keys($_SESSION['slim.flash'])[0]];
-        }   
+        }
     }
 
     public function getRoute($name, $param){
